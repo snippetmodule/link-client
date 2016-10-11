@@ -13,7 +13,8 @@
   "dependencies": {
     "react": "^15.3.1",
     "react-native": "^0.32.0",
-    "react-native-button": "^1.6.0"
+    "react-native-button": "^1.6.0",
+    "react-native-i18n": "^0.1.1"
   },
   "devDependencies": {
     "@types/react": "^0.14.39",
