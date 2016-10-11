@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { assignProperty } from './react-utils';
 
-export interface IPromiseComponentProps {
+interface IPromiseComponentProps {
     renderLoading?: () => JSX.Element;
     renderFailure?: (err: Error, reloadFun: () => any) => JSX.Element;
     renderFetched: (data: any, reloadFun: () => any) => JSX.Element;

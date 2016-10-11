@@ -3,6 +3,7 @@ import { View, Text } from 'react-native';
 
 // See src/declarations.d.ts
 import Button from 'react-native-button';
+import {getString} from '../../global';
 
 interface Props {
     max: number;
@@ -17,7 +18,7 @@ interface State {
 
 export default class HelloWorld extends React.Component<Props, State> {
     private static defaultProps = {
-        message: 'Press here',
+        message: getString('app.name'),
         alert: 'Hello world!',
     };
 
