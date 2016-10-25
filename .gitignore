@@ -32,7 +32,8 @@ project.xcworkspace
 .idea
 .gradle
 local.properties
-
+# vs code
+.vscode/.react/
 # node.js
 #
 node_modules/
