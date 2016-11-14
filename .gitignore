@@ -34,6 +34,7 @@ project.xcworkspace
 local.properties
 # vs code
 .vscode/.react/
+.vscode/launchReactNative.js
 # node.js
 #
 node_modules/
