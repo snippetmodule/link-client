@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactNative from 'react-native';
 import * as Colors from './Colors';
-
+import { env } from './env';
 export function Text(style, props): JSX.Element {
   return <ReactNative.Text style={[styles.font, style]} {...props} />;
 }
@@ -22,7 +22,7 @@ function normalize(size: number): number {
 
 const styles = ReactNative.StyleSheet.create({
   font: {
-    fontFamily: require('../env').fontFamily,
+    fontFamily: env.fontFamily,
   },
   h1: {
     fontSize: normalize(24),

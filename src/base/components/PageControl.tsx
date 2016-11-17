@@ -15,7 +15,7 @@ class PageControl extends React.Component<Prop, void> {
     }
     return (
       <ReactNative.View style={[styles.container, this.props.style]}>
-        <ReactNative.View style={styles.innerContainer}>
+        <ReactNative.View style={styles.innerContainer as any}>
           {images}
         </ReactNative.View>
       </ReactNative.View>

@@ -1,14 +1,9 @@
 import * as React from 'react';
-import {
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  Text,
-  Image,
-} from 'react-native';
+import * as ReactNative from 'react-native';
+
 let LinearGradient = require('react-native-linear-gradient');
 
-let F8Colors = require('F8Colors');
+import *as Colors from './Colors';
 
 interface IProp{
     type?: 'primary' | 'secondary' | 'bordered';
@@ -27,7 +22,7 @@ class Button extends React.Component<IProp,any> {
     const caption = this.props.caption.toUpperCase();
     let icon;
     if (this.props.icon) {
-      icon = <Image source={this.props.icon} style={styles.icon} />;
+      icon = <ReactNative.Image source={this.props.icon} style={styles.icon} />;
     }
     let content;
     if (this.props.type === 'primary') {
@@ -37,37 +32,37 @@ class Button extends React.Component<IProp,any> {
           colors={['#6A6AD5', '#6F86D9']}
           style={[styles.button, styles.primaryButton]}>
           {icon}
-          <Text style={[styles.caption, styles.primaryCaption]}>
+          <ReactNative.Text style={[styles.caption, styles.primaryCaption]}>
             {caption}
-          </Text>
+          </ReactNative.Text>
         </LinearGradient>
       );
     } else {
       let border = this.props.type === 'bordered' && styles.border;
       content = (
-        <View style={[styles.button, border]}>
+        <ReactNative.View style={[styles.button, border]}>
           {icon}
-          <Text style={[styles.caption, styles.secondaryCaption]}>
+          <ReactNative.Text style={[styles.caption, styles.secondaryCaption]}>
             {caption}
-          </Text>
-        </View>
+          </ReactNative.Text>
+        </ReactNative.View>
       );
     }
     return (
-      <TouchableOpacity
+      <ReactNative.TouchableOpacity
         accessibilityTraits="button"
         onPress={this.props.onPress}
         activeOpacity={0.8}
         style={[styles.container, this.props.style]}>
         {content}
-      </TouchableOpacity>
+      </ReactNative.TouchableOpacity>
     );
   }
 }
 
 const HEIGHT = 50;
 
-let styles = StyleSheet.create({
+let styles = ReactNative.StyleSheet.create({
   container: {
     height: HEIGHT,
     // borderRadius: HEIGHT / 2,
@@ -82,7 +77,7 @@ let styles = StyleSheet.create({
   },
   border: {
     borderWidth: 1,
-    borderColor: F8Colors.lightText,
+    borderColor: Colors.lightText,
     borderRadius: HEIGHT / 2,
   },
   primaryButton: {
@@ -100,7 +95,7 @@ let styles = StyleSheet.create({
     color: 'white',
   },
   secondaryCaption: {
-    color: F8Colors.lightText,
+    color: Colors.lightText,
   },
 });
 export {Button}

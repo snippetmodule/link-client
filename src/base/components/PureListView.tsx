@@ -14,6 +14,7 @@ interface IProps {
     renderEmptyList?: RenderElement;
     minContentHeight: number;
     renderFooter: RenderElement;
+    renderRow:( rowData: any, sectionID: string | number, rowID: string | number, highlightRow?: boolean ) => React.ReactElement<any>;
     contentInset: { top: number; bottom: number; };
 };
 
@@ -72,6 +73,7 @@ export class PureListView extends React.Component<IProps, IState> {
                 {...this.props}
                 ref={ref => this.mListView = ref}
                 dataSource={this.state.dataSource}
+                renderRow={this.props.renderRow}
                 renderFooter={this.renderFooter}
                 contentInset={{ bottom, top: contentInset.top }}
                 // onContentSizeChange={this.onContentSizeChange}
@@ -107,7 +109,7 @@ function cloneWithData(dataSource: ReactNative.ListViewDataSource, data: Data) {
     return dataSource.cloneWithRowsAndSections(data);
 }
 
-var styles = ReactNative.StyleSheet.create({
+let styles = ReactNative.StyleSheet.create({
     separator: {
         backgroundColor: '#eeeeee',
         height: 1,

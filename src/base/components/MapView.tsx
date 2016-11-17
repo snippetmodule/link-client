@@ -40,7 +40,7 @@ class MapView extends React.Component<Prop, State> {
     if (this.state.loaded) {
       image = (
         <ReactNative.Image
-          style={styles.map}
+          style={styles.map as any}
           source={{ uri: urlForMap(this.props.map) }}
           />
       );
@@ -72,7 +72,7 @@ let styles = ReactNative.StyleSheet.create({
   },
   map: {
     flex: 1,
-    resizeMode: ReactNative.Image.resizeMode.contain,
+    resizeMode: 'contain',
   },
 });
 

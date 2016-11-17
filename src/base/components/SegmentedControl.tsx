@@ -50,7 +50,7 @@ class Segment extends React.Component<SegmentProp, void> {
     }
     let title = this.props.value && this.props.value.toUpperCase();
 
-    let accessibilityTraits = ['button'];
+    let accessibilityTraits: React.ViewAccessibilityTraits[] = ['button'];
     if (this.props.isSelected) {
       accessibilityTraits.push('selected');
     }

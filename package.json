@@ -18,8 +18,8 @@
     "react-native-linear-gradient": "^1.5.13"
   },
   "devDependencies": {
-    "@types/react": "^0.14.39",
-    "@types/react-native": "^0.34.38",
+    "@types/react": "^0.14.48",
+    "@types/react-native": "^0.34.39",
     "tslint": "^3.15.1",
     "tslint-react": "^1.1.0",
     "typescript": "^2.2.0-dev.20161113"

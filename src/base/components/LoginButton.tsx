@@ -6,7 +6,7 @@ import { Button } from './Button';
 // const {connect} = require('react-redux');
 
 type Prop = {
-  style: any;
+  style?: any;
   source?: string; // For Analytics
   // dispatch: (action: any) => Promise<any>;
   onLoggedIn?: () => void;
