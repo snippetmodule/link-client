@@ -1,6 +1,6 @@
 'use strict'
 
 import { AppRegistry } from 'react-native'
-import App from './build'
+import App from './build/App'
 
-AppRegistry.registerComponent('ReactNativeNote', () => App)
+AppRegistry.registerComponent('ReactNativeTS', () => App)
