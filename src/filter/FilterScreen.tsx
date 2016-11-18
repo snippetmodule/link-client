@@ -28,7 +28,9 @@ type State = {
     selectedTopics: { [id: string]: boolean };
     anim: ReactNative.Animated.Value;
 }
-@connect(dispatch=>({}))
+@connect(null,dispatch=>({
+    
+}))
 class FilterScreen extends React.Component<Prop, State> {
     constructor(props) {
         super(props);
