@@ -40,21 +40,21 @@ class LoginScreen extends React.Component<any, { anim: ReactNative.Animated.Valu
                 <ReactNative.View style={styles.section as React.ViewStyle}>
                     <ReactNative.Animated.Text style={[styles.h1, this.fadeIn(700, -20)]}>
                         code to
-                     </ReactNative.Animated.Text>
+                    </ReactNative.Animated.Text>
                     <ReactNative.Animated.Text style={[styles.h1, { marginTop: -30 }, this.fadeIn(700, 20)]}>
                         connect
-                 </ReactNative.Animated.Text>
+                    </ReactNative.Animated.Text>
                     <ReactNative.Animated.Text style={[styles.h2, this.fadeIn(1000, 10)]}>
                         April 12 + 13 / Fort Mason Center
                     </ReactNative.Animated.Text>
                     <ReactNative.Animated.Text style={[styles.h3, this.fadeIn(1200, 10)]}>
                         SAN FRANCISCO, CALIFORNIA
-                </ReactNative.Animated.Text>
-                </ReactNative.View>
-                <ReactNative.Animated.View style={[styles.section, styles.last, this.fadeIn(2500, 20)]}>
-                    <Text style={styles.loginComment}>
-                        Use Facebook to find your friends at F8.
-          </Text>
+                    </ReactNative.Animated.Text>
+                    </ReactNative.View>
+                    <ReactNative.Animated.View style={[styles.section, styles.last, this.fadeIn(2500, 20)]}>
+                        <Text style={styles.loginComment}>
+                            Use Facebook to find your friends at F8.
+                        </Text>
                     <LoginButton source="First screen" />
                 </ReactNative.Animated.View>
             </ReactNative.Image>
