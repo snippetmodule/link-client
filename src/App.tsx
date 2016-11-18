@@ -1,7 +1,7 @@
 import * as React from 'react';
 import *as ReactNative from 'react-native';
 
-import {LoginScreen} from './LoginScreen';
+import { LoginScreen } from './LoginScreen';
 import { AppNavigator } from './AppNavigator';
 // var LoginScreen = require('./login/LoginScreen');
 
@@ -68,5 +68,5 @@ let styles = ReactNative.StyleSheet.create({
 //     isLoggedIn: store.user.isLoggedIn || store.user.hasSkippedLogin,
 //   };
 // }
-export default App;
+export { App };
 // module.exports = connect(select)(F8App);

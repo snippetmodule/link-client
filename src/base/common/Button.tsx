@@ -5,18 +5,14 @@ let LinearGradient = require('react-native-linear-gradient');
 
 import *as Colors from './Colors';
 
-interface IProp{
-    type?: 'primary' | 'secondary' | 'bordered';
-    icon?: string;
-    caption: string;
-    style?: any;
-    onPress: () => any;
+interface IProp {
+  type?: 'primary' | 'secondary' | 'bordered';
+  icon?: string;
+  caption: string;
+  style?: any;
+  onPress: () => any;
 }
-class Button extends React.Component<IProp,any> {
-      constructor(props: IProp) {
-    super(props);
-    this.props.type = this.props.type || 'primary';
-  }
+class Button extends React.Component<IProp, any> {
 
   public render() {
     const caption = this.props.caption.toUpperCase();
@@ -98,4 +94,4 @@ let styles = ReactNative.StyleSheet.create({
     color: Colors.lightText,
   },
 });
-export {Button}
+export { Button }

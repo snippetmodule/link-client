@@ -1,12 +1,12 @@
 
 
 import * as React from 'react';
-import *as ReactNative from 'react-native';
+import * as ReactNative from 'react-native';
 
-import *as Colors from './base/components/Colors';
-import { LoginButton } from './base/components/LoginButton';
-import { Button } from './base/components/Button';
-import { Text } from './base/components/Text';
+import * as Colors from './base/common/Colors';
+import { LoginButton } from './base/common/LoginButton';
+import { Button } from './base/common/Button';
+import { Text } from './base/common/Text';
 
 
 class LoginScreen extends React.Component<any, { anim: ReactNative.Animated.Value }> {
@@ -21,20 +21,20 @@ class LoginScreen extends React.Component<any, { anim: ReactNative.Animated.Valu
         return (
             <ReactNative.Image
                 style={styles.container}
-                source={require('/assert/login-background.png')}>
+                source={require('../asserts/login/login-background.png')}>
                 <ReactNative.StatusBar barStyle="default" />
                 <ReactNative.TouchableOpacity
                     accessibilityTraits="button"
                     style={styles.skip as React.ViewStyle}>
                     <ReactNative.Animated.Image
                         style={this.fadeIn(2800)}
-                        source={require('./img/x.png')}
+                        source={require('../asserts/login/x.png')}
                         />
                 </ReactNative.TouchableOpacity>
                 <ReactNative.View style={styles.section as React.ViewStyle}>
                     <ReactNative.Animated.Image
                         style={this.fadeIn(0)}
-                        source={require('./img/devconf-logo.png')}
+                        source={require('../asserts/login/devconf-logo.png')}
                         />
                 </ReactNative.View>
                 <ReactNative.View style={styles.section as React.ViewStyle}>
@@ -46,10 +46,10 @@ class LoginScreen extends React.Component<any, { anim: ReactNative.Animated.Valu
                  </ReactNative.Animated.Text>
                     <ReactNative.Animated.Text style={[styles.h2, this.fadeIn(1000, 10)]}>
                         April 12 + 13 / Fort Mason Center
-          </ReactNative.Animated.Text>
+                    </ReactNative.Animated.Text>
                     <ReactNative.Animated.Text style={[styles.h3, this.fadeIn(1200, 10)]}>
                         SAN FRANCISCO, CALIFORNIA
-          </ReactNative.Animated.Text>
+                </ReactNative.Animated.Text>
                 </ReactNative.View>
                 <ReactNative.Animated.View style={[styles.section, styles.last, this.fadeIn(2500, 20)]}>
                     <Text style={styles.loginComment}>

@@ -1,10 +1,10 @@
 import * as React from 'react';
 import *as ReactNative from 'react-native';
 
-import *as Colors from './base/components/Colors';
-import { LoginButton } from './base/components/LoginButton';
-import { Button } from './base/components/Button';
-import { Text } from './base/components/Text';
+import *as Colors from './base/common/Colors';
+import { LoginButton } from './base/common/LoginButton';
+import { Button } from './base/common/Button';
+import { Text } from './base/common/Text';
 
 type Prop = {
     navigator: ReactNative.Navigator;

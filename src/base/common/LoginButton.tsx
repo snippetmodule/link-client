@@ -44,7 +44,7 @@ class LoginButton extends React.Component<Prop, State> {
     return (
       <Button
         style={[styles.button, this.props.style]}
-        icon={require('../login/img/f-logo.png')}
+        icon={require('../../../asserts/login/f-logo.png')}
         caption="Log in with Facebook"
         onPress={() => this.logIn()}
         />
