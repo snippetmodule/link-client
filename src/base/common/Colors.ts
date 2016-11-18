@@ -10,7 +10,7 @@ let LOCATION_COLORS = {
   'FOOD TENT': '#FFCD3B',
 };
 
-export function colorForLocation(location?: string): string {
+function colorForLocation(location?: string): string {
   if (!location) {
     return 'black';
   }
@@ -23,13 +23,19 @@ export function colorForLocation(location?: string): string {
   return color;
 }
 
-export function colorForTopic(count: number, index: number): string {
+function colorForTopic(count: number, index: number): string {
   const hue = Math.round(360 * index / (count + 1));
   return `hsl(${hue}, 74%, 65%)`;
 }
-export let actionText: string = '#3FB4CF';
-export let darkText: string = '#032250';
-export let lightText: string = '#7F91A7';
-export let cellBorder: string = '#EEEEEE';
-export let darkBackground: string = '#183E63';
+
+let Colors = {
+  colorForLocation,
+  colorForTopic,
+  actionText: '#3FB4CF',
+  darkText: '#032250',
+  lightText: '#7F91A7',
+  cellBorder: '#EEEEEE',
+  darkBackground: '#183E63',
+};
+export { Colors }
 

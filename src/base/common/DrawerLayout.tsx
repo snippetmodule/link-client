@@ -60,11 +60,11 @@ export class DrawerLayout extends React.Component<IProps, any> {
         this.props.onDrawerClose && this.props.onDrawerClose();
     }
 
-    private closeDrawer() {
+    public closeDrawer() {
         this._drawer && this._drawer.closeDrawer();
     }
 
-    private openDrawer() {
+    public openDrawer() {
         this._drawer && this._drawer.openDrawer();
     }
 }

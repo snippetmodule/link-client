@@ -9,16 +9,17 @@ type RowsAndSections = {
 export type Data = Rows | RowsAndSections;
 type RenderElement = () => JSX.Element;
 
-interface IProps {
+type Prop = {
     data: Data;
     renderEmptyList?: RenderElement;
-    minContentHeight: number;
-    renderFooter: RenderElement;
-    renderRow:( rowData: any, sectionID: string | number, rowID: string | number, highlightRow?: boolean ) => React.ReactElement<any>;
-    contentInset: { top: number; bottom: number; };
+    minContentHeight?: number;
+    renderFooter?: RenderElement;
+    contentInset?: { top: number; bottom: number; };
+    renderRow: (rowData: any, sectionID: string | number, rowID: string | number, highlightRow?: boolean) => React.ReactElement<any>;
+    [key: string]: any;
 };
 
-interface IState {
+type State = {
     contentHeight: number;
     dataSource: ReactNative.ListViewDataSource;
 };
@@ -27,7 +28,7 @@ interface IState {
 // will make it go reverse. Temporary fix - pre-render more rows
 const LIST_VIEW_PAGE_SIZE = ReactNative.Platform.OS === 'android' ? 20 : 1;
 
-export class PureListView extends React.Component<IProps, IState> {
+export class PureListView extends React.Component<Prop, State> {
     // static defaultProps = {
     //     data: [],
     //     contentInset: { top: 0, bottom: 0 },
@@ -38,7 +39,7 @@ export class PureListView extends React.Component<IProps, IState> {
 
     private mListView: any;
 
-    constructor(props: IProps) {
+    constructor(props: Prop) {
         super(props);
         let dataSource = new ReactNative.ListView.DataSource({
             getRowData: (dataBlob, sid, rid) => dataBlob[sid][rid],
@@ -53,7 +54,7 @@ export class PureListView extends React.Component<IProps, IState> {
         };
     }
 
-    public componentWillReceiveProps(nextProps: IProps) {
+    public componentWillReceiveProps(nextProps: Prop) {
         if (this.props.data !== nextProps.data) {
             this.setState({
                 contentHeight: this.state.contentHeight,
@@ -81,7 +82,7 @@ export class PureListView extends React.Component<IProps, IState> {
         );
     }
 
-    private onContentSizeChange(contentWidth: number, _contentHeight: number) {
+    public onContentSizeChange(contentWidth: number, _contentHeight: number) {
         if (_contentHeight !== this.state.contentHeight) {
             this.setState({ contentHeight: _contentHeight, dataSource: this.state.dataSource });
         }

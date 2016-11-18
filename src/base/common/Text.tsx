@@ -1,16 +1,16 @@
 import * as React from 'react';
 import * as ReactNative from 'react-native';
-import * as Colors from './Colors';
-import { env } from './env';
-export function Text(style, props): JSX.Element {
+import { Colors } from './Colors';
+import { env } from '../env';
+function Text({style, ...props}: any): JSX.Element {
   return <ReactNative.Text style={[styles.font, style]} {...props} />;
 }
 
-export function Heading1(style, props): JSX.Element {
+export function Heading1({style, ...props}): JSX.Element {
   return <ReactNative.Text style={[styles.font, styles.h1, style]} {...props} />;
 }
 
-export function Paragraph(style, props): JSX.Element {
+export function Paragraph({style, ...props}): JSX.Element {
   return <ReactNative.Text style={[styles.font, styles.p, style]} {...props} />;
 }
 
@@ -37,3 +37,10 @@ const styles = ReactNative.StyleSheet.create({
     color: Colors.lightText,
   },
 });
+
+let Texts = {
+  Text,
+  Heading1,
+  Paragraph,
+};
+export { Texts }

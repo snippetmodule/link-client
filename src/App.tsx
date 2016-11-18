@@ -10,7 +10,7 @@ import { AppNavigator } from './AppNavigator';
 
 class App extends React.Component<any, any>{
     public componentDidMount() {
-        // ReactNative.AppState.addEventListener('change', this.handleAppStateChange);
+        ReactNative.AppState.addEventListener('change', this.handleAppStateChange);
 
         // TODO: Make this list smaller, we basically download the whole internet
         // this.props.dispatch(loadNotifications());
@@ -24,7 +24,7 @@ class App extends React.Component<any, any>{
         // CodePush.sync({installMode: CodePush.InstallMode.ON_NEXT_RESUME});
     }
     public componentWillUnmount() {
-        // ReactNative.AppState.removeEventListener('change', this.handleAppStateChange);
+        ReactNative.AppState.removeEventListener('change', this.handleAppStateChange);
     }
     private handleAppStateChange(appState) {
         if (appState === 'active') {
@@ -32,28 +32,20 @@ class App extends React.Component<any, any>{
             // this.props.dispatch(loadNotifications());
             // this.props.dispatch(loadSurveys());
             // CodePush.sync({ installMode: CodePush.InstallMode.ON_NEXT_RESUME });
-            //       <ReactNative.StatusBar
-            //   translucent={true}
-            //   backgroundColor="rgba(0, 0, 0, 0.2)"
-            //   barStyle="light-content"
-            //   />
-            // <AppNavigator />
         }
     }
     public render() {
-        // if (!this.props.isLoggedIn) {
-        // return this.renderText();
-        // }
-        return (<LoginScreen />);
-        // return (
-        //     <ReactNative.View style={styles.container}>
-        //         <ReactNative.StatusBar
-        //             translucent={true}
-        //             backgroundColor="rgba(0, 0, 0, 0.2)"
-        //             barStyle="light-content"
-        //             />
-        //     </ReactNative.View>
-        // );
+        // return (<LoginScreen />);
+        return (
+            <ReactNative.View style={styles.container}>
+                <ReactNative.StatusBar
+                    translucent={true}
+                    backgroundColor="rgba(0, 0, 0, 0.2)"
+                    barStyle="light-content"
+                    />
+                <AppNavigator />
+            </ReactNative.View>
+        );
     }
 }
 

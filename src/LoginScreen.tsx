@@ -3,11 +3,9 @@
 import * as React from 'react';
 import * as ReactNative from 'react-native';
 
-import * as Colors from './base/common/Colors';
+import { Colors } from './base/common/';
 import { LoginButton } from './base/common/LoginButton';
-import { Button } from './base/common/Button';
 import { Text } from './base/common/Text';
-
 
 class LoginScreen extends React.Component<any, { anim: ReactNative.Animated.Value }> {
     public state = {
@@ -50,10 +48,10 @@ class LoginScreen extends React.Component<any, { anim: ReactNative.Animated.Valu
                     <ReactNative.Animated.Text style={[styles.h3, this.fadeIn(1200, 10)]}>
                         SAN FRANCISCO, CALIFORNIA
                     </ReactNative.Animated.Text>
-                    </ReactNative.View>
-                    <ReactNative.Animated.View style={[styles.section, styles.last, this.fadeIn(2500, 20)]}>
-                        <Text style={styles.loginComment}>
-                            Use Facebook to find your friends at F8.
+                </ReactNative.View>
+                <ReactNative.Animated.View style={[styles.section, styles.last, this.fadeIn(2500, 20)]}>
+                    <Text style={styles.loginComment}>
+                        Use Facebook to find your friends at F8.
                         </Text>
                     <LoginButton source="First screen" />
                 </ReactNative.Animated.View>

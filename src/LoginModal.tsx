@@ -16,7 +16,7 @@ class LoginModal extends React.Component<Prop, any> {
             <ReactNative.View style={[styles.container]}>
                 <ReactNative.Image
                     style={[styles.content]}
-                    source={require('./img/login-background.png')}>
+                    source={require('../asserts/login/login-background.png')}>
                     <Text style={styles.h1}>
                         Log in with Facebook
                     </Text>

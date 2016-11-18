@@ -3,7 +3,7 @@ import * as ReactNative from 'react-native';
 
 let LinearGradient = require('react-native-linear-gradient');
 
-import *as Colors from './Colors';
+import { Colors } from './Colors';
 
 interface IProp {
   type?: 'primary' | 'secondary' | 'bordered';

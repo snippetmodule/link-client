@@ -1,29 +1,8 @@
 import * as React from 'react';
 import *as ReactNative from 'react-native';
-import {LoginModal} from './LoginModal';
-// var F8TabsView = require('F8TabsView');
-// var FriendsScheduleView = require('./tabs/schedule/FriendsScheduleView');
-// var FilterScreen = require('./filter/FilterScreen');
-// var LoginModal = require('./login/LoginModal');
-// var SessionsCarousel = require('./tabs/schedule/SessionsCarousel');
-// var SharingSettingsModal = require('./tabs/schedule/SharingSettingsModal');
-// var SharingSettingsScreen = require('./tabs/schedule/SharingSettingsScreen');
-// var ThirdPartyNotices = require('./tabs/info/ThirdPartyNotices');
-// var RatingScreen = require('./rating/RatingScreen');
-// var { connect } = require('react-redux');
-// var { switchTab } = require('./actions');
+import { LoginModal } from './LoginModal';
 
-// class AppNavigator extends React.Component<any, any>{
-//   _handlers: ([]: Array<() => boolean>);
-//   public componentDidMount() {
-//     ReactNative.BackAndroid.addEventListener('hardwareBackPress', this.handleBackButton);
-//   }
-//   public componentWillUnmount() {
-//     ReactNative.BackAndroid.removeEventListener('hardwareBackPress', this.handleBackButton);
-//   }
-// }
 type BackListener = () => boolean;
-
 let AppNavigator = React.createClass({
   _handlers: [] = new Array<BackListener>(),
 
@@ -75,16 +54,16 @@ let AppNavigator = React.createClass({
       <ReactNative.Navigator
         ref="navigator"
         // style={[styles.container]}
-        configureScene={(route) => {
+        configureScene={(route: any) => {
           if (ReactNative.Platform.OS === 'android') {
             return ReactNative.Navigator.SceneConfigs.FloatFromBottomAndroid;
           }
           // TODO: Proper scene support
-          // if (route.shareSettings || route.friend) {
-          //   return ReactNative.Navigator.SceneConfigs.FloatFromRight;
-          // } else {
-          return ReactNative.Navigator.SceneConfigs.FloatFromBottom;
-          // }
+          if (route.shareSettings || route.friend) {
+            return ReactNative.Navigator.SceneConfigs.FloatFromRight;
+          } else {
+            return ReactNative.Navigator.SceneConfigs.FloatFromBottom;
+          }
         } }
         initialRoute={{}}
         renderScene={this.renderScene}
@@ -93,11 +72,11 @@ let AppNavigator = React.createClass({
   },
 
   renderScene(route, navigator) {
-         return (
-          <LoginModal
-            navigator={navigator}
-            onLogin={route.callback}
-         />)
+    return (
+      <LoginModal
+        navigator={navigator}
+        onLogin={route.callback}
+        />)
     //   if (route.allSessions) {
     //     return (
     //       <SessionsCarousel
