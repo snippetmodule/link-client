@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "prestart": "tsc --watch &",
+    "stop": "sudo kill -9 $(lsof -a -c node -t -i:8081)",
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "android": "adb reverse tcp:8081 tcp:8081 && node node_modules/react-native/local-cli/cli.js run-android",
     "ios": "node node_modules/react-native/local-cli/cli.js run-ios",
