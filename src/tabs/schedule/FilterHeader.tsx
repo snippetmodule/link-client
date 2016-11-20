@@ -1,17 +1,15 @@
 import * as React from 'react';
 import *as ReactNative from 'react-native';
-
 import * as Common from '../../base/common';
+import { connect } from 'react-redux';
 
-
-// TODO: Pull redux connection up
-// const {connect} = require('react-redux');
+import { clearFilter } from '../../actions';
 // const {clearFilter} = require('../../actions');
 type Prop = {
     filter?: any;
     onClearFilter?: () => {};
 };
-class FilterHeader extends React.Component<Prop, any> {
+class FilterHeaderImpl extends React.Component<Prop, any> {
     public render() {
         let topics = Object.keys(this.props.filter);
         if (topics.length === 0) {
@@ -61,17 +59,16 @@ let styles = ReactNative.StyleSheet.create({
     }
 });
 
-// function select(store) {
-//     return {
-//         filter: store.filter,
-//     };
-// }
+function select(store) {
+  return {
+    filter: store.filter,
+  };
+}
 
-// function actions(dispatch) {
-//     return {
-//         onClearFilter: () => dispatch(clearFilter()),
-//     };
-// }
+function actions(dispatch) {
+  return {
+    onClearFilter: () => dispatch(clearFilter()),
+  };
+}
 
-// module.exports = connect(select, actions)(FilterHeader);
-export { FilterHeader }
+export let FilterHeader = connect(select, actions)(FilterHeaderImpl as any);

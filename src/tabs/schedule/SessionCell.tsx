@@ -1,6 +1,5 @@
 import * as React from 'react';
 import *as ReactNative from 'react-native';
-
 import * as Common from '../../base/common';
 // var F8Colors = require('F8Colors');
 // var { Text } = require('F8Text');
@@ -9,8 +8,7 @@ let formatDuration = require('./formatDuration');
 let formatTime = require('./formatTime');
 
 // var { connect } = require('react-redux');
-
-import { Session } from '../../model/Session';
+import { Session } from '../../reducers/sessions';
 
 type Prop = {
     session: Session;

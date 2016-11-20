@@ -1,27 +1,23 @@
 import * as React from 'react';
 import *as ReactNative from 'react-native';
+import { connect } from 'react-redux';
 
 import * as Common from '../../base/common';
-import { Session } from '../../model/Session';
-import {EmptySchedule }from './EmptySchedule';
-import {FilterHeader} from './FilterHeader';
-
-// var EmptySchedule = require('./EmptySchedule');
-// var FilterHeader = require('./FilterHeader');
-// var FilterSessions = require('./filterSessions');
-// var ScheduleListView = require('./ScheduleListView');
-// var FilterScreen = require('../../filter/FilterScreen');
+import { EmptySchedule } from './EmptySchedule';
+import { FilterHeader } from './FilterHeader';
+import  *as FilterSessions  from './filterSessions';
+import { ScheduleListView } from './ScheduleListView';
+import { FilterScreen } from '../../filter/FilterScreen';
 
 // var { connect } = require('react-redux');
-// var {switchDay} = require('../../actions');
-
-// import type {Session } from '../../reducers/sessions';
+import { switchDay } from '../../actions';
+import { Session } from '../../reducers/sessions';
 
 // TODO: Move from reselect to memoize?
-var { createSelector } = require('reselect');
+import { createSelector } from 'reselect';
 
 const data = createSelector(
-    (store) => store.sessions,
+    (store: any) => store.sessions,
     (store) => store.filter,
     (sessions, filter) => FilterSessions.byTopics(sessions, filter),
 );
@@ -35,7 +31,7 @@ type Props = {
     switchDay: (day: number) => void;
 };
 
-class GeneralScheduleView extends React.Component<Props, any> {
+class GeneralScheduleViewImpl extends React.Component<Props, any> {
     private _drawer?: Common.DrawerLayout;
 
     public render() {
@@ -116,19 +112,19 @@ class GeneralScheduleView extends React.Component<Props, any> {
     }
 }
 
-// function select(store) {
-//   return {
-//     day: store.navigation.day,
-//     filter: store.filter,
-//     sessions: data(store),
-//   };
-// }
+function select(store) {
+    return {
+        day: store.navigation.day,
+        filter: store.filter,
+        sessions: data(store),
+    };
+}
 
-// function actions(dispatch) {
-//   return {
-//     switchDay: (day) => dispatch(switchDay(day)),
-//   };
-// }
-export { GeneralScheduleView }
+function actions(dispatch) {
+    return {
+        switchDay: (day) => dispatch(switchDay(day)),
+    };
+}
+// export { GeneralScheduleView }
 
-// module.exports = connect(select, actions)(GeneralScheduleView);
+export let GeneralScheduleView = connect(select, actions)(GeneralScheduleViewImpl);

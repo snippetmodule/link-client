@@ -3,20 +3,19 @@ import *as ReactNative from 'react-native';
 
 import * as Common from '../../base/common';
 
-import { Session } from '../../model/Session';
-
 import { SessionsListData, groupSessions } from './groupSessions';
 import { SessionsSectionHeader } from './SessionsSectionHeader';
 import { SessionCell } from './SessionCell';
+import *as  FilterSessions  from './filterSessions';
 // var F8SessionCell = require('F8SessionCell');
 // var FilterSessions = require('./filterSessions');
 // var SessionsSectionHeader = require('./SessionsSectionHeader');
 // var groupSessions = require('./groupSessions');
 
-// import type {Session } from '../../reducers/sessions';
-// import type {SessionsListData } from './groupSessions';
+import { Session } from '../../reducers/sessions';
 
 type Props = {
+    title: string;
     day: number;
     sessions: Array<Session>;
     navigator: ReactNative.Navigator;
