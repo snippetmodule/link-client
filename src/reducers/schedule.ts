@@ -1,7 +1,7 @@
 
 import { Action } from '../actions/types';
 
-export type State = {
+type State = {
     [id: string]: boolean;
 };
 
