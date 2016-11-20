@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactNative from 'react-native';
 
-type Map = {
+export type Map = {
   id: string;
   name: string;
   x1url: string;

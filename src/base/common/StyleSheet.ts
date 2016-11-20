@@ -1,17 +1,19 @@
-import {StyleSheet, Platform} from 'react-native';
+import * as ReactNative from 'react-native';
 
-export default function create(styles: any): any {
+function create(styles: any): any {
   const platformStyles = {};
   Object.keys(styles).forEach((name) => {
     let {ios, android, style} = styles[name];
 
-    if (ios && Platform.OS === 'ios') {
-      style = {style, ios};
+    if (ios && ReactNative.Platform.OS === 'ios') {
+      style = { style, ios };
     }
-    if (android && Platform.OS === 'android') {
-      style = {style, android};
+    if (android && ReactNative.Platform.OS === 'android') {
+      style = { style, android };
     }
     platformStyles[name] = style;
   });
-  return StyleSheet.create(platformStyles);
+  return ReactNative.StyleSheet.create(platformStyles);
 }
+let StyleSheet: { create: <T>(styles: T) => T } = { create: create };
+export { StyleSheet }

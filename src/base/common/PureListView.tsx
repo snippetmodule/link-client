@@ -10,7 +10,7 @@ export type Data = Rows | RowsAndSections;
 type RenderElement = () => JSX.Element;
 
 type Prop = {
-    data: Data;
+    data?: Data;
     renderEmptyList?: RenderElement;
     minContentHeight?: number;
     renderFooter?: RenderElement;
@@ -29,13 +29,13 @@ type State = {
 const LIST_VIEW_PAGE_SIZE = ReactNative.Platform.OS === 'android' ? 20 : 1;
 
 export class PureListView extends React.Component<Prop, State> {
-    // static defaultProps = {
-    //     data: [],
-    //     contentInset: { top: 0, bottom: 0 },
-    //     // TODO: This has to be scrollview height + fake header
-    //     minContentHeight: ReactNative.Dimensions.get('window').height + 20,
-    //     renderSeparator: (sectionID, rowID) => <ReactNative.View style={styles.separator} key={rowID} />,
-    // };
+     defaultProps = {
+        data: [],
+        contentInset: { top: 0, bottom: 0 },
+        // TODO: This has to be scrollview height + fake header
+        minContentHeight: ReactNative.Dimensions.get('window').height + 20,
+        renderSeparator: (sectionID, rowID) => <ReactNative.View style={styles.separator} key={rowID} />,
+    };
 
     private mListView: any;
 

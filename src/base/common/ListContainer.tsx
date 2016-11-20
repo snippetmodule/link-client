@@ -79,7 +79,7 @@ type Props = {
   rightItem?: Item;
   extraItems?: Array<Item>;
   selectedSegment?: number;
-  selectedSectionColor: string;
+  selectedSectionColor?: string;
   backgroundImage: number;
   backgroundColor: string;
   parallaxContent?: JSX.Element;
