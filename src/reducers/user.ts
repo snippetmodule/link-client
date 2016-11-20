@@ -1,7 +1,7 @@
 
 import { Action } from '../actions/types';
 
-export type State = {
+export type UserState = {
     isLoggedIn: boolean;
     hasSkippedLogin: boolean;
     sharedSchedule?: boolean;
@@ -17,7 +17,7 @@ const initialState = {
     name: null,
 };
 
-export function user(state: State = initialState, action: Action): State {
+export function user(state: UserState = initialState, action: Action): UserState {
     if (action.type === 'LOGGED_IN') {
         let {id, name, sharedSchedule} = action.data;
         if (sharedSchedule === undefined) {

@@ -11,7 +11,7 @@ export function switchTab(tab: Tab): Action {
     };
 }
 
-export function switchDa(day: 1 | 2): Action {
+export function switchDay(day: 1 | 2): Action {
     return {
         type: 'SWITCH_DAY',
         day: day,

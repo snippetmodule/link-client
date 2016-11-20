@@ -1,9 +1,20 @@
 import * as React from 'react';
 import *as ReactNative from 'react-native';
+import { connect } from 'react-redux';
+import { switchTab } from './actions';
 import { LoginModal } from './LoginModal';
+import { FilterScreen } from './filter/FilterScreen';
+
+import SessionsCarousel from './tabs/schedule/SessionsCarousel';
+import SharingSettingsModal from './tabs/schedule/SharingSettingsModal';
+import SharingSettingsScreen from './tabs/schedule/SharingSettingsScreen';
+import ThirdPartyNotices from './tabs/info/ThirdPartyNotices';
+import {RatingScreen} from './rating/RatingScreen';
+import FriendsScheduleView from './tabs/schedule/FriendsScheduleView';
+import { TabsView } from './tabs/TabsView';
 
 type BackListener = () => boolean;
-let AppNavigator = React.createClass({
+let AppNavigatorImpl = React.createClass({
   _handlers: [] = new Array<BackListener>(),
 
   componentDidMount() {
@@ -43,8 +54,8 @@ let AppNavigator = React.createClass({
     }
 
     if (this.props.tab !== 'schedule') {
-      // this.props.dispatch(switchTab('schedule'));
-      // return true;
+      this.props.dispatch(switchTab('schedule'));
+      return true;
     }
     return false;
   },
@@ -72,67 +83,62 @@ let AppNavigator = React.createClass({
   },
 
   renderScene(route, navigator) {
-    return (
-      <LoginModal
-        navigator={navigator}
-        onLogin={route.callback}
-        />)
-    //   if (route.allSessions) {
-    //     return (
-    //       <SessionsCarousel
-    //         {...route}
-    //         navigator={navigator}
-    //         />
-    //     );
-    //   }
-    //   if (route.session) {
-    //     return (
-    //       <SessionsCarousel
-    //         session={route.session}
-    //         navigator={navigator}
-    //         />
-    //     );
-    //   }
-    //   if (route.filter) {
-    //     return (
-    //       <FilterScreen navigator={navigator} />
-    //     );
-    //   }
-    //   if (route.friend) {
-    //     return (
-    //       <FriendsScheduleView
-    //         friend={route.friend}
-    //         navigator={navigator}
-    //         />
-    //     );
-    //   }
-    //   if (route.login) {
-    //     return (
-    //       <LoginModal
-    //         navigator={navigator}
-    //         onLogin={route.callback}
-    //         />
-    //     );
-    //   }
-    //   if (route.share) {
-    //     return (
-    //       <SharingSettingsModal navigator={navigator} />
-    //     );
-    //   }
-    //   if (route.shareSettings) {
-    //     return <SharingSettingsScreen navigator={navigator} />;
-    //   }
-    //   if (route.rate) {
-    //     return <RatingScreen navigator={navigator} surveys={route.surveys} />;
-    //   }
-    //   if (route.notices) {
-    //     return <ThirdPartyNotices navigator={navigator} />;
-    //   }
-    //   return <F8TabsView navigator={navigator} />;
+    if (route.allSessions) {
+      return (
+        <SessionsCarousel
+          {...route}
+          navigator={navigator}
+          />
+      );
+    }
+    if (route.session) {
+      return (
+        <SessionsCarousel
+          session={route.session}
+          navigator={navigator}
+          />
+      );
+    }
+    if (route.filter) {
+      return (
+        <FilterScreen navigator={navigator} />
+      );
+    }
+    if (route.friend) {
+      return (
+        <FriendsScheduleView
+          friend={route.friend}
+          navigator={navigator}
+          />
+      );
+    }
+    if (route.login) {
+      return (
+        <LoginModal
+          navigator={navigator}
+          onLogin={route.callback}
+          />
+      );
+    }
+    if (route.share) {
+      return (
+        <SharingSettingsModal navigator={navigator} />
+      );
+    }
+    if (route.shareSettings) {
+      return <SharingSettingsScreen navigator={navigator} />;
+    }
+    if (route.rate) {
+      return <RatingScreen navigator={navigator} surveys={route.surveys} />;
+    }
+    if (route.notices) {
+      return <ThirdPartyNotices navigator={navigator} />;
+    }
+    return <TabsView navigator={navigator} />;
   },
 });
 
-AppNavigator.childContextTypes = {
+AppNavigatorImpl.childContextTypes = {
   addBackButtonListener: React.PropTypes.func,
   removeBackButtonListener: React.PropTypes.func,
 };
@@ -144,11 +150,11 @@ let styles = ReactNative.StyleSheet.create({
   },
 });
 
-// function select(store) {
-//   return {
-//     tab: store.navigation.tab,
-//     isLoggedIn: store.user.isLoggedIn || store.user.hasSkippedLogin,
-//   };
-// }
-export { AppNavigator }
-// module.exports = connect(select)(F8Navigator);
+function select(store) {
+  return {
+    tab: store.navigation.tab,
+    isLoggedIn: store.user.isLoggedIn || store.user.hasSkippedLogin,
+  };
+}
+// export { AppNavigator }
+export let AppNavigator = connect(select)(AppNavigatorImpl);

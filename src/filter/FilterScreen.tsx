@@ -1,21 +1,16 @@
 import * as React from 'react';
 import *as ReactNative from 'react-native';
-
+import { connect } from 'react-redux';
 import * as Common from '../base/common';
 
 import { TopicItem } from './TopicItem';
-// import { applyTopicsFilter } from '../actions';
+import {
+    applyTopicsFilter,
+} from '../actions';
 // const F8Header = require('F8Header');
 // const F8Colors = require('F8Colors');
 // const F8Button = require('F8Button');
-// const TopicItem = require('./TopicItem');
-// let ItemsWithSeparator = require('../common/ItemsWithSeparator');
 // const shallowEqual = require('fbjs/lib/shallowEqual');
-// const {
-//     applyTopicsFilter,
-// } = require('../actions');
-// const {connect} = require('react-redux');
-import { connect } from 'react-redux';
 type Prop = {
     isLoggedIn: boolean,
     topics: Array<string>;
@@ -28,10 +23,7 @@ type State = {
     selectedTopics: { [id: string]: boolean };
     anim: ReactNative.Animated.Value;
 }
-@connect(null,dispatch=>({
-    
-}))
-class FilterScreen extends React.Component<Prop, State> {
+class FilterScreenImpl extends React.Component<Prop, State> {
     constructor(props) {
         super(props);
         this.state = {
@@ -162,14 +154,14 @@ let styles = ReactNative.StyleSheet.create({
     },
 });
 
-// function select(store) {
-//   return {
-//     isLoggedIn: store.user.isLoggedIn,
-//     friendsSchedules: store.friendsSchedules,
-//     topics: store.topics,
-//     selectedTopics: store.filter,
-//   };
-// }
-export {FilterScreen}
+function select(store) {
+  return {
+    isLoggedIn: store.user.isLoggedIn,
+    friendsSchedules: store.friendsSchedules,
+    topics: store.topics,
+    selectedTopics: store.filter,
+  };
+}
+// export { FilterScreen }
 // module.exports = connect(select)(FilterScreen);
-export { connect<{},{},{}>(select)(FilterScreen) };
+export let FilterScreen = connect(select)(FilterScreenImpl);

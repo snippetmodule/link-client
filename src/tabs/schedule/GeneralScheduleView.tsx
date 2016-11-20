@@ -1,11 +1,11 @@
 import * as React from 'react';
 import *as ReactNative from 'react-native';
-import { connect } from 'react-redux';
+const { connect } = require('react-redux');
 
 import * as Common from '../../base/common';
 import { EmptySchedule } from './EmptySchedule';
 import { FilterHeader } from './FilterHeader';
-import  *as FilterSessions  from './filterSessions';
+import *as FilterSessions from './filterSessions';
 import { ScheduleListView } from './ScheduleListView';
 import { FilterScreen } from '../../filter/FilterScreen';
 
@@ -30,8 +30,20 @@ type Props = {
     logOut: () => void;
     switchDay: (day: number) => void;
 };
+// export { GeneralScheduleView }
 
-class GeneralScheduleViewImpl extends React.Component<Props, any> {
+// export let GeneralScheduleView = connect(select, actions)(GeneralScheduleViewImpl);
+@connect(
+    (store: any) => ({
+        day: store.navigation.day,
+        filter: store.filter,
+        sessions: data(store),
+    }),
+    dispatch => ({
+        switchDay: (day) => dispatch(switchDay(day)),
+    })
+)
+export class GeneralScheduleView extends React.Component<Props, any> {
     private _drawer?: Common.DrawerLayout;
 
     public render() {
@@ -127,4 +139,4 @@ function actions(dispatch) {
 }
 // export { GeneralScheduleView }
 
-export let GeneralScheduleView = connect(select, actions)(GeneralScheduleViewImpl);
+// export let GeneralScheduleView = connect(select, actions)(GeneralScheduleViewImpl);

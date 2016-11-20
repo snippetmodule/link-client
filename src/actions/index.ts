@@ -6,3 +6,5 @@ export * from './login';
 export * from './test';
 export * from './surveys';
 export * from './config';
+export * from './schedule';
+export * from './types';

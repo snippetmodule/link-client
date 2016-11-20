@@ -1,11 +1,11 @@
 
 import { Action } from '../actions/types';
 
-type State = {
+export type ScheduleState = {
     [id: string]: boolean;
 };
 
-export function schedule(state: State = {}, action: Action): State {
+export function schedule(state: ScheduleState = {}, action: Action): ScheduleState {
     switch (action.type) {
         case 'SESSION_ADDED':
             let added = {};
