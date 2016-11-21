@@ -10,7 +10,7 @@ import { formatDuration } from './formatDuration';
 let {addToSchedule, removeFromScheduleWithPrompt} = require('../../actions');
 
 let SessionDetailsImpl = React.createClass({
-    mixins: [Subscribable.Mixin],
+    // mixins: [Subscribable.Mixin],
 
     getInitialState: function () {
         return {
