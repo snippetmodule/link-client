@@ -83,7 +83,7 @@ async function restoreSchedule(): PromiseAction {
 
 async function loadFriendsSchedules(): PromiseAction {
     const list = await Parse.Cloud.run('friends');
-    await ReactNative.InteractionManager.runAfterInteractions({});
+    await ReactNative.InteractionManager.runAfterInteractions();
     return {
         type: 'LOADED_FRIENDS_SCHEDULES',
         list,

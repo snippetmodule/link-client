@@ -1,8 +1,8 @@
 import * as React from 'react';
 import * as ReactNative from 'react-native';
 
-import * as Colors from './Colors';
-import { Text } from './Text';
+import  {Colors} from './Colors';
+import { Texts } from './Text';
 
 export type Layout =
     'default'      // Use platform defaults (icon on Android, text on iOS)
@@ -148,9 +148,9 @@ class ItemWrapperIOS extends React.Component<IItemWrapperProps, any> {
 
         if (layout !== 'icon' && title) {
             content = (
-                <Text style={[styles.itemText, { color }]}>
+                <Texts.Text style={[styles.itemText, { color }]}>
                     {title.toUpperCase()}
-                </Text>
+                </Texts.Text>
             );
         } else if (icon) {
             content = <ReactNative.Image source={icon} />;
@@ -255,9 +255,9 @@ Header.__cards__ = (define) => {
     define('With content', () => (
         <Header leftItem={menuItem}>
             <ReactNative.View style={{ backgroundColor: '#224488' }}>
-                <Text style={{ color: 'yellow' }}>
+                <Texts.Text style={{ color: 'yellow' }}>
                     Yellow text as title
-                </Text>
+                </Texts.Text>
             </ReactNative.View>
         </Header>
     ));

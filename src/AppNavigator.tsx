@@ -5,16 +5,22 @@ import { switchTab } from './actions';
 import { LoginModal } from './LoginModal';
 import { FilterScreen } from './filter/FilterScreen';
 
-import SessionsCarousel from './tabs/schedule/SessionsCarousel';
-import SharingSettingsModal from './tabs/schedule/SharingSettingsModal';
-import SharingSettingsScreen from './tabs/schedule/SharingSettingsScreen';
-import ThirdPartyNotices from './tabs/info/ThirdPartyNotices';
-import {RatingScreen} from './rating/RatingScreen';
-import FriendsScheduleView from './tabs/schedule/FriendsScheduleView';
+import { SessionsCarousel } from './tabs/schedule/SessionsCarousel';
+import { SharingSettingsModal } from './tabs/schedule/SharingSettingsModal';
+import { SharingSettingsScreen } from './tabs/schedule/SharingSettingsScreen';
+import { ThirdPartyNotices } from './tabs/info/ThirdPartyNotices';
+import { RatingScreen } from './rating/RatingScreen';
+import { FriendsScheduleView } from './tabs/schedule/FriendsScheduleView';
 import { TabsView } from './tabs/TabsView';
 
 type BackListener = () => boolean;
-let AppNavigatorImpl = React.createClass({
+
+type Prop = {
+  tab: string,
+  isLoggedIn: boolean;
+};
+
+let AppNavigatorImpl = React.createClass<Prop, any>({
   _handlers: [] = new Array<BackListener>(),
 
   componentDidMount() {
@@ -96,6 +102,7 @@ let AppNavigatorImpl = React.createClass({
         <SessionsCarousel
           session={route.session}
           navigator={navigator}
+          {...this.props}
           />
       );
     }
@@ -122,11 +129,11 @@ let AppNavigatorImpl = React.createClass({
     }
     if (route.share) {
       return (
-        <SharingSettingsModal navigator={navigator} />
+        <SharingSettingsModal navigator={navigator} {...this.props} />
       );
     }
     if (route.shareSettings) {
-      return <SharingSettingsScreen navigator={navigator} />;
+      return <SharingSettingsScreen navigator={navigator} {...this.props} />;
     }
     if (route.rate) {
       return <RatingScreen navigator={navigator} surveys={route.surveys} />;
@@ -134,7 +141,7 @@ let AppNavigatorImpl = React.createClass({
     if (route.notices) {
       return <ThirdPartyNotices navigator={navigator} />;
     }
-    return <TabsView navigator={navigator} />;
+    return <TabsView navigator={navigator} {...this.props} />;
   },
 });
 

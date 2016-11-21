@@ -29,7 +29,7 @@ type State = {
     flatSessionsList: Array<Session>;
     contexts: Array<Context>;
 }
-class SessionsCaruselImpl extends React.Component<Props, State> {
+export class SessionsCarousel extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props);
 
@@ -204,4 +204,4 @@ let styles = Common.StyleSheet.create({
     },
 });
 
-export let SessionsCarusel = connect()(SessionsCaruselImpl);
+// export let SessionsCarusel = connect()(SessionsCaruselImpl);

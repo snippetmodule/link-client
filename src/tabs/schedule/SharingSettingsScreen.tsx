@@ -1,11 +1,11 @@
 import * as React from 'react';
 import *as ReactNative from 'react-native';
 import * as Common from '../../base/common';
-import { connect } from 'react-redux';
+const { connect } = require('react-redux');
 
 import { FriendsUsingApp } from './FriendsUsingApp';
 import { SharingSettingsCommon } from './SharingSettingsCommon';
-import { setSharingEnabled, logOutWithPrompt ,Dispatch} from '../../actions';
+import { setSharingEnabled, logOutWithPrompt, Dispatch } from '../../actions';
 
 import { UserState as User } from '../../reducers/user';
 
@@ -15,8 +15,14 @@ type Prop = {
     sharedSchedule: boolean;
     user: User;
 };
-class SharingSettingsScreenImpl extends React.Component<Prop, void> {
-   public render() {
+@connect(
+    (store: any) => ({
+        user: store.user,
+        sharedSchedule: store.user.sharedSchedule,
+    })
+)
+export class SharingSettingsScreen extends React.Component<Prop, void> {
+    public render() {
         return (
             <ReactNative.View style={styles.container as React.ViewStyle}>
                 <ReactNative.StatusBar
@@ -89,11 +95,11 @@ let styles = Common.StyleSheet.create({
     },
 });
 
-function select(store) {
-    return {
-        user: store.user,
-        sharedSchedule: store.user.sharedSchedule,
-    };
-}
+// function select(store) {
+//     return {
+//         user: store.user,
+//         sharedSchedule: store.user.sharedSchedule,
+//     };
+// }
 
-export let SharingSettingsScreen = connect(select)(SharingSettingsScreenImpl);
+// export let SharingSettingsScreen = connect(select)(SharingSettingsScreenImpl);

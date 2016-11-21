@@ -1,11 +1,7 @@
 import * as React from 'react';
 import *as ReactNative from 'react-native';
 
-import *as Colors from './base/common/Colors';
-import { LoginButton } from './base/common/LoginButton';
-import { Button } from './base/common/Button';
-import { Text } from './base/common/Text';
-
+import *as Common from './base/common/';
 type Prop = {
     navigator: ReactNative.Navigator;
     onLogin: () => void;
@@ -17,14 +13,14 @@ class LoginModal extends React.Component<Prop, any> {
                 <ReactNative.Image
                     style={[styles.content]}
                     source={require('../asserts/login/login-background.png')}>
-                    <Text style={styles.h1}>
+                    <Common.Texts.Text style={styles.h1}>
                         Log in with Facebook
-                    </Text>
-                    <Text style={styles.h2}>
+                    </Common.Texts.Text>
+                    <Common.Texts.Text style={styles.h2}>
                         to save sessions to{'\n'}your schedule.
-                    </Text>
-                    <LoginButton onLoggedIn={this.loggedIn.bind(this)} />
-                    <Button
+                    </Common.Texts.Text>
+                    <Common.LoginButton onLoggedIn={this.loggedIn.bind(this)} />
+                    <Common.Button
                         type="secondary"
                         caption="Not Now"
                         onPress={() => this.props.navigator.pop()}
@@ -60,14 +56,14 @@ let styles = ReactNative.StyleSheet.create({
     h1: {
         fontSize: 22,
         fontWeight: 'bold',
-        color: Colors.darkText,
+        color: Common.Colors.darkText,
         textAlign: 'center',
         marginTop: 130,
     },
     h2: {
         fontSize: 18,
         lineHeight: 22,
-        color: Colors.darkText,
+        color: Common.Colors.darkText,
         textAlign: 'center',
         marginBottom: 120,
     },
@@ -75,7 +71,7 @@ let styles = ReactNative.StyleSheet.create({
         padding: 20,
     },
     notNowLabel: {
-        color: Colors.lightText,
+        color: Common.Colors.lightText,
     },
 });
 

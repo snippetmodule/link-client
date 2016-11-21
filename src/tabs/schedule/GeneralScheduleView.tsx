@@ -10,7 +10,7 @@ import { ScheduleListView } from './ScheduleListView';
 import { FilterScreen } from '../../filter/FilterScreen';
 
 // var { connect } = require('react-redux');
-import { switchDay } from '../../actions';
+import { switchDay ,Dispatch} from '../../actions';
 import { Session } from '../../reducers/sessions';
 
 // TODO: Move from reselect to memoize?
@@ -23,12 +23,12 @@ const data = createSelector(
 );
 
 type Props = {
-    filter: any;
-    day: number;
-    sessions: Array<Session>;
+    filter?: any;
+    day?: number;
+    sessions?: Array<Session>;
     navigator: ReactNative.Navigator;
-    logOut: () => void;
-    switchDay: (day: number) => void;
+    switchDay?: (day: number) => void;
+    dispatch?: Dispatch;
 };
 // export { GeneralScheduleView }
 
@@ -41,6 +41,7 @@ type Props = {
     }),
     dispatch => ({
         switchDay: (day) => dispatch(switchDay(day)),
+        dispatch,
     })
 )
 export class GeneralScheduleView extends React.Component<Props, any> {
@@ -99,7 +100,7 @@ export class GeneralScheduleView extends React.Component<Props, any> {
     }
 
     private renderNavigationView() {
-        return <FilterScreen onClose={() => this._drawer && this._drawer.closeDrawer()} />;
+        return <FilterScreen onClose={() => this._drawer && this._drawer.closeDrawer()} {...this.props} />;
     }
 
     private renderEmptyList(day: number) {

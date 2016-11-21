@@ -1,13 +1,18 @@
 import * as React from 'react';
 import *as ReactNative from 'react-native';
 import * as Common from '../../base/common';
-import { connect } from 'react-redux';
+const { connect } = require('react-redux');
 import { UserState as User } from '../../reducers/user';
 type Prop = {
-    user: User;
-    style: any;
+    user?: User;
+    style?: any;
 };
-class SharingSettingsCommonImpl extends React.Component<Prop, void> {
+@connect(
+    (store: any) => ({
+        user: store.user,
+    })
+)
+export class SharingSettingsCommon extends React.Component<Prop, void> {
     public render() {
         const {user} = this.props;
         const title = user.name && user.id && (
@@ -72,10 +77,10 @@ let styles = Common.StyleSheet.create({
     },
 });
 
-function select(store) {
-    return {
-        user: store.user,
-    };
-}
+// function select(store) {
+//     return {
+//         user: store.user,
+//     };
+// }
 
-export let SharingSettingsCommon = connect(select)(SharingSettingsCommonImpl);
+// export let SharingSettingsCommon = connect(select)(SharingSettingsCommonImpl);

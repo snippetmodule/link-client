@@ -1,6 +1,6 @@
 import * as React from 'react';
 import *as ReactNative from 'react-native';
-import { connect } from 'react-redux';
+const { connect } = require('react-redux');
 import * as Common from '../../base/common';
 
 import { EmptySchedule } from '../schedule/EmptySchedule';
@@ -32,16 +32,29 @@ const data = createSelector(
     }
 );
 type Prop = {
-    nux: boolean;
-    onTurnOnNotifications: () => any;
-    onSkipNotifications: () => any;
-    notifications: any[];
-    surveys: Survey[]
-    dispatch: Dispatch
-    sessions: Session[];
+    nux?: boolean;
+    onTurnOnNotifications?: () => any;
+    onSkipNotifications?: () => any;
+    notifications?: any[];
+    surveys?: Survey[]
+    dispatch?: Dispatch
+    sessions?: Session[];
     navigator: ReactNative.Navigator;
 }
-class NotificationsViewImpl extends React.Component<Prop, any> {
+@connect(
+    (state: any) => ({
+        nux: state.notifications.enabled === null,
+        notifications: data(state),
+        sessions: state.sessions,
+        surveys: state.surveys,
+    }),
+    dispatch => ({
+        onTurnOnNotifications: () => dispatch(turnOnPushNotifications()),
+        onSkipNotifications: () => dispatch(skipPushNotifications()),
+        dispatch,
+    })
+)
+export class NotificationsView extends React.Component<Prop, any> {
 
     public render() {
         let modal;
@@ -159,21 +172,21 @@ class NotificationsViewImpl extends React.Component<Prop, any> {
     }
 }
 
-function select(state) {
-    return {
-        nux: state.notifications.enabled === null,
-        notifications: data(state),
-        sessions: state.sessions,
-        surveys: state.surveys,
-    };
-}
+// function select(state) {
+//     return {
+//         nux: state.notifications.enabled === null,
+//         notifications: data(state),
+//         sessions: state.sessions,
+//         surveys: state.surveys,
+//     };
+// }
 
-function actions(dispatch: Dispatch) {
-    return {
-        onTurnOnNotifications: () => dispatch(turnOnPushNotifications()),
-        onSkipNotifications: () => dispatch(skipPushNotifications()),
-        dispatch,
-    };
-}
+// function actions(dispatch: Dispatch) {
+//     return {
+//         onTurnOnNotifications: () => dispatch(turnOnPushNotifications()),
+//         onSkipNotifications: () => dispatch(skipPushNotifications()),
+//         dispatch,
+//     };
+// }
 
-export let NotificationsView = connect(select, actions)(NotificationsViewImpl);
+// export let NotificationsView = connect(select, actions)(NotificationsViewImpl);

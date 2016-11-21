@@ -1,10 +1,10 @@
 import * as React from 'react';
 import *as ReactNative from 'react-native';
-import { connect } from 'react-redux';
+const { connect } = require('react-redux');
 import * as Common from '../../base/common';
 
 import { EmptySchedule } from './EmptySchedule';
-import *as  FilterSessions  from './filterSessions';
+import *as  FilterSessions from './filterSessions';
 import { ScheduleListView } from './ScheduleListView';
 import { FriendsListView } from './FriendsListView';
 import {
@@ -23,18 +23,36 @@ import { createSelector } from 'reselect';
 
 
 type Props = {
-    user: User;
-    sessions: Array<Session>;
-    friends: Array<FriendsSchedule>;
-    schedule: Schedule;
+    user?: User;
+    sessions?: Array<Session>;
+    friends?: Array<FriendsSchedule>;
+    schedule?: Schedule;
     navigator: ReactNative.Navigator;
-    logOut: () => void;
-    jumpToSchedule: (day: number) => void;
-    loadFriendsSchedules: () => void;
+    logOut?: () => void;
+    jumpToSchedule?: (day: number) => void;
+    loadFriendsSchedules?: () => void;
 };
-
 // TODO: Rename to MyF8View
-class MyScheduleViewImpl extends React.Component<Props, void> {
+@connect(
+    (store: any) => ({
+        user: store.user,
+        sessions: data(store),
+        schedule: store.schedule,
+        // Only show friends who have something in their schedule
+        friends: store.friendsSchedules.filter(
+            (friend) => Object.keys(friend.schedule).length > 0
+        ),
+    }),
+    dispatch=> ({
+        logOut: () => dispatch(logOutWithPrompt()),
+        jumpToSchedule: (day) => dispatch([
+            switchTab('schedule'),
+            switchDay(day),
+        ]),
+        loadFriendsSchedules: () => dispatch(loadFriendsSchedules()),
+    })
+)
+export class MyScheduleView extends React.Component<Props, void> {
     public render() {
         let rightItem;
         if (this.props.user.isLoggedIn) {
@@ -133,27 +151,27 @@ const data = createSelector(
     (sessions, schedule) => FilterSessions.bySchedule(sessions, schedule),
 );
 
-function select(store) {
-    return {
-        user: store.user,
-        sessions: data(store),
-        schedule: store.schedule,
-        // Only show friends who have something in their schedule
-        friends: store.friendsSchedules.filter(
-            (friend) => Object.keys(friend.schedule).length > 0
-        ),
-    };
-}
+// function select(store) {
+//     return {
+//         user: store.user,
+//         sessions: data(store),
+//         schedule: store.schedule,
+//         // Only show friends who have something in their schedule
+//         friends: store.friendsSchedules.filter(
+//             (friend) => Object.keys(friend.schedule).length > 0
+//         ),
+//     };
+// }
 
-function actions(dispatch) {
-    return {
-        logOut: () => dispatch(logOutWithPrompt()),
-        jumpToSchedule: (day) => dispatch([
-            switchTab('schedule'),
-            switchDay(day),
-        ]),
-        loadFriendsSchedules: () => dispatch(loadFriendsSchedules()),
-    };
-}
+// function actions(dispatch) {
+//     return {
+//         logOut: () => dispatch(logOutWithPrompt()),
+//         jumpToSchedule: (day) => dispatch([
+//             switchTab('schedule'),
+//             switchDay(day),
+//         ]),
+//         loadFriendsSchedules: () => dispatch(loadFriendsSchedules()),
+//     };
+// }
 
-export let MyScheduleView = connect(select, actions)(MyScheduleViewImpl);
+// export let MyScheduleView = connect(select, actions)(MyScheduleViewImpl);

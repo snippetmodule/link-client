@@ -1,11 +1,11 @@
 
 import * as React from 'react';
 import *as ReactNative from 'react-native';
-import { connect } from 'react-redux';
+const { connect } = require('react-redux');
 import * as Common from '../base/common';
 
 import { switchTab, logOutWithPrompt } from '../actions';
-import { UserState ,Tab, Day} from '../reducers/';
+import { UserState, Tab, Day } from '../reducers/';
 import { MenuItem } from './MenuItem';
 import { InfoView } from './info/InfoView';
 import { NotificationsView } from './notifications/NotificationsView';
@@ -14,15 +14,34 @@ import { MyScheduleView } from './schedule/MyScheduleView';
 import { unseenNotificationsCount } from './notifications/unseenNotificationsCount';
 
 type Prop = {
-    tab: Tab;
-    day: Day;
-    onTabSelect: (tab: Tab) => void;
+    tab?: Tab;
+    day?: Day;
+    onTabSelect?: (tab: Tab) => void;
+    logOut?: () => void;
     navigator: ReactNative.Navigator;
     notificationsBadge?: any;
-    user:UserState;
+    user?: UserState;
 };
-class TabsViewImpl extends React.Component<Prop, any> {
-    private drawer: Common.DrawerLayout
+
+@connect(
+    (store: any) => ({
+        tab: store.navigation.tab,
+        day: store.navigation.day,
+        user: store.user,
+        notificationsBadge: unseenNotificationsCount(store) + store.surveys.length,
+    }),
+    dispatch => ({
+        onTabSelect: (tab) => dispatch(switchTab(tab)),
+        logOut: () => dispatch(logOutWithPrompt()),
+    })
+)
+export class TabsViewAndroid extends React.Component<Prop, any> {
+    private drawer: Common.DrawerLayout;
+
+    static childContextTypes = {
+        openDrawer: React.PropTypes.func,
+        hasUnreadNotifications: React.PropTypes.number,
+    }
     public getChildContext() {
         return {
             openDrawer: this.openDrawer,
@@ -141,7 +160,7 @@ class TabsViewImpl extends React.Component<Prop, any> {
             case 'schedule':
                 return (
                     <GeneralScheduleView
-                        navigator={this.props.navigator}
+                        navigator={this.props.navigator} {...this.props}
                         />
                 );
 
@@ -149,7 +168,8 @@ class TabsViewImpl extends React.Component<Prop, any> {
                 return (
                     <MyScheduleView
                         navigator={this.props.navigator}
-                        onJumpToSchedule={() => this.props.onTabSelect('schedule')}
+                        // onJumpToSchedule={() => this.props.onTabSelect('schedule')}
+                        {...this.props}
                         />
                 );
 
@@ -160,7 +180,7 @@ class TabsViewImpl extends React.Component<Prop, any> {
                 return <NotificationsView navigator={this.props.navigator} />;
 
             case 'info':
-                return <InfoView navigator={this.props.navigator} />;
+                return <InfoView />;
             default:
                 throw new Error(`Unknown tab ${this.props.tab}`);
         }
@@ -180,27 +200,6 @@ class TabsViewImpl extends React.Component<Prop, any> {
             </Common.DrawerLayout>
         );
     }
-}
-
-TabsViewImpl.childContextTypes = {
-    openDrawer: React.PropTypes.func,
-    hasUnreadNotifications: React.PropTypes.number,
-};
-
-function select(store) {
-    return {
-        tab: store.navigation.tab,
-        day: store.navigation.day,
-        user: store.user,
-        notificationsBadge: unseenNotificationsCount(store) + store.surveys.length,
-    };
-}
-
-function actions(dispatch) {
-    return {
-        onTabSelect: (tab) => dispatch(switchTab(tab)),
-        logOut: () => dispatch(logOutWithPrompt()),
-    };
 }
 
 let styles = ReactNative.StyleSheet.create({
@@ -233,4 +232,4 @@ let styles = ReactNative.StyleSheet.create({
     },
 });
 
-export let TabsView = connect(select, actions)(TabsViewImpl);
+// export let TabsView = connect(select, actions)(TabsViewImpl);

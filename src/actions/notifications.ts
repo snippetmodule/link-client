@@ -1,7 +1,7 @@
 import * as React from 'react';
 import *as ReactNative from 'react-native';
 
-import { Parses } from './parse';
+import { loadNotifications } from './parse';
 import { updateInstallation } from './installation';
 import { loadSurveys } from './surveys';
 import { switchTab } from './navigation';
@@ -64,7 +64,7 @@ function receivePushNotification(notification: PushNotification): ThunkAction {
 
         if (foreground) {
 
-            dispatch(Parses.loadNotifications());
+            dispatch(loadNotifications());
             dispatch(loadSurveys());
 
             if (ReactNative.Platform.OS === 'ios') {

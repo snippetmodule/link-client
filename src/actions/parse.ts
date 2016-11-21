@@ -1,7 +1,7 @@
 
 import *as ReactNative from 'react-native';
 import { Parse } from 'parse/react-native';
-const logError = require('logError');
+// const logError = require('logError');
 
 import { ThunkAction, Dispatch, DispatchAction } from './types';
 
@@ -18,24 +18,24 @@ function loadParseQuery(type: string, query: Parse.Query): ThunkAction {
                     dispatch({ type, list } as DispatchAction);
                 });
             },
-            error: logError,
+            error: (error: Error) => console.log(`loadParseQuery ${type} ${error.message}`),
         });
     };
 }
 
-let Parses = {
-    loadSessions: (): ThunkAction =>
-        loadParseQuery(
-            'LOADED_SESSIONS',
-            new Parse.Query('Agenda')
-                .include('speakers')
-                .ascending('startTime')
-        ),
+export function loadSessions(): ThunkAction {
+    return loadParseQuery(
+        'LOADED_SESSIONS',
+        new Parse.Query('Agenda')
+            .include('speakers')
+            .ascending('startTime')
+    );
+}
 
-    loadMaps: (): ThunkAction =>
-        loadParseQuery('LOADED_MAPS', new Parse.Query(Maps)),
+export function loadMaps(): ThunkAction {
+    return loadParseQuery('LOADED_MAPS', new Parse.Query(Maps));
+}
 
-    loadNotifications: (): ThunkAction =>
-        loadParseQuery('LOADED_NOTIFICATIONS', new Parse.Query(Notification)),
-};
-export {Parses}  
+export function loadNotifications(): ThunkAction {
+    return loadParseQuery('LOADED_NOTIFICATIONS', new Parse.Query(Notification));
+}

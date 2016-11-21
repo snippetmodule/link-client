@@ -1,6 +1,6 @@
 import * as React from 'react';
 import *as ReactNative from 'react-native';
-import { connect } from 'react-redux';
+const { connect } = require('react-redux');
 import * as Common from '../base/common';
 
 import { RatingCard } from './RatingCard';
@@ -10,15 +10,22 @@ import { Session } from '../reducers/sessions';
 import { Dispatch } from '../actions/types';
 
 type Props = {
-    sessions: Array<Session>;
+    sessions?: Array<Session>;
     surveys: Array<Survey>;
-    navigator: any;
-    dispatch: Dispatch;
+    navigator: ReactNative.Navigator;
+    dispatch?: Dispatch;
 };
 type State = {
     selectedIndex: number;
 };
-class RatingScreenImpl extends React.Component<Props, State> {
+
+@connect(
+    (store: any) => ({
+        sessions: store.sessions,
+    }),
+    dispatch=>{dispatch}
+)
+export class RatingScreen extends React.Component<Props, State> {
 
     constructor(props: Props) {
         super(props);
@@ -136,10 +143,10 @@ let styles = Common.StyleSheet.create({
     },
 });
 
-function select(store) {
-    return {
-        sessions: store.sessions,
-    };
-}
+// function select(store) {
+//     return {
+//         sessions: store.sessions,
+//     };
+// }
 
-export let RatingScreen = connect(select)(RatingScreenImpl);
+// export let RatingScreen = connect(select)(RatingScreenImpl);

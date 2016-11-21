@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactNative from 'react-native';
-import create from './StyleSheet';
-import { Text } from './Text';
+import { StyleSheet } from './StyleSheet';
+import { Texts } from './Text';
 
 type Prop = {
   values: string[];
@@ -61,9 +61,9 @@ class Segment extends React.Component<SegmentProp, void> {
         activeOpacity={0.8}
         onPress={this.props.onPress}
         style={[styles.button, selectedButtonStyle]}>
-        <Text style={[styles.label, deselectedLabelStyle]}>
+        <Texts.Text style={[styles.label, deselectedLabelStyle]}>
           {title}
-        </Text>
+        </Texts.Text>
       </ReactNative.TouchableOpacity>
     );
   }
@@ -71,7 +71,7 @@ class Segment extends React.Component<SegmentProp, void> {
 
 const HEIGHT = 32;
 
-let styles = create({
+let styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     backgroundColor: 'transparent',

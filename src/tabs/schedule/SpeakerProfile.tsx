@@ -1,9 +1,13 @@
 import * as React from 'react';
 import *as ReactNative from 'react-native';
 import * as Common from '../../base/common';
-import { connect } from 'react-redux';;
+import { connect } from 'react-redux';
 
-export let SpeakerProfile = React.createClass({
+import { Speaker } from '../../reducers/';
+type Prop = {
+    speaker: Speaker
+}
+export let SpeakerProfile = React.createClass<Prop, void>({
     render: function () {
         let speaker = this.props.speaker;
         return (

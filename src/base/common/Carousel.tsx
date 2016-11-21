@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { ViewPager } from './ViewPager';
-import create from './StyleSheet';
+import { StyleSheet } from './StyleSheet';
 
 interface IProps {
     count: number;
@@ -32,7 +32,7 @@ class Carousel extends React.Component<IProps, any> {
     }
 }
 
-let styles = create({
+let styles = StyleSheet.create({
     carousel: {
         ios: {
             margin: 10,

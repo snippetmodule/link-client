@@ -59,7 +59,7 @@ async function _logInWithFacebook(source?: string): Promise<any> {
     ]);
 }
 
-export function logInWithFacebook(source: ?string): ThunkAction {
+export function logInWithFacebook(source?: string): ThunkAction {
     return (dispatch) => {
         const login = _logInWithFacebook(source);
 

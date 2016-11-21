@@ -3,9 +3,7 @@
 import * as React from 'react';
 import * as ReactNative from 'react-native';
 
-import { Colors } from './base/common/';
-import { LoginButton } from './base/common/LoginButton';
-import { Text } from './base/common/Text';
+import *as Common from './base/common/';
 
 class LoginScreen extends React.Component<any, { anim: ReactNative.Animated.Value }> {
     public state = {
@@ -50,10 +48,10 @@ class LoginScreen extends React.Component<any, { anim: ReactNative.Animated.Valu
                     </ReactNative.Animated.Text>
                 </ReactNative.View>
                 <ReactNative.Animated.View style={[styles.section, styles.last, this.fadeIn(2500, 20)]}>
-                    <Text style={styles.loginComment}>
+                    <Common.Texts.Text style={styles.loginComment}>
                         Use Facebook to find your friends at F8.
-                        </Text>
-                    <LoginButton source="First screen" />
+                        </Common.Texts.Text>
+                    <Common.LoginButton source="First screen" />
                 </ReactNative.Animated.View>
             </ReactNative.Image>
         );
@@ -102,25 +100,25 @@ let styles = ReactNative.StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'center',
         fontSize: Math.round(74 * scale),
-        color: Colors.darkText,
+        color: Common.Colors.darkText,
         backgroundColor: 'transparent',
     },
     h2: {
         textAlign: 'center',
         fontSize: 17,
-        color: Colors.darkText,
+        color: Common.Colors.darkText,
         marginVertical: 20,
     },
     h3: {
         fontSize: 12,
         textAlign: 'center',
-        color: Colors.lightText,
+        color: Common.Colors.lightText,
         letterSpacing: 1,
     },
     loginComment: {
         marginBottom: 14,
         fontSize: 12,
-        color: Colors.darkText,
+        color: Common.Colors.darkText,
         textAlign: 'center',
     },
     skip: {

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import *as ReactNative from 'react-native';
-import { connect } from 'react-redux';
+const { connect } = require('react-redux');
 import { LoginScreen } from './LoginScreen';
 import { AppNavigator } from './AppNavigator';
 import { PushNotificationsController } from './PushNotificationsController';
@@ -18,7 +18,12 @@ import { env } from './base/env';
 
 let CodePush = require('react-native-code-push');
 
-class AppImpl extends React.Component<any, any>{
+@connect(
+    (store: any) => ({
+        isLoggedIn: store.user.isLoggedIn || store.user.hasSkippedLogin,
+    })
+)
+export class App extends React.Component<any, any>{
     public componentDidMount() {
         ReactNative.AppState.addEventListener('change', this.handleAppStateChange);
 
@@ -68,10 +73,10 @@ let styles = ReactNative.StyleSheet.create({
     },
 });
 
-function select(store) {
-    return {
-        isLoggedIn: store.user.isLoggedIn || store.user.hasSkippedLogin,
-    };
-}
+// function select(store) {
+//     return {
+//         isLoggedIn: store.user.isLoggedIn || store.user.hasSkippedLogin,
+//     };
+// }
 // export { App };
-export let App = connect(select)(AppImpl);
+// export let App = connect(select)(AppImpl);

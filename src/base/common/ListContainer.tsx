@@ -1,8 +1,8 @@
 import * as React from 'react';
 import * as ReactNative from 'react-native';
 
-import create from './StyleSheet';
-import { Text } from './Text';
+import { StyleSheet } from './StyleSheet';
+import { Texts } from './Text';
 import { ViewPager } from './ViewPager';
 import { ParallaxBackground } from './ParallaxBackground';
 import { SegmentedControl } from './SegmentedControl';
@@ -44,7 +44,7 @@ const ActivityIndicator = ReactNative.Platform.OS === 'ios'
 class RelayLoading extends React.Component<any, void> {
   public render() {
     const child = React.Children.only(this.props.children);
-    return this.renderChild(child,this.props);
+    return this.renderChild(child, this.props);
     // if (!child.type.getFragmentNames) {
     //   return child;
     // }
@@ -204,9 +204,9 @@ class ListContainer extends React.Component<Props, State> {
       return this.props.parallaxContent;
     }
     return (
-      <Text style={styles.parallaxText}>
+      <Texts.Text style={styles.parallaxText}>
         {this.props.title}
-      </Text>
+      </Texts.Text>
     );
   }
 
@@ -342,7 +342,7 @@ class ListContainer extends React.Component<Props, State> {
   }
 }
 
-let styles = create({
+let styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
