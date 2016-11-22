@@ -56,4 +56,4 @@ function fromParseSessions(session: any): Session {
     };
 }
 
-export let session = createParseReducer('LOADED_SESSIONS', fromParseSessions);
+export let sessions = createParseReducer('LOADED_SESSIONS', fromParseSessions);

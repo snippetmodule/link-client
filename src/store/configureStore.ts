@@ -1,23 +1,25 @@
 import *as ReactNative from 'react-native';
 
-import { applyMiddleware, createStore } from 'redux';
+// import { applyMiddleware, createStore } from 'redux';
 import { persistStore, autoRehydrate } from 'redux-persist';
 import thunk from 'redux-thunk';
-let promise = require('./promise');
-let array = require('./array');
-let analytics = require('./analytics');
-let reducers = require('../reducers');
-let createLogger = require('redux-logger');
+import *as Redux from 'redux';
+import * as createLogger from 'redux-logger';
+
+import { promise } from './promise';
+import { array } from './array';
+import { analytics } from './analytics';
+import { reducers } from '../reducers';
 
 // var isDebuggingInChrome = __DEV__ && !!window.navigator.userAgent;
 
-let logger = createLogger({
+let logger: Redux.Middleware = createLogger({
   predicate: (getState, action) => true,
   collapsed: true,
   duration: true,
 });
 
-let createF8Store = applyMiddleware(thunk, promise, array, analytics, logger)(createStore);
+let createF8Store = Redux.applyMiddleware(thunk, promise, array, analytics, logger)(Redux.createStore);
 
 function configureStore(onComplete?: () => void) {
   // TODO(frantic): reconsider usage of redux-persist, maybe add cache breaker

@@ -5,7 +5,8 @@ const { connect } = require('react-redux');
 import * as Common from '../base/common';
 
 import { switchTab, logOutWithPrompt } from '../actions';
-import { UserState, Tab, Day } from '../reducers/';
+import { UserState } from '../reducers/user';
+import { Tab, Day } from '../reducers/navigation';
 import { MenuItem } from './MenuItem';
 import { InfoView } from './info/InfoView';
 import { NotificationsView } from './notifications/NotificationsView';

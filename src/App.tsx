@@ -16,7 +16,7 @@ import {
 } from './actions';
 import { env } from './base/env';
 
-let CodePush = require('react-native-code-push');
+// let CodePush = require('react-native-code-push');
 
 @connect(
     (store: any) => ({
@@ -36,7 +36,7 @@ export class App extends React.Component<any, any>{
         this.props.dispatch(loadSurveys());
 
         updateInstallation({ version: env.version });
-        CodePush.sync({ installMode: CodePush.InstallMode.ON_NEXT_RESUME });
+        // CodePush.sync({ installMode: CodePush.InstallMode.ON_NEXT_RESUME });
     }
     public componentWillUnmount() {
         ReactNative.AppState.removeEventListener('change', this.handleAppStateChange);
@@ -46,7 +46,7 @@ export class App extends React.Component<any, any>{
             this.props.dispatch(loadSessions());
             this.props.dispatch(loadNotifications());
             this.props.dispatch(loadSurveys());
-            CodePush.sync({ installMode: CodePush.InstallMode.ON_NEXT_RESUME });
+            // CodePush.sync({ installMode: CodePush.InstallMode.ON_NEXT_RESUME });
         }
     }
     public render() {

@@ -3,10 +3,10 @@ import *as ReactNative from 'react-native';
 import * as Common from '../../base/common';
 import { connect } from 'react-redux';
 
-import { Speaker } from '../../reducers/';
+import { Speaker } from '../../reducers/sessions';
 type Prop = {
-    speaker: Speaker
-}
+    speaker: Speaker;
+};
 export let SpeakerProfile = React.createClass<Prop, void>({
     render: function () {
         let speaker = this.props.speaker;

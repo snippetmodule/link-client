@@ -1,4 +1,4 @@
-import { Session } from '../../model/Session';
+import { Session } from '../../reducers/sessions';
 
 import { formatTime } from './formatTime';
 

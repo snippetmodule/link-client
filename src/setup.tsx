@@ -1,9 +1,12 @@
 
 
 import * as React from 'react';
-import { App } from './App';
 import { Provider } from 'react-redux';
+import { Parse } from 'parse/react-native';
+
 import { configureStore } from './store/configureStore';
+import { App } from './App';
+import { env } from './base/env';
 // var FacebookSDK = require('FacebookSDK');
 // var Parse = require('parse/react-native');
 // var React = require('React');
@@ -16,11 +19,11 @@ import { configureStore } from './store/configureStore';
 
 // function setup(): React.ReactClass<{}> {
 //   console.disableYellowBox = true;
-//   Parse.initialize('oss-f8-app-2016');
-//   Parse.serverURL = `${serverURL}/parse`;
+Parse.initialize('oss-f8-app-2016');
+Parse.serverURL = `${env.serverURL}/parse`;
 
 //   FacebookSDK.init();
-//   Parse.FacebookUtils.init();
+// Parse.FacebookUtils.init();
 //   Relay.injectNetworkLayer(
 //     new Relay.DefaultNetworkLayer(`${serverURL}/graphql`, {
 //       fetchTimeout: 30000,

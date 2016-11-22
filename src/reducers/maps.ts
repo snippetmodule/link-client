@@ -1,6 +1,6 @@
 
 
-const createParseReducer = require('./createParseReducer');
+import {createParseReducer} from './createParseReducer';
 
 export type Map = {
   id: string;

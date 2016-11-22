@@ -9,7 +9,7 @@ type Prop = {
   selectedIndex: number;
   onChange: (newIndex: number) => void;
   style?: any;
-}
+};
 class SegmentedControl extends React.Component<Prop, void> {
 
   public render() {
@@ -22,8 +22,7 @@ class SegmentedControl extends React.Component<Prop, void> {
           selectionColor={this.props.selectionColor || 'white'}
           onPress={() => this.props.onChange(index)}
           />
-      )
-    );
+      ));
     return (
       <ReactNative.View style={[styles.container, this.props.style]}>
         {segments}

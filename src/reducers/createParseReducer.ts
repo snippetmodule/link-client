@@ -6,7 +6,7 @@ type Reducer<T> = (state: Array<T>, action: Action) => Array<T>;
 
 export function createParseReducer<T>(
     type: string,
-    convert: Convert<T>
+    convert: Convert<T>,
 ): Reducer<T> {
     return (state: Array<T>, action: Action): Array<T> => {
         if (action.type === type) {
