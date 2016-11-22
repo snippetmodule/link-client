@@ -1,6 +1,8 @@
 package com.reactnativets;
 
 import com.facebook.react.ReactActivity;
+import cl.json.RNSharePackage;
+import com.burnweb.rnsendintent.RNSendIntentPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 
 public class MainActivity extends ReactActivity {
