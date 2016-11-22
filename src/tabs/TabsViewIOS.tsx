@@ -15,11 +15,11 @@ import { unseenNotificationsCount } from './notifications/unseenNotificationsCou
 
 
 type Prop = {
+    navigator: ReactNative.Navigator;
     tab?: Tab;
     day?: Day;
     onTabSelect?: (tab: Tab) => void;
     logOut?: () => void;
-    navigator: ReactNative.Navigator;
     notificationsBadge?: any;
     user?: UserState;
 };

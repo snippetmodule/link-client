@@ -1,28 +1,35 @@
 import * as React from 'react';
 import *as ReactNative from 'react-native';
-
-import { connect } from 'react-redux';
+const { connect } = require('react-redux');
 
 import { Dispatch } from './actions/types';
-import { PushNotificationIOS, PushNotification } from 'react-native-push-notification';
 import { unseenNotificationsCount } from './tabs/notifications/unseenNotificationsCount';
-
 import {
     storeDeviceToken,
     receivePushNotification,
     updateInstallation,
     markAllNotificationsAsSeen,
 } from './actions';
+let PushNotification = require('react-native-push-notification');
 
 const PARSE_CLOUD_GCD_SENDER_ID = '1076345567071';
 
 type Prop = {
-    tab: string;
-    enabled: boolean;
-    badge: number;
-    dispatch: Dispatch;
+    tab?: string;
+    enabled?: boolean;
+    badge?: number;
+    dispatch?: Dispatch;
 };
-class PushNotificationsControllerImpl extends React.Component<Prop, any> {
+
+@connect(
+    store => ({
+        enabled: store.notifications.enabled === true,
+        badge: unseenNotificationsCount(store) + store.surveys.length,
+        tab: store.navigation.tab,
+    }),
+    dispatch => ({ dispatch: dispatch })
+)
+export class PushNotificationsController extends React.Component<Prop, any> {
 
     private handleAppStateChange(appState) {
         if (appState === 'active') {
@@ -65,7 +72,7 @@ class PushNotificationsControllerImpl extends React.Component<Prop, any> {
 
     private updateAppBadge() {
         if (this.props.enabled && ReactNative.Platform.OS === 'ios') {
-            PushNotificationIOS.setApplicationIconBadgeNumber(this.props.badge);
+            ReactNative.PushNotificationIOS.setApplicationIconBadgeNumber(this.props.badge);
             updateInstallation({ badge: this.props.badge });
         }
     }
@@ -80,12 +87,12 @@ class PushNotificationsControllerImpl extends React.Component<Prop, any> {
     }
 }
 
-function select(store) {
-    return {
-        enabled: store.notifications.enabled === true,
-        badge: unseenNotificationsCount(store) + store.surveys.length,
-        tab: store.navigation.tab,
-    };
-}
+// function select(store) {
+//     return {
+//         enabled: store.notifications.enabled === true,
+//         badge: unseenNotificationsCount(store) + store.surveys.length,
+//         tab: store.navigation.tab,
+//     };
+// }
 // export { PushNotificationsController }
-export let PushNotificationsController = connect(select)(PushNotificationsControllerImpl);
+// export let PushNotificationsController = connect(select)(PushNotificationsControllerImpl);

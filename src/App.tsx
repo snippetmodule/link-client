@@ -1,7 +1,7 @@
 import * as React from 'react';
 import *as ReactNative from 'react-native';
 const { connect } = require('react-redux');
-import { LoginScreen } from './LoginScreen';
+import { LoginScreen } from './login/LoginScreen';
 import { AppNavigator } from './AppNavigator';
 import { PushNotificationsController } from './PushNotificationsController';
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import *as ReactNative from 'react-native';
 
-import *as Common from './base/common/';
+import *as Common from '../base/common/';
 type Prop = {
     navigator: ReactNative.Navigator;
     onLogin: () => void;
@@ -12,7 +12,7 @@ class LoginModal extends React.Component<Prop, any> {
             <ReactNative.View style={[styles.container]}>
                 <ReactNative.Image
                     style={[styles.content]}
-                    source={require('../asserts/login/login-background.png')}>
+                    source={require('../../asserts/login/login-background.png')}>
                     <Common.Texts.Text style={styles.h1}>
                         Log in with Facebook
                     </Common.Texts.Text>

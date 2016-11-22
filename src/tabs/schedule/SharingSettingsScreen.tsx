@@ -11,15 +11,16 @@ import { UserState as User } from '../../reducers/user';
 
 type Prop = {
     navigator: ReactNative.Navigator;
-    dispatch: Dispatch;
-    sharedSchedule: boolean;
-    user: User;
+    dispatch?: Dispatch;
+    sharedSchedule?: boolean;
+    user?: User;
 };
 @connect(
     (store: any) => ({
         user: store.user,
         sharedSchedule: store.user.sharedSchedule,
-    })
+    }),
+    dispatch => ({ dispatch: dispatch })
 )
 export class SharingSettingsScreen extends React.Component<Prop, void> {
     public render() {

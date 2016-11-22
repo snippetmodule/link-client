@@ -1,8 +1,8 @@
 import * as React from 'react';
 import *as ReactNative from 'react-native';
-import { connect } from 'react-redux';
-import { switchTab } from './actions';
-import { LoginModal } from './LoginModal';
+const { connect } = require('react-redux');
+import { switchTab, Dispatch, BackListener, NavigationChildContextType } from './actions';
+import { LoginModal } from './login/LoginModal';
 import { FilterScreen } from './filter/FilterScreen';
 
 import { SessionsCarousel } from './tabs/schedule/SessionsCarousel';
@@ -11,66 +11,76 @@ import { SharingSettingsScreen } from './tabs/schedule/SharingSettingsScreen';
 import { ThirdPartyNotices } from './tabs/info/ThirdPartyNotices';
 import { RatingScreen } from './rating/RatingScreen';
 import { FriendsScheduleView } from './tabs/schedule/FriendsScheduleView';
-import { TabsView } from './tabs/TabsView';
+import { TabsViewAndroid } from './tabs/TabsViewAndroid';
+import { TabsViewIOS } from './tabs/TabsViewIOS';
 
-type BackListener = () => boolean;
 
 type Prop = {
-  tab: string,
-  isLoggedIn: boolean;
+  tab?: string,
+  isLoggedIn?: boolean;
+  dispatch?: Dispatch;
 };
+@connect(
+  store => ({
+    tab: store.navigation.tab,
+    isLoggedIn: store.user.isLoggedIn || store.user.hasSkippedLogin,
+  }),
+  dispatch => ({ dispatch: dispatch })
+)
+export class AppNavigator extends React.Component<Prop, any> {
+  public static childContextTypes = {
+    addBackButtonListener: React.PropTypes.func,
+    removeBackButtonListener: React.PropTypes.func,
+  };
 
-let AppNavigatorImpl = React.createClass<Prop, any>({
-  _handlers: [] = new Array<BackListener>(),
+  private mNavigator: ReactNative.Navigator;
+  private _handlers: BackListener[] = [];
 
-  componentDidMount() {
+  public componentDidMount() {
     ReactNative.BackAndroid.addEventListener('hardwareBackPress', this.handleBackButton);
-  },
+  }
 
-  componentWillUnmount() {
+  public componentWillUnmount() {
     ReactNative.BackAndroid.removeEventListener('hardwareBackPress', this.handleBackButton);
-  },
+  }
 
-  getChildContext() {
+  public getChildContext(): NavigationChildContextType {
     return {
-      addBackButtonListener: this.addBackButtonListener,
-      removeBackButtonListener: this.removeBackButtonListener,
+      addBackButtonListener: this.addBackButtonListener.bind(this),
+      removeBackButtonListener: this.removeBackButtonListener.bind(this),
     };
-  },
+  }
 
-  addBackButtonListener(listener) {
+  private addBackButtonListener(listener: BackListener) {
     this._handlers.push(listener);
-  },
+  }
 
-  removeBackButtonListener(listener) {
+  private removeBackButtonListener(listener: BackListener) {
     this._handlers = this._handlers.filter((handler) => handler !== listener);
-  },
+  }
 
-  handleBackButton() {
+  private handleBackButton() {
     for (let i = this._handlers.length - 1; i >= 0; i--) {
       if (this._handlers[i]()) {
         return true;
       }
     }
-
-    const {navigator} = this.refs;
-    if (navigator && navigator.getCurrentRoutes().length > 1) {
-      navigator.pop();
+    if (this.mNavigator && this.mNavigator.getCurrentRoutes().length > 1) {
+      this.mNavigator.pop();
       return true;
     }
-
     if (this.props.tab !== 'schedule') {
       this.props.dispatch(switchTab('schedule'));
       return true;
     }
     return false;
-  },
+  }
 
-  render() {
+  public render() {
     return (
       <ReactNative.Navigator
-        ref="navigator"
-        // style={[styles.container]}
+        ref={ref => this.mNavigator = ref}
+        // style={styles.container}
         configureScene={(route: any) => {
           if (ReactNative.Platform.OS === 'android') {
             return ReactNative.Navigator.SceneConfigs.FloatFromBottomAndroid;
@@ -83,54 +93,29 @@ let AppNavigatorImpl = React.createClass<Prop, any>({
           }
         } }
         initialRoute={{}}
-        renderScene={this.renderScene}
+        renderScene={this.renderScene.bind(this)}
         />
     );
-  },
-
-  renderScene(route, navigator) {
+  }
+  private renderScene(route, navigator) {
     if (route.allSessions) {
-      return (
-        <SessionsCarousel
-          {...route}
-          navigator={navigator}
-          />
+      return (<SessionsCarousel {...route} navigator={navigator} />
       );
     }
     if (route.session) {
-      return (
-        <SessionsCarousel
-          session={route.session}
-          navigator={navigator}
-          {...this.props}
-          />
-      );
+      return (<SessionsCarousel session={route.session} navigator={navigator}     {...this.props} />);
     }
     if (route.filter) {
-      return (
-        <FilterScreen navigator={navigator} />
-      );
+      return (<FilterScreen navigator={navigator} />);
     }
     if (route.friend) {
-      return (
-        <FriendsScheduleView
-          friend={route.friend}
-          navigator={navigator}
-          />
-      );
+      return (<FriendsScheduleView friend={route.friend} navigator={navigator} />);
     }
     if (route.login) {
-      return (
-        <LoginModal
-          navigator={navigator}
-          onLogin={route.callback}
-          />
-      );
+      return (<LoginModal navigator={navigator} onLogin={route.callback} />);
     }
     if (route.share) {
-      return (
-        <SharingSettingsModal navigator={navigator} {...this.props} />
-      );
+      return (<SharingSettingsModal navigator={navigator} {...this.props} />);
     }
     if (route.shareSettings) {
       return <SharingSettingsScreen navigator={navigator} {...this.props} />;
@@ -141,27 +126,16 @@ let AppNavigatorImpl = React.createClass<Prop, any>({
     if (route.notices) {
       return <ThirdPartyNotices navigator={navigator} />;
     }
-    return <TabsView navigator={navigator} {...this.props} />;
-  },
-});
-
-AppNavigatorImpl.childContextTypes = {
-  addBackButtonListener: React.PropTypes.func,
-  removeBackButtonListener: React.PropTypes.func,
-};
-
+    if (ReactNative.Platform.OS === 'android') {
+      return <TabsViewAndroid navigator={navigator} />;
+    } else {
+      return <TabsViewIOS navigator={navigator} />;
+    }
+  }
+}
 let styles = ReactNative.StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'black',
   },
 });
-
-function select(store) {
-  return {
-    tab: store.navigation.tab,
-    isLoggedIn: store.user.isLoggedIn || store.user.hasSkippedLogin,
-  };
-}
-// export { AppNavigator }
-export let AppNavigator = connect(select)(AppNavigatorImpl);

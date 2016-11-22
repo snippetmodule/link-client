@@ -2,10 +2,21 @@
 
 import * as React from 'react';
 import * as ReactNative from 'react-native';
+import *as Common from '../base/common/';
+import { skipLogin, Dispatch } from '../actions';
+let { connect } = require('react-redux');
 
-import *as Common from './base/common/';
-
-class LoginScreen extends React.Component<any, { anim: ReactNative.Animated.Value }> {
+type Prop = {
+    dispatch?: Dispatch;
+};
+type State = {
+    anim: ReactNative.Animated.Value;
+};
+@connect(
+    state => ({}),
+    dispatch => ({ dispatch: dispatch })
+)
+export class LoginScreen extends React.Component<Prop, State> {
     public state = {
         anim: new ReactNative.Animated.Value(0),
     };
@@ -17,20 +28,21 @@ class LoginScreen extends React.Component<any, { anim: ReactNative.Animated.Valu
         return (
             <ReactNative.Image
                 style={styles.container}
-                source={require('../asserts/login/login-background.png')}>
+                source={require('../../asserts/login/login-background.png')}>
                 <ReactNative.StatusBar barStyle="default" />
                 <ReactNative.TouchableOpacity
                     accessibilityTraits="button"
-                    style={styles.skip as React.ViewStyle}>
+                    style={styles.skip as React.ViewStyle}
+                    onPress={() => this.props.dispatch(skipLogin())}>
                     <ReactNative.Animated.Image
                         style={this.fadeIn(2800)}
-                        source={require('../asserts/login/x.png')}
+                        source={require('../../asserts/login/x.png')}
                         />
                 </ReactNative.TouchableOpacity>
                 <ReactNative.View style={styles.section as React.ViewStyle}>
                     <ReactNative.Animated.Image
                         style={this.fadeIn(0)}
-                        source={require('../asserts/login/devconf-logo.png')}
+                        source={require('../../asserts/login/devconf-logo.png')}
                         />
                 </ReactNative.View>
                 <ReactNative.View style={styles.section as React.ViewStyle}>
@@ -128,4 +140,3 @@ let styles = ReactNative.StyleSheet.create({
         padding: 15,
     },
 });
-export { LoginScreen }

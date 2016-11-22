@@ -15,11 +15,11 @@ import { MyScheduleView } from './schedule/MyScheduleView';
 import { unseenNotificationsCount } from './notifications/unseenNotificationsCount';
 
 type Prop = {
+    navigator: ReactNative.Navigator;
     tab?: Tab;
     day?: Day;
     onTabSelect?: (tab: Tab) => void;
     logOut?: () => void;
-    navigator: ReactNative.Navigator;
     notificationsBadge?: any;
     user?: UserState;
 };
@@ -39,13 +39,17 @@ type Prop = {
 export class TabsViewAndroid extends React.Component<Prop, any> {
     private drawer: Common.DrawerLayout;
 
-    static childContextTypes = {
+    public static contextTypes = {
+        addBackButtonListener: React.PropTypes.func,
+        removeBackButtonListener: React.PropTypes.func,
+    };
+    public static childContextTypes = {
         openDrawer: React.PropTypes.func,
-        hasUnreadNotifications: React.PropTypes.number,
-    }
+        hasUnreadNotifications: React.PropTypes.bool,
+    };
     public getChildContext() {
         return {
-            openDrawer: this.openDrawer,
+            openDrawer: this.openDrawer.bind(this),
             hasUnreadNotifications: this.props.notificationsBadge > 0,
         };
     }
@@ -68,11 +72,11 @@ export class TabsViewAndroid extends React.Component<Prop, any> {
 
     private renderNavigationView() {
         let scheduleIcon = this.props.day === 1
-            ? require('./schedule/img/schedule-icon-1.png')
-            : require('./schedule/img/schedule-icon-2.png');
+            ? require('../../asserts/tabs/schedule/schedule-icon-1.png')
+            : require('../../asserts/tabs/schedule/schedule-icon-2.png');
         let scheduleIconSelected = this.props.day === 1
-            ? require('./schedule/img/schedule-icon-1-active.png')
-            : require('./schedule/img/schedule-icon-2-active.png');
+            ? require('../../asserts/tabs/schedule/schedule-icon-1-active.png')
+            : require('../../asserts/tabs/schedule/schedule-icon-2-active.png');
         let accountItem, myF8Item, loginItem;
 
         if (this.props.user.isLoggedIn) {
@@ -92,14 +96,14 @@ export class TabsViewAndroid extends React.Component<Prop, any> {
                     title="My F8"
                     selected={this.props.tab === 'my-schedule'}
                     onPress={this.onTabSelect.bind(this, 'my-schedule')}
-                    icon={require('./schedule/img/my-schedule-icon.png')}
-                    selectedIcon={require('./schedule/img/my-schedule-icon-active.png')}
+                    icon={require('../../asserts/tabs/schedule/my-schedule-icon.png')}
+                    selectedIcon={require('../../asserts/tabs/schedule/my-schedule-icon-active.png')}
                     />
             );
         } else {
             accountItem = (
                 <ReactNative.View>
-                    <ReactNative.Image source={require('./img/logo.png')} />
+                    <ReactNative.Image source={require('../../asserts/tabs/logo.png')} />
                     <Common.Texts.Text style={styles.name}>
                         APRIL 12 + 13 / SAN FRANCISCO
                     </Common.Texts.Text>
@@ -118,7 +122,7 @@ export class TabsViewAndroid extends React.Component<Prop, any> {
             <ReactNative.View style={styles.drawer}>
                 <ReactNative.Image
                     style={styles.header as React.ImageStyle}
-                    source={require('./img/drawer-header.png')}>
+                    source={require('../../asserts/tabs/drawer-header.png')}>
                     {accountItem}
                 </ReactNative.Image>
                 <MenuItem
@@ -133,23 +137,23 @@ export class TabsViewAndroid extends React.Component<Prop, any> {
                     title="Maps"
                     selected={this.props.tab === 'map'}
                     onPress={this.onTabSelect.bind(this, 'map')}
-                    icon={require('./maps/img/maps-icon.png')}
-                    selectedIcon={require('./maps/img/maps-icon-active.png')}
+                    icon={require('../../asserts/tabs/maps/maps-icon.png')}
+                    selectedIcon={require('../../asserts/tabs/maps/maps-icon-active.png')}
                     />
                 <MenuItem
                     title="Notifications"
                     selected={this.props.tab === 'notifications'}
                     onPress={this.onTabSelect.bind(this, 'notifications')}
                     badge={this.props.notificationsBadge}
-                    icon={require('./notifications/img/notifications-icon.png')}
-                    selectedIcon={require('./notifications/img/notifications-icon-active.png')}
+                    icon={require('../../asserts/tabs/notifications/notifications-icon.png')}
+                    selectedIcon={require('../../asserts/tabs/notifications/notifications-icon-active.png')}
                     />
                 <MenuItem
                     title="Info"
                     selected={this.props.tab === 'info'}
                     onPress={this.onTabSelect.bind(this, 'info')}
-                    icon={require('./info/img/info-icon.png')}
-                    selectedIcon={require('./info/img/info-icon-active.png')}
+                    icon={require('../../asserts/tabs/info/info-icon.png')}
+                    selectedIcon={require('../../asserts/tabs/info/info-icon-active.png')}
                     />
                 {loginItem}
             </ReactNative.View>
@@ -194,7 +198,8 @@ export class TabsViewAndroid extends React.Component<Prop, any> {
                 ref={ref => this.drawer = ref}
                 drawerWidth={290}
                 drawerPosition="left"
-                renderNavigationView={this.renderNavigationView}>
+                renderNavigationView={this.renderNavigationView.bind(this)}
+                {...this.props}>
                 <ReactNative.View style={styles.content} key={this.props.tab}>
                     {this.renderContent()}
                 </ReactNative.View>
@@ -202,7 +207,6 @@ export class TabsViewAndroid extends React.Component<Prop, any> {
         );
     }
 }
-
 let styles = ReactNative.StyleSheet.create({
     drawer: {
         flex: 1,

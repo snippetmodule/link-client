@@ -7,35 +7,31 @@ import *as ReactNative from 'react-native';
 //     removeBackButtonListener: React.PropTypes.func,
 // };
 
-interface IProps {
+type Props = {
+    drawerPosition?: 'right' | 'left';
+    drawerWidth: number;
+    renderNavigationView: () => JSX.Element;
     onDrawerOpen?: () => any;
     onDrawerClose?: () => any;
     [key: string]: any;
 }
-
-export class DrawerLayout extends React.Component<IProps, any> {
-    public context: any;
-
+export class DrawerLayout extends React.Component<Props, any> {
     public static contextTypes = {
         addBackButtonListener: React.PropTypes.func,
         removeBackButtonListener: React.PropTypes.func,
-    }
+    };
     private _drawer: ReactNative.DrawerLayoutAndroid;
-
-    constructor(props: IProps, context: any) {
-        super(props, context);
-    }
-
     public render() {
         const {drawerPosition, props} = this.props;
         // const {Right, Left} = ReactNative.DrawerLayoutAndroid.positions;
         return (
             <ReactNative.DrawerLayoutAndroid
                 ref={(drawer) => { this._drawer = drawer; } }
+                renderNavigationView={this.props.renderNavigationView}
                 {...props}
-                drawerPosition={drawerPosition === 'right' ? 'right' : 'left'}
-                onDrawerOpen={this.onDrawerOpen}
-                onDrawerClose={this.onDrawerClose}
+                drawerPosition={drawerPosition === 'right' ? (ReactNative.DrawerLayoutAndroid as any).positions.Right : (ReactNative.DrawerLayoutAndroid as any).positions.Left}
+                onDrawerOpen={this.onDrawerOpen.bind(this)}
+                onDrawerClose={this.onDrawerClose.bind(this)}
                 />
         );
     }
