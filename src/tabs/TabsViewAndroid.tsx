@@ -9,6 +9,7 @@ import { UserState } from '../reducers/user';
 import { Tab, Day } from '../reducers/navigation';
 import { MenuItem } from './MenuItem';
 import { InfoView } from './info/InfoView';
+import { MapView } from './maps/MapView';
 import { NotificationsView } from './notifications/NotificationsView';
 import { GeneralScheduleView } from './schedule/GeneralScheduleView';
 import { MyScheduleView } from './schedule/MyScheduleView';
@@ -168,7 +169,6 @@ export class TabsViewAndroid extends React.Component<Prop, any> {
                         navigator={this.props.navigator} {...this.props}
                         />
                 );
-
             case 'my-schedule':
                 return (
                     <MyScheduleView
@@ -177,15 +177,12 @@ export class TabsViewAndroid extends React.Component<Prop, any> {
                         {...this.props}
                         />
                 );
-
             case 'map':
-                return <Common.MapView />;
-
+                return <MapView />;
             case 'notifications':
                 return <NotificationsView navigator={this.props.navigator} />;
-
             case 'info':
-                return <InfoView />;
+                return <InfoView {...this.props} />;
             default:
                 throw new Error(`Unknown tab ${this.props.tab}`);
         }
@@ -198,8 +195,7 @@ export class TabsViewAndroid extends React.Component<Prop, any> {
                 ref={ref => this.drawer = ref}
                 drawerWidth={290}
                 drawerPosition="left"
-                renderNavigationView={this.renderNavigationView.bind(this)}
-                {...this.props}>
+                renderNavigationView={this.renderNavigationView.bind(this)}>
                 <ReactNative.View style={styles.content} key={this.props.tab}>
                     {this.renderContent()}
                 </ReactNative.View>

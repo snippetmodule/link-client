@@ -8,6 +8,7 @@ import { switchTab, logOutWithPrompt } from '../actions';
 import { UserState } from '../reducers/user';
 import { Tab, Day } from '../reducers/navigation';
 import { InfoView } from './info/InfoView';
+import { MapView } from './maps/MapView';
 import { NotificationsView } from './notifications/NotificationsView';
 import { GeneralScheduleView } from './schedule/GeneralScheduleView';
 import { MyScheduleView } from './schedule/MyScheduleView';
@@ -77,7 +78,7 @@ export class TabsViewIOS extends React.Component<Prop, any> {
                     onPress={this.onTabSelect.bind(this, 'map')}
                     icon={require('./maps/img/maps-icon.png')}
                     selectedIcon={require('./maps/img/maps-icon-active.png')}>
-                    <Common.MapView />
+                    <MapView />
                 </ReactNative.TabBarIOS.Item>
                 <ReactNative.TabBarIOS.Item
                     title="Notifications"

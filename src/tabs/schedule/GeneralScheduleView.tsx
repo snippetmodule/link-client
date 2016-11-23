@@ -49,9 +49,9 @@ export class GeneralScheduleView extends React.Component<Props, any> {
 
     public render() {
         const filterItem = {
-            icon: require('../../common/img/filter.png'),
+            icon: require('../../../asserts/base/common/filter.png'),
             title: 'Filter',
-            onPress: this.openFilterScreen,
+            onPress: this.openFilterScreen.bind(this),
         };
 
         const filterHeader = Object.keys(this.props.filter).length > 0
@@ -62,8 +62,8 @@ export class GeneralScheduleView extends React.Component<Props, any> {
             <Common.ListContainer
                 title="Schedule"
                 selectedSegment={this.props.day - 1}
-                onSegmentChange={this.switchDay}
-                backgroundImage={require('./img/schedule-background.png')}
+                onSegmentChange={this.switchDay.bind(this)}
+                backgroundImage={require('../../../asserts/tabs/schedule/schedule-background.png')}
                 backgroundColor="#5597B8"
                 selectedSectionColor="#51CDDA"
                 stickyHeader={filterHeader}
@@ -72,14 +72,14 @@ export class GeneralScheduleView extends React.Component<Props, any> {
                     title="Day 1"
                     day={1}
                     sessions={this.props.sessions}
-                    renderEmptyList={this.renderEmptyList}
+                    renderEmptyList={this.renderEmptyList.bind(this)}
                     navigator={this.props.navigator}
                     />
                 <ScheduleListView
                     title="Day 2"
                     day={2}
                     sessions={this.props.sessions}
-                    renderEmptyList={this.renderEmptyList}
+                    renderEmptyList={this.renderEmptyList.bind(this)}
                     navigator={this.props.navigator}
                     />
             </Common.ListContainer>
@@ -90,10 +90,10 @@ export class GeneralScheduleView extends React.Component<Props, any> {
         }
         return (
             <Common.DrawerLayout
-                ref={(drawer) => { this._drawer = drawer; } }
+                ref={(ref) => { this._drawer = ref; } }
                 drawerWidth={300}
                 drawerPosition="right"
-                renderNavigationView={this.renderNavigationView}>
+                renderNavigationView={this.renderNavigationView.bind(this)}>
                 {content}
             </Common.DrawerLayout>
         );
@@ -125,19 +125,19 @@ export class GeneralScheduleView extends React.Component<Props, any> {
     }
 }
 
-function select(store) {
-    return {
-        day: store.navigation.day,
-        filter: store.filter,
-        sessions: data(store),
-    };
-}
+// function select(store) {
+//     return {
+//         day: store.navigation.day,
+//         filter: store.filter,
+//         sessions: data(store),
+//     };
+// }
 
-function actions(dispatch) {
-    return {
-        switchDay: (day) => dispatch(switchDay(day)),
-    };
-}
+// function actions(dispatch) {
+//     return {
+//         switchDay: (day) => dispatch(switchDay(day)),
+//     };
+// }
 // export { GeneralScheduleView }
 
 // export let GeneralScheduleView = connect(select, actions)(GeneralScheduleViewImpl);

@@ -37,11 +37,11 @@ export class AppNavigator extends React.Component<Prop, any> {
   private _handlers: BackListener[] = [];
 
   public componentDidMount() {
-    ReactNative.BackAndroid.addEventListener('hardwareBackPress', this.handleBackButton);
+    ReactNative.BackAndroid.addEventListener('hardwareBackPress', this.handleBackButton.bind(this));
   }
 
   public componentWillUnmount() {
-    ReactNative.BackAndroid.removeEventListener('hardwareBackPress', this.handleBackButton);
+    ReactNative.BackAndroid.removeEventListener('hardwareBackPress', this.handleBackButton.bind(this));
   }
 
   public getChildContext(): NavigationChildContextType {
@@ -80,7 +80,7 @@ export class AppNavigator extends React.Component<Prop, any> {
     return (
       <ReactNative.Navigator
         ref={ref => this.mNavigator = ref}
-        // style={styles.container}
+        sceneStyle={styles.container}
         configureScene={(route: any) => {
           if (ReactNative.Platform.OS === 'android') {
             return ReactNative.Navigator.SceneConfigs.FloatFromBottomAndroid;

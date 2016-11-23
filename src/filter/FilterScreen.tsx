@@ -6,6 +6,7 @@ import * as Common from '../base/common';
 import { TopicItem } from './TopicItem';
 import {
     applyTopicsFilter,
+    Dispatch,
 } from '../actions';
 // const F8Header = require('F8Header');
 // const F8Colors = require('F8Colors');
@@ -16,7 +17,7 @@ type Prop = {
     topics?: Array<string>;
     selectedTopics?: { [id: string]: boolean };
     friendsSchedules?: any;
-    dispatch?: (action: any) => void;
+    dispatch?: Dispatch;
     navigator: any;
     onClose?: () => void;
 };
@@ -31,7 +32,7 @@ type State = {
         topics: store.topics,
         selectedTopics: store.filter,
     }),
-    dispatch => { dispatch }
+    dispatch => ({ dispatch: dispatch })
 )
 export class FilterScreen extends React.Component<Prop, State> {
     constructor(props) {

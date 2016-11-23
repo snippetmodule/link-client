@@ -2,6 +2,7 @@
 
 import * as ReactNative from 'react-native';
 import { Parse } from 'parse/react-native';
+let SendIntentAndroid = require('react-native-send-intent');
 import { env } from '../base/env';
 
 import { Action, ThunkAction } from './types';
@@ -36,13 +37,12 @@ function testExportAppState(): ThunkAction {
             ReactNative.ActionSheetIOS.showShareActionSheetWithOptions({
                 subject: subject,
                 message: message,
-            }, () => { }, () => { });
+            }, () => {}, () => {});
         } else {
-            const SendIntentAndroid = require('react-native-send-intent');
             SendIntentAndroid.sendText({
                 title: subject,
                 text: message,
-                type: SendIntentAndroid.TEXT_PLAIN
+                type: SendIntentAndroid.TEXT_PLAIN,
             });
         }
     };

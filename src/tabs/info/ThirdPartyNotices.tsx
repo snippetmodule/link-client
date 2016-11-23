@@ -11,7 +11,7 @@ export class ThirdPartyNotices extends React.Component<any, any> {
                     title="Third Party Notices"
                     style={styles.header}
                     leftItem={{
-                        icon: require('../../common/img/back_white.png'),
+                        icon: require('../../../asserts/base/common/back_white.png'),
                         title: 'Back',
                         layout: 'icon',
                         onPress: () => this.props.navigator.pop(),

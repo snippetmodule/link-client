@@ -17,4 +17,4 @@ export * from './Text';
 export * from './Touchable';
 export * from './ViewPager';
 export * from './ProfilePicture';
-export let LinearGradient = require('react-native-linear-gradient');
+export let LinearGradient = require('react-native-linear-gradient').default;

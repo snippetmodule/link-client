@@ -51,7 +51,7 @@ type Prop = {
     dispatch => ({
         onTurnOnNotifications: () => dispatch(turnOnPushNotifications()),
         onSkipNotifications: () => dispatch(skipPushNotifications()),
-        dispatch,
+        dispatch: dispatch,
     })
 )
 export class NotificationsView extends React.Component<Prop, any> {
@@ -71,13 +71,13 @@ export class NotificationsView extends React.Component<Prop, any> {
             <ReactNative.View style={{ flex: 1 }}>
                 <Common.ListContainer
                     title="Notifications"
-                    backgroundImage={require('./img/notifications-background.png')}
+                    backgroundImage={require('../../../asserts/tabs/notifications/notifications-background.png')}
                     backgroundColor={'#E78196'}
                     {...this.renderTestItems() }>
                     <Common.PureListView
                         data={this.props.notifications}
-                        renderEmptyList={this.renderEmptyList}
-                        renderRow={this.renderRow}
+                        renderEmptyList={this.renderEmptyList.bind(this)}
+                        renderRow={this.renderRow.bind(this)}
                         />
                 </Common.ListContainer>
                 {modal}
@@ -90,7 +90,7 @@ export class NotificationsView extends React.Component<Prop, any> {
             return (
                 <RateSessionsCell
                     numberOfSessions={notification.surveysCount}
-                    onPress={this.openReview}
+                    onPress={this.openReview.bind(this)}
                     />
             );
         }
@@ -114,7 +114,7 @@ export class NotificationsView extends React.Component<Prop, any> {
 
     private openNotification(notification) {
         if (notification.url) {
-            var session = findSessionByURI(this.props.sessions, notification.url);
+            let session = findSessionByURI(this.props.sessions, notification.url);
             if (session) {
                 this.props.navigator.push({ session });
             } else {
@@ -134,7 +134,6 @@ export class NotificationsView extends React.Component<Prop, any> {
         if (!env.testMenuEnabled) {
             return {};
         }
-
         if (ReactNative.Platform.OS === 'ios') {
             return {
                 rightItem: {
@@ -143,7 +142,6 @@ export class NotificationsView extends React.Component<Prop, any> {
                 },
             };
         }
-
         if (ReactNative.Platform.OS === 'android') {
             return {
                 extraItems: Object.keys(TEST_MENU).map((title) => ({

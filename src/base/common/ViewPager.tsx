@@ -52,7 +52,7 @@ class ViewPager extends React.Component<IProps, IState> {
         pagingEnabled={true}
         bounces={!!this.props.bounces}
         scrollsToTop={false}
-        onScroll={this.handleHorizontalScroll}
+        onScroll={this.handleHorizontalScroll.bind(this)}
         scrollEventThrottle={100}
         removeClippedSubviews={true}
         automaticallyAdjustContentInsets={false}
@@ -70,7 +70,7 @@ class ViewPager extends React.Component<IProps, IState> {
       <ReactNative.ViewPagerAndroid
         ref={ref => this.mScrollView = ref}
         initialPage={this.state.initialSelectedIndex}
-        onPageSelected={this.handleHorizontalScroll}
+        onPageSelected={this.handleHorizontalScroll.bind(this)}
         style={styles.container} >
         {this.renderContent()}
       </ReactNative.ViewPagerAndroid>

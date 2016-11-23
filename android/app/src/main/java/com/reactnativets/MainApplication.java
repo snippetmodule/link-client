@@ -11,6 +11,7 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
+import com.burnweb.rnsendintent.RNSendIntentPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -29,6 +30,7 @@ public class MainApplication extends Application implements ReactApplication {
           new MainReactPackage(),
           new LinearGradientPackage(),
           new ReactNativePushNotificationPackage(),
+          new RNSendIntentPackage(),
           new ReactNativeI18n()
       );
     }

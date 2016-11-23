@@ -51,10 +51,10 @@ class ScheduleListView extends React.Component<Props, State> {
             <Common.PureListView
                 ref={(ref) => this._innerRef = ref}
                 data={this.state.todaySessions}
-                renderRow={this.renderRow}
-                renderSectionHeader={this.renderSectionHeader}
+                renderRow={this.renderRow.bind(this)}
+                renderSectionHeader={this.renderSectionHeader.bind(this)}
                 {...this.props}
-                renderEmptyList={this.renderEmptyList}
+                renderEmptyList={this.renderEmptyList.bind(this)}
                 />
         );
     }

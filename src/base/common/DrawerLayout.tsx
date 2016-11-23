@@ -22,17 +22,17 @@ export class DrawerLayout extends React.Component<Props, any> {
     };
     private _drawer: ReactNative.DrawerLayoutAndroid;
     public render() {
-        const {drawerPosition, props} = this.props;
+        const {drawerPosition} = this.props;
         // const {Right, Left} = ReactNative.DrawerLayoutAndroid.positions;
         return (
             <ReactNative.DrawerLayoutAndroid
                 ref={(drawer) => { this._drawer = drawer; } }
                 renderNavigationView={this.props.renderNavigationView}
-                {...props}
                 drawerPosition={drawerPosition === 'right' ? (ReactNative.DrawerLayoutAndroid as any).positions.Right : (ReactNative.DrawerLayoutAndroid as any).positions.Left}
                 onDrawerOpen={this.onDrawerOpen.bind(this)}
-                onDrawerClose={this.onDrawerClose.bind(this)}
-                />
+                onDrawerClose={this.onDrawerClose.bind(this)}>
+                {this.props.children}
+            </ReactNative.DrawerLayoutAndroid>
         );
     }
 

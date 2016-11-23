@@ -41,8 +41,7 @@ export class PushNotificationsController extends React.Component<Prop, any> {
     }
 
     public componentDidMount() {
-        ReactNative.AppState.addEventListener('change', this.handleAppStateChange);
-
+        ReactNative.AppState.addEventListener('change', this.handleAppStateChange.bind(this));
         const {dispatch} = this.props;
         PushNotification.configure({
             onRegister: ({token}) => dispatch(storeDeviceToken(token)),
@@ -50,12 +49,11 @@ export class PushNotificationsController extends React.Component<Prop, any> {
             senderID: PARSE_CLOUD_GCD_SENDER_ID,
             requestPermissions: this.props.enabled,
         });
-
         this.updateAppBadge();
     }
 
     public componentWillUnmount() {
-        ReactNative.AppState.removeEventListener('change', this.handleAppStateChange);
+        ReactNative.AppState.removeEventListener('change', this.handleAppStateChange.bind(this));
     }
 
     public componentDidUpdate(prevProps) {

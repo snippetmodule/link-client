@@ -15,7 +15,7 @@ type Prop = {
     minContentHeight?: number;
     renderFooter?: RenderElement;
     contentInset?: { top: number; bottom: number; };
-    renderRow: (rowData: any, sectionID: string | number, rowID: string | number, highlightRow?: boolean) => React.ReactElement<any>;
+    renderRow?: (rowData: any, sectionID: string | number, rowID: string | number, highlightRow?: boolean) => React.ReactElement<any>;
     [key: string]: any;
 };
 
@@ -29,14 +29,13 @@ type State = {
 const LIST_VIEW_PAGE_SIZE = ReactNative.Platform.OS === 'android' ? 20 : 1;
 
 export class PureListView extends React.Component<Prop, State> {
-     defaultProps = {
+    public static defaultProps: Prop = {
         data: [],
         contentInset: { top: 0, bottom: 0 },
         // TODO: This has to be scrollview height + fake header
         minContentHeight: ReactNative.Dimensions.get('window').height + 20,
         renderSeparator: (sectionID, rowID) => <ReactNative.View style={styles.separator} key={rowID} />,
     };
-
     private mListView: any;
 
     constructor(props: Prop) {
@@ -74,9 +73,10 @@ export class PureListView extends React.Component<Prop, State> {
                 {...this.props}
                 ref={ref => this.mListView = ref}
                 dataSource={this.state.dataSource}
-                renderRow={this.props.renderRow}
-                renderFooter={this.renderFooter}
+                renderRow={this.props.renderRow ? this.props.renderRow : null}
+                renderFooter={this.renderFooter.bind(this)}
                 contentInset={{ bottom, top: contentInset.top }}
+                enableEmptySections={true}
                 // onContentSizeChange={this.onContentSizeChange}
                 />
         );

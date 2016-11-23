@@ -27,11 +27,12 @@
     "no-string-literal": false,
     "eofline": false,
     "no-conditional-assignment": false,
-    "jsx-no-lambda":false,
-    "jsx-no-multiline-js":false,
-    "no-unused-expression":false,
-    "jsx-alignment":false,
-    "object-literal-shorthand":false,
+    "jsx-no-lambda": false,
+    "jsx-no-multiline-js": false,
+    "no-unused-expression": false,
+    "jsx-alignment": false,
+    "object-literal-shorthand": false,
+    "one-variable-per-declaration": [],
     "max-line-length": []
   }
 }

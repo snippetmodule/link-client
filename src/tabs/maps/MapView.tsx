@@ -1,23 +1,27 @@
 import * as React from 'react';
 import *as ReactNative from 'react-native';
-import { connect } from 'react-redux';
+const { connect } = require('react-redux');
 import * as Common from '../../base/common';
-
 
 let VENUE_ADDRESS = '2 Marina Blvd, San Francisco, CA 94123';
 type Prop = {
-    map1: Common.Map;
-    map2: Common.Map;
+    map1?: Common.Map;
+    map2?: Common.Map;
 };
-class MapViewImpl extends React.Component<Prop, any> {
+@connect(
+    (store: any) => ({
+        map1: store.maps.find((map) => map.name === 'Overview'),
+        map2: store.maps.find((map) => map.name === 'Developer Garage'),
+    })
+)
+export class MapView extends React.Component<Prop, any> {
     public render() {
         const {map1, map2} = this.props;
-
         return (
             <ReactNative.View style={styles.container}>
                 <Common.ListContainer
                     title="Maps"
-                    backgroundImage={require('./img/maps-background.png')}
+                    backgroundImage={require('../../../asserts/tabs/maps/maps-background.png')}
                     backgroundColor={'#9176D2'}>
                     <Common.PureListView
                         title="Overview"
@@ -32,9 +36,9 @@ class MapViewImpl extends React.Component<Prop, any> {
                 </Common.ListContainer>
                 <Common.Button
                     type="secondary"
-                    icon={require('./img/directions.png')}
+                    icon={require('../../../asserts/tabs/maps/directions.png')}
                     caption="Directions to Fort Mason Center"
-                    onPress={this.handleGetDirections}
+                    onPress={this.handleGetDirections.bind(this)}
                     style={styles.directionsButton}
                     />
             </ReactNative.View>
@@ -99,11 +103,11 @@ let styles = Common.StyleSheet.create({
     },
 });
 
-function select(store) {
-    return {
-        map1: store.maps.find((map) => map.name === 'Overview'),
-        map2: store.maps.find((map) => map.name === 'Developer Garage'),
-    };
-}
+// function select(store) {
+//     return {
+//         map1: store.maps.find((map) => map.name === 'Overview'),
+//         map2: store.maps.find((map) => map.name === 'Developer Garage'),
+//     };
+// }
 
-export let MapView = connect(select)(MapViewImpl);
+// export let MapView = connect(select)(MapViewImpl);

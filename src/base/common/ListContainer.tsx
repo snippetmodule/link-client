@@ -93,26 +93,31 @@ type State = {
   anim: ReactNative.Animated.Value;
   stickyHeaderHeight: number;
 };
-type ContextType = {
-  openDrawer: () => {},
-  hasUnreadNotifications: number,
-}
+
 class ListContainer extends React.Component<Props, State> {
-  _refs: Array<any>;
+  public static contextTypes = {
+    openDrawer: React.PropTypes.func,
+    hasUnreadNotifications: React.PropTypes.bool,
+  };
+
+  public state = {
+    idx: this.props.selectedSegment || 0,
+    anim: new ReactNative.Animated.Value(0),
+    stickyHeaderHeight: 0,
+  };
+  _refs: Array<any> = [];
   _pinned: any;
 
-  context: ContextType
+  // constructor(props: Props, context: ContextType) {
+  //   super(props, context);
 
-  constructor(props: Props, context: ContextType) {
-    super(props, context);
-
-    this.state = {
-      idx: this.props.selectedSegment || 0,
-      anim: new ReactNative.Animated.Value(0),
-      stickyHeaderHeight: 0,
-    };
-    this._refs = [];
-  }
+  //   this.state = {
+  //     idx: this.props.selectedSegment || 0,
+  //     anim: new ReactNative.Animated.Value(0),
+  //     stickyHeaderHeight: 0,
+  //   };
+  //   this._refs = [];
+  // }
 
   public render() {
     var leftItem = this.props.leftItem;
@@ -120,9 +125,9 @@ class ListContainer extends React.Component<Props, State> {
       leftItem = {
         title: 'Menu',
         icon: this.context.hasUnreadNotifications
-          ? require('./img/hamburger-unread.png')
-          : require('./img/hamburger.png'),
-        onPress: this.handleShowMenu,
+          ? require('../../../asserts/base/common/hamburger-unread.png')
+          : require('../../../asserts/base/common/hamburger.png'),
+        onPress: this.handleShowMenu.bind(this),
       };
     }
 
@@ -153,7 +158,7 @@ class ListContainer extends React.Component<Props, State> {
             values={segments}
             selectedIndex={this.state.idx}
             selectionColor={this.props.selectedSectionColor}
-            onChange={this.handleSelectSegment}
+            onChange={this.handleSelectSegment.bind(this)}
             />
           {stickyHeader}
         </ReactNative.View>
@@ -188,7 +193,7 @@ class ListContainer extends React.Component<Props, State> {
         <ViewPager
           count={segments.length}
           selectedIndex={this.state.idx}
-          onSelectedIndexChange={this.handleSelectSegment}>
+          onSelectedIndexChange={this.handleSelectSegment.bind(this)}>
           {content}
         </ViewPager>
         {this.renderFloatingStickyHeader(stickyHeader)}

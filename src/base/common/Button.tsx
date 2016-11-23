@@ -1,9 +1,10 @@
 import * as React from 'react';
 import * as ReactNative from 'react-native';
 
-let LinearGradient = require('react-native-linear-gradient');
+let LinearGradient = require('react-native-linear-gradient').default;
 
 import { Colors } from './Colors';
+import { Texts } from './Text';
 
 interface IProp {
   type?: 'primary' | 'secondary' | 'bordered';
@@ -13,7 +14,6 @@ interface IProp {
   onPress: () => any;
 }
 class Button extends React.Component<IProp, any> {
-
   public render() {
     const caption = this.props.caption.toUpperCase();
     let icon;
@@ -21,16 +21,16 @@ class Button extends React.Component<IProp, any> {
       icon = <ReactNative.Image source={this.props.icon} style={styles.icon} />;
     }
     let content;
-    if (this.props.type === 'primary') {
+    if (!this.props.type || this.props.type === 'primary') {
       content = (
         <LinearGradient
           start={[0.5, 1]} end={[1, 1]}
           colors={['#6A6AD5', '#6F86D9']}
           style={[styles.button, styles.primaryButton]}>
           {icon}
-          <ReactNative.Text style={[styles.caption, styles.primaryCaption]}>
+          <Texts.Text style={[styles.caption, styles.primaryCaption]}>
             {caption}
-          </ReactNative.Text>
+          </Texts.Text>
         </LinearGradient>
       );
     } else {
@@ -38,9 +38,9 @@ class Button extends React.Component<IProp, any> {
       content = (
         <ReactNative.View style={[styles.button, border]}>
           {icon}
-          <ReactNative.Text style={[styles.caption, styles.secondaryCaption]}>
+          <Texts.Text style={[styles.caption, styles.secondaryCaption]}>
             {caption}
-          </ReactNative.Text>
+          </Texts.Text>
         </ReactNative.View>
       );
     }

@@ -25,7 +25,7 @@ import { env } from './base/env';
 )
 export class App extends React.Component<any, any>{
     public componentDidMount() {
-        ReactNative.AppState.addEventListener('change', this.handleAppStateChange);
+        ReactNative.AppState.addEventListener('change', this.handleAppStateChange.bind(this));
 
         // TODO: Make this list smaller, we basically download the whole internet
         this.props.dispatch(loadNotifications());
@@ -39,7 +39,7 @@ export class App extends React.Component<any, any>{
         // CodePush.sync({ installMode: CodePush.InstallMode.ON_NEXT_RESUME });
     }
     public componentWillUnmount() {
-        ReactNative.AppState.removeEventListener('change', this.handleAppStateChange);
+        ReactNative.AppState.removeEventListener('change', this.handleAppStateChange.bind(this));
     }
     private handleAppStateChange(appState) {
         if (appState === 'active') {

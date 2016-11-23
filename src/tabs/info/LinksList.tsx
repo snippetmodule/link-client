@@ -5,12 +5,12 @@ import * as Common from '../../base/common';
 import { Section } from './Section';
 type Prop = {
     title: string;
-    links: Array<{
+    links: {
         logo?: string;
         title: string;
         url?: string;
         onPress?: () => void;
-    }>;
+    }[];
 };
 export class LinksList extends React.Component<Prop,any> {
     public render() {
@@ -36,8 +36,8 @@ type RowProp = {
 };
 class Row extends React.Component<RowProp,any> {
     public render() {
-        var {logo, title} = this.props.link;
-        var image = logo && <ReactNative.Image style={styles.picture} source={{ uri: logo }} />;
+        let {logo, title} = this.props.link;
+        let image = logo && <ReactNative.Image style={styles.picture} source={{ uri: logo }} />;
         return (
             <Common.Touchable onPress={this.handlePress.bind(this)}>
                 <ReactNative.View style={styles.row as React.ViewStyle}>
@@ -45,19 +45,19 @@ class Row extends React.Component<RowProp,any> {
                     <Common.Texts.Text style={styles.title} numberOfLines={2}>
                         {title}
                     </Common.Texts.Text>
-                    <ReactNative.Image source={require('../../common/img/disclosure.png')} />
+                    <ReactNative.Image source={require('../../../asserts/base/common/disclosure.png')} />
                 </ReactNative.View>
             </Common.Touchable>
         );
     }
 
     private handlePress() {
-        var {url, onPress} = this.props.link;
+        let {url, onPress} = this.props.link;
         if (onPress) {
             onPress();
         }
         if (url) {
-            React.Linking.openURL(url);
+            ReactNative.Linking.openURL(url);
         }
     }
 }
