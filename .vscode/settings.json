@@ -3,7 +3,7 @@
     "typescript.tsdk": "node_modules/typescript/lib",
     // 配置 glob 模式以在搜索中排除文件和文件夹。从 files.exclude 设置中继承所有 glob 模式。
     "search.exclude": {
-        "**/node_modules": false,
+        "**/node_modules": true,
         "**/build": true,
         "**/.vscode": true,
         "**/bower_components": true
