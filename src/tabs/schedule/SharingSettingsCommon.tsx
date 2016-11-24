@@ -25,7 +25,7 @@ export class SharingSettingsCommon extends React.Component<Prop, void> {
         );
         return (
             <ReactNative.View style={[styles.container, this.props.style]}>
-                <ReactNative.Image style={styles.image as React.ImageStyle} source={require('./img/sharing-nux.png')}>
+                <ReactNative.Image style={styles.image as React.ImageStyle} source={require('../../../asserts/tabs/schedule/sharing-nux.png')}>
                     {title}
                 </ReactNative.Image>
                 <ReactNative.View style={styles.content as React.ViewStyle} >

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import *as ReactNative from 'react-native';
-import { connect } from 'react-redux';
 import * as Common from '../../base/common';
 
 type Prop = {
@@ -15,7 +14,7 @@ export class PushNUXModal extends React.Component<Prop, any> {
                 <ReactNative.View style={styles.inner as React.ViewStyle}>
                     <ReactNative.Image
                         style={styles.image as React.ImageStyle}
-                        source={require('./img/push-nux.png')}
+                        source={require('../../../asserts/tabs/notifications/push-nux.png')}
                         />
                     <ReactNative.View style={styles.content as React.ViewStyle}>
                         <Common.Texts.Heading1 style={null}>

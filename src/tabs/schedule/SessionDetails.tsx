@@ -7,18 +7,45 @@ import { FriendGoing } from './FriendGoing';
 import { SpeakerProfile } from './SpeakerProfile';
 import { AddToScheduleButton } from './AddToScheduleButton';
 import { formatDuration } from './formatDuration';
-let {addToSchedule, removeFromScheduleWithPrompt} = require('../../actions');
+import { addToSchedule, removeFromScheduleWithPrompt } from '../../actions';
+import { FriendsSchedule } from '../../reducers/friendsSchedules';
+import { Map } from '../../reducers/maps';
+let Subscribable = require('Subscribable');
 
-let SessionDetailsImpl = React.createClass({
-    // mixins: [Subscribable.Mixin],
+type Prop = {
+    isAddedToSchedule: boolean;
+    isLoggedIn: boolean;
+    sharedSchedule: boolean;
+    sessionURLTemplate: string;
+    topics: string[];
+    friendsGoing: FriendsSchedule[];
+    map: Map[];
+    addToSchedule: () => void;
+    removeFromScheduleWithPrompt: () => void;
+};
+type State = {
+    scrollTop: ReactNative.Animated.Value;
+};
 
-    getInitialState: function () {
+let SessionDetailsImpl = React.createClass<Prop, State>({
+    mixins: [Subscribable.Mixin],
+    getInitialState: () => {
         return {
             scrollTop: new ReactNative.Animated.Value(0),
         };
     },
-
-    render: function () {
+    propTypes: {
+        isAddedToSchedule: React.PropTypes.bool,
+        isLoggedIn: React.PropTypes.bool,
+        sharedSchedule: React.PropTypes.bool,
+        sessionURLTemplate: React.PropTypes.string,
+        topics: React.PropTypes.array,
+        friendsGoing: React.PropTypes.array,
+        map: React.PropTypes.array,
+        addToSchedule: React.PropTypes.func,
+        removeFromScheduleWithPrompt: React.PropTypes.func,
+    },
+    render: () => {
         let speakersProfiles = this.props.session.speakers.map(
             (speaker) => (
                 <SpeakerProfile
@@ -98,12 +125,12 @@ let SessionDetailsImpl = React.createClass({
                         accessibilityTraits="button"
                         onPress={this.props.onShare}
                         style={styles.shareButton as React.ViewStyle}>
-                        <ReactNative.Image source={require('./img/share.png')} />
+                        <ReactNative.Image source={require('../../../asserts/tabs/schedule/share.png')} />
                     </ReactNative.TouchableOpacity>
                 </ReactNative.ScrollView>
                 <ReactNative.View style={styles.actions as React.ViewStyle}>
                     <AddToScheduleButton
-                        addedImageSource={isReactTalk ? require('./img/added-react.png') : null}
+                        addedImageSource={isReactTalk ? require('../../../asserts/tabs/schedule/added-react.png') : null}
                         isAdded={this.props.isAddedToSchedule}
                         onPress={this.toggleAdded}
                         />
@@ -115,9 +142,8 @@ let SessionDetailsImpl = React.createClass({
                             inputRange: [0, 150, 200],
                             outputRange: [0, 0, 1],
                             extrapolate: 'clamp',
-                        })
-                    }
-                ]}>
+                        }),
+                    }]}>
                     <Common.Texts.Text numberOfLines={1} style={styles.miniTitle}>
                         {title}
                     </Common.Texts.Text>
@@ -127,7 +153,7 @@ let SessionDetailsImpl = React.createClass({
         );
     },
 
-    toggleAdded: function () {
+    toggleAdded: () => {
         if (this.props.isAddedToSchedule) {
             this.props.removeFromScheduleWithPrompt();
         } else {
@@ -135,7 +161,7 @@ let SessionDetailsImpl = React.createClass({
         }
     },
 
-    addToSchedule: function () {
+    addToSchedule: () => {
         if (!this.props.isLoggedIn) {
             this.props.navigator.push({
                 login: true, // TODO: Proper route
@@ -155,8 +181,6 @@ type SectionProp = {
     children?: any;
 }
 class Section extends React.Component<SectionProp, any> {
-
-
     public render() {
         let {children} = this.props;
         if (React.Children.count(children) === 0) {
@@ -271,7 +295,7 @@ let styles = Common.StyleSheet.create({
         position: 'absolute',
         right: 0,
         top: 0,
-    }
+    },
 });
 
 function select(store, props) {
@@ -299,4 +323,4 @@ function actions(dispatch, props) {
     };
 }
 
-export let SessionDetails = connect(select, actions)(SessionDetailsImpl as any);
+export let SessionDetails = connect(select, actions)(SessionDetailsImpl);

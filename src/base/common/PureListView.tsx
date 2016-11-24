@@ -73,7 +73,7 @@ export class PureListView extends React.Component<Prop, State> {
                 {...this.props}
                 ref={ref => this.mListView = ref}
                 dataSource={this.state.dataSource}
-                renderRow={this.props.renderRow ? this.props.renderRow : null}
+                renderRow={this.props.renderRow ? this.props.renderRow : () => null}
                 renderFooter={this.renderFooter.bind(this)}
                 contentInset={{ bottom, top: contentInset.top }}
                 enableEmptySections={true}

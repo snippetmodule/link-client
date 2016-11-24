@@ -1,7 +1,6 @@
 import * as React from 'react';
 import *as ReactNative from 'react-native';
 import * as Common from '../../base/common';
-import { connect } from 'react-redux';
 
 import { Parse } from 'parse/react-native';
 // const {AppEventsLogger} = require('react-native-fbsdk');
@@ -91,7 +90,7 @@ export class SessionsCarousel extends React.Component<Props, State> {
                     leftItem={{
                         layout: 'icon',
                         title: 'Close',
-                        icon: require('../../common/BackButtonIcon'),
+                        icon: require('../../../asserts/base/common/BackButtonIcon'),
                         onPress: this.dismiss,
                     }}
                     rightItem={rightItem}>

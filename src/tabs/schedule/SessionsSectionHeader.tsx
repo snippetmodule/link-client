@@ -4,17 +4,17 @@ import *as ReactNative from 'react-native';
 
 import * as Common from '../../base/common';
 
-let LinearGradient = require('react-native-linear-gradient');
+// let LinearGradient = require('react-native-linear-gradient');
 
 class SessionsSectionHeader extends React.Component<{ title: string }, any> {
 
     public render() {
         return (
-            <LinearGradient colors={['#F4F6F7', '#EBEEF1']} style={styles.header}>
+            <Common.LinearGradient colors={['#F4F6F7', '#EBEEF1']} style={styles.header}>
                 <Common.Texts.Text style={styles.label}>
                     {this.props.title}
                 </Common.Texts.Text>
-            </LinearGradient>
+            </Common.LinearGradient>
         );
     }
 }

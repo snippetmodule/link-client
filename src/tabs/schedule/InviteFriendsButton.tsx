@@ -1,15 +1,21 @@
 import * as React from 'react';
 import *as ReactNative from 'react-native';
-import { connect } from 'react-redux';
+const { connect } = require('react-redux');
 import * as Common from '../../base/common';
 
 // var {AppInviteDialog, AppEventsLogger} = require('react-native-fbsdk');
 type Prop = {
-    appLinkURL: string;
-    appInvitePreviewImageURL: string;
-    style: any;
+    appLinkURL?: string;
+    appInvitePreviewImageURL?: string;
+    style?: any;
 };
-class InviteFriendsButtonImpl extends React.Component<Prop, any> {
+@connect(
+    store => ({
+        appLinkURL: store.config.appLinkURL,
+        appInvitePreviewImageURL: store.config.appInvitePreviewImageURL,
+    })
+)
+export class InviteFriendsButton extends React.Component<Prop, any> {
     public render() {
         const {appLinkURL, style} = this.props;
         if (!appLinkURL) {
@@ -38,11 +44,11 @@ class InviteFriendsButtonImpl extends React.Component<Prop, any> {
     }
 }
 
-function select(store) {
-    return {
-        appLinkURL: store.config.appLinkURL,
-        appInvitePreviewImageURL: store.config.appInvitePreviewImageURL,
-    };
-}
+// function select(store) {
+//     return {
+//         appLinkURL: store.config.appLinkURL,
+//         appInvitePreviewImageURL: store.config.appInvitePreviewImageURL,
+//     };
+// }
 
-export let InviteFriendsButton = connect(select)(InviteFriendsButtonImpl);
+// export let InviteFriendsButton = connect(select)(InviteFriendsButtonImpl);

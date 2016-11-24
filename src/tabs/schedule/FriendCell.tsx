@@ -1,7 +1,6 @@
 import * as React from 'react';
 import *as ReactNative from 'react-native';
 import * as Common from '../../base/common';
-import { connect } from 'react-redux';
 
 import { FriendsSchedule } from '../../reducers/friendsSchedules';
 type Prop = {
@@ -13,7 +12,7 @@ export class FriendCell extends React.Component<Prop, any> {
         const {friend} = this.props;
         const hasSchedule = friend.schedule && Object.keys(friend.schedule).length > 0;
         const auxView = hasSchedule
-            ? <ReactNative.Image source={require('../../common/img/disclosure.png')} />
+            ? <ReactNative.Image source={require('../../../asserts/base/common/disclosure.png')} />
             : <Common.Texts.Text style={styles.private}>PRIVATE</Common.Texts.Text>;
 
         const cell = (

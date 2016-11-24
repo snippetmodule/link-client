@@ -1,6 +1,5 @@
 import * as React from 'react';
 import *as ReactNative from 'react-native';
-import { connect } from 'react-redux';
 import * as Common from '../../base/common';
 
 type Props = {
@@ -95,7 +94,7 @@ class AddToScheduleButton extends React.Component<Props, State> {
                     <ReactNative.View style={{ flex: 1 }}>
                         <ReactNative.View style={styles.content as React.ViewStyle} collapsable={false}>
                             <ReactNative.Animated.Image
-                                source={this.props.addedImageSource || require('./img/added.png')}
+                                source={this.props.addedImageSource || require('../../../asserts/tabs/schedule/added.png')}
                                 style={[styles.icon, addedOpacityImage]}
                                 />
                             <ReactNative.Animated.Text style={[styles.caption, addedOpacity]}>
@@ -104,7 +103,7 @@ class AddToScheduleButton extends React.Component<Props, State> {
                         </ReactNative.View>
                         <ReactNative.View style={styles.content as React.ViewStyle}>
                             <ReactNative.Animated.Image
-                                source={require('./img/add.png')}
+                                source={require('../../../asserts/tabs/schedule/add.png')}
                                 style={[styles.icon, addOpacityImage]}
                                 />
                             <ReactNative.Animated.Text style={[styles.caption, addOpacity]}>

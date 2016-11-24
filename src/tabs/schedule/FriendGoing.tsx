@@ -1,6 +1,5 @@
 import * as React from 'react';
 import *as ReactNative from 'react-native';
-import { connect } from 'react-redux';
 import * as Common from '../../base/common';
 
 import { FriendsSchedule } from '../../reducers/friendsSchedules';
@@ -18,7 +17,7 @@ export class FriendGoing extends React.Component<Prop, any> {
                     <Common.Texts.Text style={styles.name}>
                         {this.props.friend.name}
                     </Common.Texts.Text>
-                    <ReactNative.Image source={require('../../common/img/disclosure.png')} />
+                    <ReactNative.Image source={require('../../../asserts/base/common/disclosure.png')} />
                 </ReactNative.View>
             </Common.Touchable>
         );

@@ -23,7 +23,7 @@ type State = {
     (store: any) => ({
         sessions: store.sessions,
     }),
-    dispatch=>{dispatch}
+    dispatch => ({ dispatch })
 )
 export class RatingScreen extends React.Component<Props, State> {
 
@@ -43,7 +43,7 @@ export class RatingScreen extends React.Component<Props, State> {
                     leftItem={{
                         layout: 'icon',
                         title: 'Close',
-                        icon: require('../common/BackButtonIcon'),
+                        icon: Common.backIcon,
                         onPress: this.dismiss,
                     }}>
                     <ReactNative.View style={styles.headerContent}>

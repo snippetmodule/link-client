@@ -1,6 +1,5 @@
 import * as React from 'react';
 import *as ReactNative from 'react-native';
-import { connect } from 'react-redux';
 import * as Common from '../../base/common';
 
 
@@ -15,7 +14,7 @@ export function RateSessionsCell({numberOfSessions, onPress}: Props) {
         <ReactNative.View style={styles.cell as React.ViewStyle}>
             <ReactNative.Image
                 style={styles.star}
-                source={require('../../rating/img/full-star.png')}
+                source={require('../../../asserts/rating/full-star.png')}
                 />
             <Common.Texts.Text style={styles.text}>
                 You have {numberOfSessions} session{pluralSuffix} to review

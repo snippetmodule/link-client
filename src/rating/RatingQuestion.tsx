@@ -48,8 +48,8 @@ export function RatingQuestion({question, rating, onChange, style}: Props) {
 
 function Star({isFull, value, onPress}) {
     const source = isFull
-        ? require('./img/full-star.png')
-        : require('./img/empty-star.png');
+        ? require('../../asserts/rating/full-star.png')
+        : require('../../asserts/rating/empty-star.png');
 
     const accessibilityTraits: string[] = ['button'];
     if (isFull) {

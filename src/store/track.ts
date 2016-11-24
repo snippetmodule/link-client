@@ -1,6 +1,6 @@
 
 
-// const Parse = require('parse/react-native');
+import { Parse } from 'parse/react-native';
 // const {AppEventsLogger} = require('react-native-fbsdk');
 
 import { Action } from '../actions/types';
@@ -22,12 +22,12 @@ export default function track(action: Action): void {
             break;
 
         case 'SESSION_ADDED':
-            // Parse.Analytics.track('addToSchedule', { id: action.id });
+            Parse.Analytics.track('addToSchedule', { id: action.id });
             log('Added To Schedule', 1, { id: action.id });
             break;
 
         case 'SESSION_REMOVED':
-            // Parse.Analytics.track('removeFromSchedule', { id: action.id });
+            Parse.Analytics.track('removeFromSchedule', { id: action.id });
             log('Removed From Schedule', 1, { id: action.id });
             break;
 

@@ -53,13 +53,13 @@ export class SharingSettingsScreen extends React.Component<Prop, void> {
                     foreground="dark"
                     title="Settings"
                     leftItem={{
-                        icon: require('../../common/img/back.png'),
+                        icon: require('../../../asserts/base/common/back.png'),
                         title: 'Back',
                         layout: 'icon',
                         onPress: () => this.props.navigator.pop(),
                     }}
                     rightItem={{
-                        icon: require('./img/logout.png'),
+                        icon: require('../../../asserts/tabs/schedule/logout.png'),
                         title: 'Logout',
                         onPress: () => this.props.dispatch(logOutWithPrompt()),
                     }}

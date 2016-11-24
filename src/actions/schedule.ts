@@ -1,10 +1,11 @@
 
 import *as ReactNative from 'react-native';
-const Parse = require('parse/react-native');
+let InteractionManager = require('InteractionManager');
+import { Parse } from 'parse/react-native';
 const Share = require('react-native-share');
 const Agenda = Parse.Object.extend('Agenda');
-const {currentInstallation, updateInstallation} = require('./installation');
 
+import {currentInstallation, updateInstallation} from './installation';
 import { ThunkAction, PromiseAction, Dispatch } from './types';
 import { Session } from '../reducers/sessions';
 
@@ -83,7 +84,7 @@ async function restoreSchedule(): PromiseAction {
 
 async function loadFriendsSchedules(): PromiseAction {
     const list = await Parse.Cloud.run('friends');
-    // await ReactNative.InteractionManager.runAfterInteractions();
+    await InteractionManager.runAfterInteractions();
     return {
         type: 'LOADED_FRIENDS_SCHEDULES',
         list,

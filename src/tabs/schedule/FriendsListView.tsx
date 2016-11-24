@@ -1,7 +1,6 @@
 import * as React from 'react';
 import *as ReactNative from 'react-native';
 import * as Common from '../../base/common';
-import { connect } from 'react-redux';
 
 import { EmptySchedule } from './EmptySchedule';
 import { SessionsSectionHeader } from './SessionsSectionHeader';
@@ -48,7 +47,7 @@ export class FriendsListView extends React.Component<Props, void> {
     private renderEmptyList() {
         return (
             <EmptySchedule
-                image={require('./img/no-friends-found.png')}
+                image={require('../../../asserts/tabs/schedule/no-friends-found.png')}
                 text={'Friends using the F8 app\nwill appear here.'}>
                 <InviteFriendsButton />
             </EmptySchedule>

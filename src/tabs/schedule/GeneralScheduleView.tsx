@@ -100,7 +100,7 @@ export class GeneralScheduleView extends React.Component<Props, any> {
     }
 
     private renderNavigationView() {
-        return <FilterScreen onClose={() => this._drawer && this._drawer.closeDrawer()} {...this.props} />;
+        return <FilterScreen onClose={() => this._drawer && this._drawer.closeDrawer()} />;
     }
 
     private renderEmptyList(day: number) {

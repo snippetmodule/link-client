@@ -58,7 +58,7 @@ export class MyScheduleView extends React.Component<Props, void> {
         if (this.props.user.isLoggedIn) {
             rightItem = {
                 title: 'Settings',
-                icon: require('./img/settings.png'),
+                icon: require('../../../asserts/tabs/schedule/settings.png'),
                 onPress: this.openSharingSettings,
             };
         }
@@ -72,7 +72,7 @@ export class MyScheduleView extends React.Component<Props, void> {
             <Common.ListContainer
                 title="My F8"
                 parallaxContent={profilePicture}
-                backgroundImage={require('./img/my-f8-background.png')}
+                backgroundImage={require('../../../asserts/tabs/schedule/my-f8-background.png')}
                 backgroundColor={'#A8D769'}
                 onSegmentChange={this.handleSegmentChanged}
                 rightItem={rightItem}>
@@ -124,7 +124,7 @@ export class MyScheduleView extends React.Component<Props, void> {
         return (
             <EmptySchedule
                 key="schedule"
-                image={require('./img/no-sessions-added.png')}
+                image={require('../../../asserts/tabs/schedule/no-sessions-added.png')}
                 text={'Sessions you save will\nappear here.'}>
                 <Common.Button
                     caption={`See the day ${day} schedule`}

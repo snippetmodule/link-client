@@ -1,14 +1,13 @@
 import * as React from 'react';
 import *as ReactNative from 'react-native';
 import * as Common from '../../base/common';
-import { connect } from 'react-redux';
 
 import { Speaker } from '../../reducers/sessions';
 type Prop = {
     speaker: Speaker;
 };
-export let SpeakerProfile = React.createClass<Prop, void>({
-    render: function () {
+export class SpeakerProfile extends React.Component<Prop, void>{
+    public render() {
         let speaker = this.props.speaker;
         return (
             <ReactNative.View style={styles.row as React.ViewStyle}>
@@ -20,7 +19,7 @@ export let SpeakerProfile = React.createClass<Prop, void>({
             </ReactNative.View>
         );
     }
-});
+}
 
 const SIZE = 76;
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import *as ReactNative from 'react-native';
-import { connect } from 'react-redux';
+const { connect } = require('react-redux');
 import * as Common from '../../base/common';
 
 import { findSessionByURI } from './findSessionByURI';
@@ -9,12 +9,18 @@ import { SessionCell } from '../schedule/SessionCell';
 import * as moment from 'moment';
 
 type Prop = {
-    session: Session;
+    session?: Session;
+    isSeen?: boolean;
     notification: { url: string, text: string, time: any };
     onPress: () => void;
-    isSeen: boolean;
 }
-class NotificationCellImpl extends React.Component<Prop, any> {
+@connect(
+    (store, props) => ({
+        session: findSessionByURI(store.sessions, props.notification.url),
+        isSeen: store.notifications.seen[props.notification.id],
+    })
+)
+export class NotificationCell extends React.Component<Prop, any> {
     public render() {
         let attachment;
         if (this.props.session) {
@@ -90,11 +96,11 @@ let styles = ReactNative.StyleSheet.create({
     },
 });
 
-function select(store, props) {
-    return {
-        session: findSessionByURI(store.sessions, props.notification.url),
-        isSeen: store.notifications.seen[props.notification.id],
-    };
-}
+// function select(store, props) {
+//     return {
+//         session: findSessionByURI(store.sessions, props.notification.url),
+//         isSeen: store.notifications.seen[props.notification.id],
+//     };
+// }
 
-export let NotificationCell = connect(select)(NotificationCellImpl);
+// export let NotificationCell = connect(select)(NotificationCellImpl);

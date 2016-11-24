@@ -1,6 +1,5 @@
 import * as React from 'react';
 import *as ReactNative from 'react-native';
-import { connect } from 'react-redux';
 import * as Common from '../../base/common';
 
 export class ThirdPartyNotices extends React.Component<any, any> {

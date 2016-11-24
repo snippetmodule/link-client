@@ -1,10 +1,10 @@
 import * as React from 'react';
 import *as ReactNative from 'react-native';
 import * as Common from '../../base/common';
-import { connect } from 'react-redux';
+const { connect } = require('react-redux');
 
 import { EmptySchedule } from './EmptySchedule';
-import  * as FilterSessions  from './filterSessions';
+import * as FilterSessions from './filterSessions';
 import { ScheduleListView } from './ScheduleListView';
 
 import { Session } from '../../reducers/sessions';
@@ -12,16 +12,20 @@ import { FriendsSchedule } from '../../reducers/friendsSchedules';
 import { createSelector } from 'reselect';
 
 type Props = {
-    sessions: Array<Session>;
+    sessions?: Array<Session>;
     friend: FriendsSchedule;
     navigator: ReactNative.Navigator;
 };
-
-class FriendsScheduleViewImpl extends React.Component<Props, void> {
+@connect(
+    (store, props) => ({
+        sessions: data(store, props),
+    })
+)
+export class FriendsScheduleView extends React.Component<Props, void> {
 
     public render() {
         const backItem = {
-            icon: require('../../common/img/back_white.png'),
+            icon: require('../../../asserts/base/common/back_white.png'),
             onPress: () => this.props.navigator.pop(),
         };
         const firstName = this.props.friend.name.split(' ')[0];
@@ -29,7 +33,7 @@ class FriendsScheduleViewImpl extends React.Component<Props, void> {
             <Common.ListContainer
                 title={`${firstName}'s Schedule`}
                 parallaxContent={<Common.ProfilePicture userID={this.props.friend.id} size={100} />}
-                backgroundImage={require('./img/schedule-background.png')}
+                backgroundImage={require('../../../asserts/tabs/schedule/schedule-background.png')}
                 backgroundColor={'#5597B8'}
                 selectedSectionColor="#51CDDA"
                 leftItem={backItem}>
@@ -67,10 +71,10 @@ const data = createSelector(
     (sessions, schedule) => FilterSessions.bySchedule(sessions, schedule),
 );
 
-function select(store, props) {
-    return {
-        sessions: data(store, props),
-    };
-}
+// function select(store, props) {
+//     return {
+//         sessions: data(store, props),
+//     };
+// }
 
-export let FriendsScheduleView = connect(select)(FriendsScheduleViewImpl);
+// export let FriendsScheduleView = connect(select)(FriendsScheduleViewImpl);

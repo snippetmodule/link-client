@@ -4,10 +4,7 @@ const { connect } = require('react-redux');
 import * as Common from '../base/common';
 
 import { TopicItem } from './TopicItem';
-import {
-    applyTopicsFilter,
-    Dispatch,
-} from '../actions';
+import { applyTopicsFilter, Dispatch } from '../actions';
 // const F8Header = require('F8Header');
 // const F8Colors = require('F8Colors');
 // const F8Button = require('F8Button');
@@ -16,9 +13,9 @@ type Prop = {
     isLoggedIn?: boolean,
     topics?: Array<string>;
     selectedTopics?: { [id: string]: boolean };
-    friendsSchedules?: any;
+    // friendsSchedules?: any;
     dispatch?: Dispatch;
-    navigator: any;
+    navigator?: ReactNative.Navigator;
     onClose?: () => void;
 };
 type State = {
@@ -28,8 +25,8 @@ type State = {
 @connect(
     (store: any) => ({
         isLoggedIn: store.user.isLoggedIn,
-        friendsSchedules: store.friendsSchedules,
-        topics: store.topics,
+        // friendsSchedules: store.friendsSchedules,
+        topics: ['11', '22'],
         selectedTopics: store.filter,
     }),
     dispatch => ({ dispatch: dispatch })
@@ -85,8 +82,8 @@ export class FilterScreen extends React.Component<Prop, State> {
         if (selectedAnyTopics) {
             rightItem = {
                 title: 'Clear',
-                icon: require('../common/img/x-white.png'),
-                onPress: this.clearFilter,
+                icon: require('../../asserts/base/common/x-white.png'),
+                onPress: this.clearFilter.bind(this),
             };
         }
         return (
@@ -103,10 +100,11 @@ export class FilterScreen extends React.Component<Prop, State> {
                         {topics}
                     </Common.ItemsWithSeparator>
                 </ReactNative.ScrollView>
-                <ReactNative.Animated.View style={[styles.applyButton, { bottom }]}>
+                <ReactNative.Animated.View style={[styles.applyButton,  {bottom:bottom}]}>
                     <Common.Button
+                        style={styles.applyButton}
                         caption="Apply filters"
-                        onPress={this.applyFilter}
+                        onPress={this.applyFilter.bind(this)}
                         />
                 </ReactNative.Animated.View>
             </ReactNative.View>
@@ -158,9 +156,9 @@ let styles = ReactNative.StyleSheet.create({
     },
     applyButton: {
         position: 'absolute',
+        bottom: 0,
         left: 0,
         right: 0,
-        padding: 8,
         backgroundColor: '#1B3B79',
     },
 });

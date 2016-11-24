@@ -1,6 +1,6 @@
 
 import *as ReactNative from 'react-native';
-const Parse = require('parse/react-native');
+import { Parse } from 'parse/react-native';
 
 import { restoreSchedule, loadFriendsSchedules } from './schedule';
 import { updateInstallation } from './installation';

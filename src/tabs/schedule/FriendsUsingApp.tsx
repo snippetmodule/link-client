@@ -1,12 +1,17 @@
 import * as React from 'react';
 import *as ReactNative from 'react-native';
 import * as Common from '../../base/common';
-import { connect } from 'react-redux';
+const { connect } = require('react-redux');
 
 type Prop = {
-    friends: Array<{ id: string; name: string }>;
+    friends?: Array<{ id: string; name: string }>;
 };
-class FriendsUsingAppImpl extends React.Component<Prop, void> {
+@connect(
+    store => ({
+        friends: store.friendsSchedules,
+    })
+)
+export class FriendsUsingApp extends React.Component<Prop, void> {
 
     public render() {
         const {friends} = this.props;
@@ -53,10 +58,10 @@ let styles = Common.StyleSheet.create({
     },
 });
 
-function select(store) {
-    return {
-        friends: store.friendsSchedules,
-    };
-}
+// function select(store) {
+//     return {
+//         friends: store.friendsSchedules,
+//     };
+// }
 
-export let FriendsUsingApp = connect(select)(FriendsUsingAppImpl);
+// export let FriendsUsingApp = connect(select)(FriendsUsingAppImpl);

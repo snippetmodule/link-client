@@ -27,17 +27,16 @@ export class DrawerLayout extends React.Component<Props, any> {
         return (
             <ReactNative.DrawerLayoutAndroid
                 ref={(drawer) => { this._drawer = drawer; } }
+                {...this.props}
                 renderNavigationView={this.props.renderNavigationView}
                 drawerPosition={drawerPosition === 'right' ? (ReactNative.DrawerLayoutAndroid as any).positions.Right : (ReactNative.DrawerLayoutAndroid as any).positions.Left}
                 onDrawerOpen={this.onDrawerOpen.bind(this)}
-                onDrawerClose={this.onDrawerClose.bind(this)}>
-                {this.props.children}
-            </ReactNative.DrawerLayoutAndroid>
+                onDrawerClose={this.onDrawerClose.bind(this)} />
         );
     }
 
     public componentWillUnmount() {
-        this.context.removeBackButtonListener(this.handleBackButton);
+        this.context.removeBackButtonListener(this.handleBackButton.bind(this));
         this._drawer = null;
     }
 
@@ -47,12 +46,12 @@ export class DrawerLayout extends React.Component<Props, any> {
     }
 
     private onDrawerOpen() {
-        this.context.addBackButtonListener(this.handleBackButton);
+        this.context.addBackButtonListener(this.handleBackButton.bind(this));
         this.props.onDrawerOpen && this.props.onDrawerOpen();
     }
 
     private onDrawerClose() {
-        this.context.removeBackButtonListener(this.handleBackButton);
+        this.context.removeBackButtonListener(this.handleBackButton.bind(this));
         this.props.onDrawerClose && this.props.onDrawerClose();
     }
 

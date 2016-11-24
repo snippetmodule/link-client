@@ -17,7 +17,7 @@ export function Header({session}: Props) {
     return (
         <ReactNative.View style={styles.container as React.ViewStyle}>
             <ReactNative.View style={styles.background as React.ViewStyle}>
-                <ReactNative.Image source={require('./img/header.png')} />
+                <ReactNative.Image source={require('../../asserts/rating/header.png')} />
             </ReactNative.View>
             <Common.Texts.Text style={styles.title}>
                 {session.title}

@@ -1,8 +1,6 @@
 import * as React from 'react';
 import *as ReactNative from 'react-native';
-// import { connect } from 'react-redux';
 import * as Common from '../../base/common';
-import { CommonQuestions } from './CommonQuestions';
 import { WiFiDetails } from './WiFiDetails';
 import { LinksList } from './LinksList';
 

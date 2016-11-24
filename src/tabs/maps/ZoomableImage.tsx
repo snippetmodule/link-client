@@ -1,7 +1,5 @@
 import * as React from 'react';
 import *as ReactNative from 'react-native';
-import { connect } from 'react-redux';
-import * as Common from '../../base/common';
 
 type Prop = {
     url: string;
