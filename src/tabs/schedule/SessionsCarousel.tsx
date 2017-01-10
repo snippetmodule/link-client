@@ -79,7 +79,7 @@ export class SessionsCarousel extends React.Component<Props, State> {
         if (ReactNative.Platform.OS === 'android') {
             rightItem = {
                 title: 'Share',
-                icon: require('./img/share.png'),
+                icon: require('../../../asserts/tabs/schedule/share.png'),
                 onPress: this.shareCurrentSession,
             };
         }
@@ -90,7 +90,7 @@ export class SessionsCarousel extends React.Component<Props, State> {
                     leftItem={{
                         layout: 'icon',
                         title: 'Close',
-                        icon: require('../../../asserts/base/common/BackButtonIcon'),
+                        icon: Common.backIcon,
                         onPress: this.dismiss,
                     }}
                     rightItem={rightItem}>

@@ -220,13 +220,13 @@ Header.height = HEADER_HEIGHT;
 Header.__cards__ = (define) => {
     let menuItem: Item = {
         title: 'Menu',
-        icon: require('./img/hamburger.png'),
+        icon: require('../../../asserts/base/common/hamburger.png'),
         onPress: () => alert('Menu button pressed!'),
 
     };
     let filterItem = {
         title: 'Filter',
-        icon: require('./img/filter.png'),
+        icon: require('../../../asserts/base/common/filter.png'),
         onPress: () => alert('Filter button pressed!'),
     };
 

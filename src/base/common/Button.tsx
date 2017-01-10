@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactNative from 'react-native';
 
-let LinearGradient = require('react-native-linear-gradient').default;
+const LinearGradient = require('react-native-linear-gradient').default;
 
 import { Colors } from './Colors';
 import { Texts } from './Text';
@@ -24,7 +24,7 @@ class Button extends React.Component<IProp, any> {
     if (!this.props.type || this.props.type === 'primary') {
       content = (
         <LinearGradient
-          start={[0.5, 1]} end={[1, 1]}
+          start={{x:0.5, y:1}} end={{x:1, y:1}}
           colors={['#6A6AD5', '#6F86D9']}
           style={[styles.button, styles.primaryButton]}>
           {icon}

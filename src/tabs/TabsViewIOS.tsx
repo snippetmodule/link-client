@@ -45,11 +45,11 @@ export class TabsViewIOS extends React.Component<Prop, any> {
 
     public render() {
         let scheduleIcon = this.props.day === 1
-            ? require('../../../asserts/tabs/schedule/schedule-icon-1.png')
-            : require('../../../asserts/tabs/schedule/schedule-icon-2.png');
+            ? require('../../asserts/tabs/schedule/schedule-icon-1.png')
+            : require('../../asserts/tabs/schedule/schedule-icon-2.png');
         let scheduleIconSelected = this.props.day === 1
-            ? require('../../../asserts/tabs/schedule/schedule-icon-1-active.png')
-            : require('../../../asserts/tabs/schedule/schedule-icon-2-active.png');
+            ? require('../../asserts/tabs/schedule/schedule-icon-1-active.png')
+            : require('../../asserts/tabs/schedule/schedule-icon-2-active.png');
         return (
             <ReactNative.TabBarIOS tintColor={Common.Colors.darkText}>
                 <ReactNative.TabBarIOS.Item
@@ -66,8 +66,8 @@ export class TabsViewIOS extends React.Component<Prop, any> {
                     title="My F8"
                     selected={this.props.tab === 'my-schedule'}
                     onPress={this.onTabSelect.bind(this, 'my-schedule')}
-                    icon={require('../../../asserts/tabs/schedule/my-schedule-icon.png')}
-                    selectedIcon={require('../../../asserts/tabs/schedule/my-schedule-icon-active.png')}>
+                    icon={require('../../asserts/tabs/schedule/my-schedule-icon.png')}
+                    selectedIcon={require('../../asserts/tabs/schedule/my-schedule-icon-active.png')}>
                     <MyScheduleView
                         navigator={this.props.navigator}
                         />
@@ -76,8 +76,8 @@ export class TabsViewIOS extends React.Component<Prop, any> {
                     title="Maps"
                     selected={this.props.tab === 'map'}
                     onPress={this.onTabSelect.bind(this, 'map')}
-                    icon={require('../../../asserts/tabs/maps/maps-icon.png')}
-                    selectedIcon={require('../../../asserts/tabs/maps/maps-icon-active.png')}>
+                    icon={require('../../asserts/tabs/maps/maps-icon.png')}
+                    selectedIcon={require('../../asserts/tabs/maps/maps-icon-active.png')}>
                     <MapView />
                 </ReactNative.TabBarIOS.Item>
                 <ReactNative.TabBarIOS.Item
@@ -85,16 +85,16 @@ export class TabsViewIOS extends React.Component<Prop, any> {
                     selected={this.props.tab === 'notifications'}
                     onPress={this.onTabSelect.bind(this, 'notifications')}
                     badge={this.props.notificationsBadge || null}
-                    icon={require('../../../asserts/tabs/notifications/notifications-icon.png')}
-                    selectedIcon={require('../../../asserts/tabs/notifications/notifications-icon-active.png')}>
+                    icon={require('../../asserts/tabs/notifications/notifications-icon.png')}
+                    selectedIcon={require('../../asserts/tabs/notifications/notifications-icon-active.png')}>
                     <NotificationsView navigator={this.props.navigator} />
                 </ReactNative.TabBarIOS.Item>
                 <ReactNative.TabBarIOS.Item
                     title="Info"
                     selected={this.props.tab === 'info'}
                     onPress={this.onTabSelect.bind(this, 'info')}
-                    icon={require('../../../asserts/tabs/info/info-icon.png')}
-                    selectedIcon={require('../../../asserts/tabs/info/info-icon-active.png')}>
+                    icon={require('../../asserts/tabs/info/info-icon.png')}
+                    selectedIcon={require('../../asserts/tabs/info/info-icon-active.png')}>
                     <InfoView />
                 </ReactNative.TabBarIOS.Item>
             </ReactNative.TabBarIOS>
