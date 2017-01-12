@@ -1,5 +1,5 @@
 import * as React from 'react';
-import *as ReactNative from 'react-native';
+import * as ReactNative from 'react-native';
 import * as Common from '../../base/common';
 
 type Props = {
@@ -96,7 +96,7 @@ class AddToScheduleButton extends React.Component<Props, State> {
                             <ReactNative.Animated.Image
                                 source={this.props.addedImageSource || require('../../../asserts/tabs/schedule/added.png')}
                                 style={[styles.icon, addedOpacityImage]}
-                                />
+                            />
                             <ReactNative.Animated.Text style={[styles.caption, addedOpacity]}>
                                 <Common.Texts.Text>{SAVED_LABEL.toUpperCase()}</Common.Texts.Text>
                             </ReactNative.Animated.Text>
@@ -105,7 +105,7 @@ class AddToScheduleButton extends React.Component<Props, State> {
                             <ReactNative.Animated.Image
                                 source={require('../../../asserts/tabs/schedule/add.png')}
                                 style={[styles.icon, addOpacityImage]}
-                                />
+                            />
                             <ReactNative.Animated.Text style={[styles.caption, addOpacity]}>
                                 <Common.Texts.Text>{ADD_LABEL.toUpperCase()} </Common.Texts.Text>
                             </ReactNative.Animated.Text>
@@ -171,6 +171,6 @@ export let __cards__ = (define) => {
 
     define('Animated', (state = false, update) => {
         f = () => update(!state);
-        return <AddToScheduleButton isAdded={state} onPress={() => { } } />;
+        return <AddToScheduleButton isAdded={state} onPress={() => { }} />;
     });
 };

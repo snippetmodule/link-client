@@ -1,4 +1,4 @@
-import *as ReactNative from 'react-native';
+import * as ReactNative from 'react-native';
 
 import { Action } from '../actions/types';
 let crc32 = require('crc32');
@@ -22,8 +22,8 @@ type State = {
     // people who installed the app after the conference started can
     // get access. But some notifications will be delivered
     // via push and only to subset of attendees.
-    server: Array<Notification>;
-    push: Array<Notification>;
+    server: Notification[];
+    push: Notification[];
 
     seen: SeenNotifications;
 };
@@ -78,7 +78,7 @@ function append(notification, list) {
     return [{ id, ...notification }, ...list];
 }
 
-function fetchAllIds(notifs: Array<Notification>): SeenNotifications {
+function fetchAllIds(notifs: Notification[]): SeenNotifications {
     const seen = {};
     notifs.forEach((notification) => {
         seen[notification.id] = true;

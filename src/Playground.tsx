@@ -1,5 +1,5 @@
 import * as React from 'react';
-import *as ReactNative from 'react-native';
+import * as ReactNative from 'react-native';
 import { Header } from './base/common/Header';
 class Playground extends React.Component<any, { content: JSX.Element[] }> {
     constructor() {

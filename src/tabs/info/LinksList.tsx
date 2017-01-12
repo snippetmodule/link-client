@@ -1,5 +1,5 @@
 import * as React from 'react';
-import *as ReactNative from 'react-native';
+import * as ReactNative from 'react-native';
 import * as Common from '../../base/common';
 import { Section } from './Section';
 type Prop = {
@@ -11,7 +11,7 @@ type Prop = {
         onPress?: () => void;
     }[];
 };
-export class LinksList extends React.Component<Prop,any> {
+export class LinksList extends React.Component<Prop, any> {
     public render() {
         let content = this.props.links.map(
             (link) => <Row link={link} key={link.title} />
@@ -33,9 +33,9 @@ type RowProp = {
         onPress?: () => void;
     };
 };
-class Row extends React.Component<RowProp,any> {
+class Row extends React.Component<RowProp, any> {
     public render() {
-        let {logo, title} = this.props.link;
+        let { logo, title } = this.props.link;
         let image = logo && <ReactNative.Image style={styles.picture} source={{ uri: logo }} />;
         return (
             <Common.Touchable onPress={this.handlePress.bind(this)}>
@@ -51,7 +51,7 @@ class Row extends React.Component<RowProp,any> {
     }
 
     private handlePress() {
-        let {url, onPress} = this.props.link;
+        let { url, onPress } = this.props.link;
         if (onPress) {
             onPress();
         }
@@ -63,7 +63,7 @@ class Row extends React.Component<RowProp,any> {
 
 const IMAGE_SIZE = 44;
 
-let  styles = ReactNative.StyleSheet.create({
+let styles = ReactNative.StyleSheet.create({
     separator: {
         marginHorizontal: 20,
     },

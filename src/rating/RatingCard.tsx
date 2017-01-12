@@ -10,12 +10,12 @@ import { Session } from '../reducers/sessions';
 
 type Props = {
     session: Session;
-    questions: Array<Question>;
-    onSubmit: (answers: Array<number>) => void;
+    questions: Question[];
+    onSubmit: (answers: number[]) => void;
     style?: any;
 };
 
-export class RatingCard extends React.Component<Props,any> {
+export class RatingCard extends React.Component<Props, any> {
 
     constructor(props: Props) {
         super(props);
@@ -30,7 +30,7 @@ export class RatingCard extends React.Component<Props,any> {
                 question={question}
                 rating={this.state[ii]}
                 onChange={(rating) => this.setState({ [ii]: rating })}
-                />
+            />
         ));
         const completed = Object.keys(this.state).length === this.props.questions.length;
         return (
@@ -44,7 +44,7 @@ export class RatingCard extends React.Component<Props,any> {
                     type={completed ? 'primary' : 'bordered'}
                     caption="Submit Review"
                     onPress={() => completed && this.submit()}
-                    />
+                />
             </ReactNative.View>
         );
     }

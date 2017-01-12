@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactNative from 'react-native';
 
-type Rows = Array<Object>;
+type Rows = Object[];
 type RowsAndSections = {
     [sectionID: string]: Object;
 };
@@ -40,7 +40,7 @@ export class PureListView extends React.Component<Prop, State> {
 
     constructor(props: Prop) {
         super(props);
-        let dataSource = new ReactNative.ListView.DataSource({
+        const dataSource = new ReactNative.ListView.DataSource({
             getRowData: (dataBlob, sid, rid) => dataBlob[sid][rid],
             getSectionHeaderData: (dataBlob, sid) => dataBlob[sid],
             rowHasChanged: (row1, row2) => row1 !== row2,
@@ -63,7 +63,7 @@ export class PureListView extends React.Component<Prop, State> {
     }
 
     public render() {
-        const {contentInset} = this.props;
+        const { contentInset } = this.props;
         const bottom = contentInset.bottom +
             Math.max(0, this.props.minContentHeight - this.state.contentHeight);
         return (
@@ -71,14 +71,14 @@ export class PureListView extends React.Component<Prop, State> {
                 initialListSize={10}
                 pageSize={LIST_VIEW_PAGE_SIZE}
                 {...this.props}
-                ref={ref => this.mListView = ref}
+                ref={(ref) => this.mListView = ref}
                 dataSource={this.state.dataSource}
                 renderRow={this.props.renderRow ? this.props.renderRow : () => null}
                 renderFooter={this.renderFooter.bind(this)}
                 contentInset={{ bottom, top: contentInset.top }}
                 enableEmptySections={true}
-                // onContentSizeChange={this.onContentSizeChange}
-                />
+            // onContentSizeChange={this.onContentSizeChange}
+            />
         );
     }
 
@@ -88,7 +88,7 @@ export class PureListView extends React.Component<Prop, State> {
         }
     }
 
-    public scrollTo(...args: Array<any>) {
+    public scrollTo(...args: any[]) {
         this.mListView.scrollTo(...args);
     }
 
@@ -110,7 +110,7 @@ function cloneWithData(dataSource: ReactNative.ListViewDataSource, data: Data) {
     return dataSource.cloneWithRowsAndSections(data);
 }
 
-let styles = ReactNative.StyleSheet.create({
+const styles = ReactNative.StyleSheet.create({
     separator: {
         backgroundColor: '#eeeeee',
         height: 1,

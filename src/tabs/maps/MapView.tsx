@@ -1,5 +1,5 @@
 import * as React from 'react';
-import *as ReactNative from 'react-native';
+import * as ReactNative from 'react-native';
 const { connect } = require('react-redux');
 import * as Common from '../../base/common';
 
@@ -12,11 +12,11 @@ type Prop = {
     (store: any) => ({
         map1: store.maps.find((map) => map.name === 'Overview'),
         map2: store.maps.find((map) => map.name === 'Developer Garage'),
-    })
+    }),
 )
 export class MapView extends React.Component<Prop, any> {
     public render() {
-        const {map1, map2} = this.props;
+        const { map1, map2 } = this.props;
         return (
             <ReactNative.View style={styles.container}>
                 <Common.ListContainer
@@ -27,12 +27,12 @@ export class MapView extends React.Component<Prop, any> {
                         title="Overview"
                         renderEmptyList={() => <Common.MapView map={map1} />}
                         renderRow={() => null}
-                        />
+                    />
                     <Common.PureListView
                         title="Developer Garage"
                         renderEmptyList={() => <Common.MapView map={map2} />}
                         renderRow={() => null}
-                        />
+                    />
                 </Common.ListContainer>
                 <Common.Button
                     type="secondary"
@@ -40,7 +40,7 @@ export class MapView extends React.Component<Prop, any> {
                     caption="Directions to Fort Mason Center"
                     onPress={this.handleGetDirections.bind(this)}
                     style={styles.directionsButton}
-                    />
+                />
             </ReactNative.View>
         );
     }
@@ -54,8 +54,7 @@ export class MapView extends React.Component<Prop, any> {
                     destructiveButtonIndex: -1,
                     cancelButtonIndex: 2,
                 },
-                this.openMaps
-            );
+                this.openMaps);
         } else if (ReactNative.Platform.OS === 'android') {
             let address = encodeURIComponent(VENUE_ADDRESS);
             ReactNative.Linking.openURL('http://maps.google.com/maps?&q=' + address);
@@ -68,7 +67,6 @@ export class MapView extends React.Component<Prop, any> {
             case 0:
                 ReactNative.Linking.openURL('http://maps.apple.com/?q=' + address);
                 break;
-
             case 1:
                 let nativeGoogleUrl = 'comgooglemaps-x-callback://?q=' +
                     address + '&x-success=f8://&x-source=F8';

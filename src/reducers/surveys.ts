@@ -9,10 +9,10 @@ export type Question = {
 export type Survey = {
     id: string;
     sessionId: string;
-    questions: Array<Question>;
+    questions: Question[];
 };
 
-type State = Array<Survey>;
+type State = Survey[];
 
 export function surveys(state: State = [], action: Action): State {
     if (action.type === 'LOADED_SURVEYS') {

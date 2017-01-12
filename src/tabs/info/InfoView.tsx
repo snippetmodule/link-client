@@ -1,5 +1,5 @@
 import * as React from 'react';
-import *as ReactNative from 'react-native';
+import * as ReactNative from 'react-native';
 import * as Common from '../../base/common';
 import { WiFiDetails } from './WiFiDetails';
 import { LinksList } from './LinksList';
@@ -34,16 +34,17 @@ function InfoList(/*{viewer: {config, faqs, pages}, ...props}*/) {
                     <WiFiDetails
                         network="config.wifiNetwork"
                         password="config.wifiPassword"
-                        />
+                    />
                     <LinksList title="Facebook policies" links={POLICIES_LINKS} />
                     <LinksList title="Third Party Notices" links={[{
-                            title: 'Third Party Notices',
-                            url: 'https://raw.githubusercontent.com/CatalystCode/ThirdPartyNotices/master/f8_third_party_notices.html',}]}
+                        title: 'Third Party Notices',
+                        url: 'https://raw.githubusercontent.com/CatalystCode/ThirdPartyNotices/master/f8_third_party_notices.html',
+                    }]}
                     />
                 </ReactNative.View>
             )}
-            // renderRow={this.prop.renderRow}
-            />
+        // renderRow={this.prop.renderRow}
+        />
     );
 }
 

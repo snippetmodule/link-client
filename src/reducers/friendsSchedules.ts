@@ -1,13 +1,13 @@
 
-import  {Action} from '../actions/types';
+import { Action } from '../actions/types';
 
 export type FriendsSchedule = {
   id: string;
   name: string;
-  schedule: {[key: string]: boolean};
+  schedule: { [key: string]: boolean };
 };
 
-type State = Array<FriendsSchedule>;
+type State = FriendsSchedule[];
 
 export function friendsSchedules(state: State = [], action: Action): State {
   if (action.type === 'LOADED_FRIENDS_SCHEDULES') {

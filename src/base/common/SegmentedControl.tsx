@@ -21,7 +21,7 @@ class SegmentedControl extends React.Component<Prop, void> {
           isSelected={index === this.props.selectedIndex}
           selectionColor={this.props.selectionColor || 'white'}
           onPress={() => this.props.onChange(index)}
-          />
+        />
       ));
     return (
       <ReactNative.View style={[styles.container, this.props.style]}>
@@ -35,7 +35,7 @@ type SegmentProp = {
   isSelected: boolean;
   selectionColor: string;
   onPress: () => void;
-}
+};
 class Segment extends React.Component<SegmentProp, void> {
 
   public render() {

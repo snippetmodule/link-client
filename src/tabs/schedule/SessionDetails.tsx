@@ -1,5 +1,5 @@
 import * as React from 'react';
-import *as ReactNative from 'react-native';
+import * as ReactNative from 'react-native';
 import * as Common from '../../base/common';
 import { connect } from 'react-redux';
 
@@ -52,9 +52,7 @@ let SessionDetailsImpl = React.createClass<Prop, State>({
                     key={speaker.name}
                     speaker={speaker}
                     />
-            )
-        );
-
+            ));
         let topics = null;
         let {tags} = this.props.session;
         if (tags && tags.length > 0) {
@@ -64,7 +62,6 @@ let SessionDetailsImpl = React.createClass<Prop, State>({
                 </Common.Texts.Text>
             );
         }
-
         let friendsGoing = this.props.friendsGoing.map(
             (friend) => (
                 <FriendGoing
@@ -72,14 +69,11 @@ let SessionDetailsImpl = React.createClass<Prop, State>({
                     friend={friend}
                     onPress={() => this.props.navigator.push({ friend })}
                     />
-            )
-        );
-
+            ));
         let inlineMap;
         if (this.props.map) {
             inlineMap = <Common.MapView map={this.props.map} />;
         }
-
         let locationColor = Common.Colors.colorForLocation(this.props.session.location);
         let locationTitle = this.props.session.location && this.props.session.location.toUpperCase();
         let location = (
@@ -91,10 +85,8 @@ let SessionDetailsImpl = React.createClass<Prop, State>({
                 </Common.Texts.Text>
             </Common.Texts.Text>
         );
-
         let title = this.props.session.title || '';
         let isReactTalk = title.indexOf('React') > -1;
-
         return (
             <ReactNative.View style={[styles.container, this.props.style]}>
                 <ReactNative.ScrollView

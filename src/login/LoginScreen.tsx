@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import * as ReactNative from 'react-native';
-import *as Common from '../base/common/';
+import * as Common from '../base/common/';
 import { skipLogin, Dispatch } from '../actions';
 let { connect } = require('react-redux');
 
@@ -13,8 +13,8 @@ type State = {
     anim: ReactNative.Animated.Value;
 };
 @connect(
-    state => ({}),
-    dispatch => ({ dispatch: dispatch })
+    (state) => ({}),
+    (dispatch) => ({ dispatch: dispatch })
 )
 export class LoginScreen extends React.Component<Prop, State> {
     public state = {

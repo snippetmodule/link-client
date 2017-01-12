@@ -1,5 +1,5 @@
 import * as React from 'react';
-import *as ReactNative from 'react-native';
+import * as ReactNative from 'react-native';
 const { connect } = require('react-redux');
 import * as Common from '../../base/common';
 
@@ -24,12 +24,12 @@ const data = createSelector(
     (store: any) => store.surveys,
     (store: any) => store.notifications.enabled,
     (notifications: any, surveys, enabled) => {
-        const extra: Array<any> = [];
+        const extra: any[] = [];
         if (surveys.length > 0) {
             extra.push({ surveysCount: surveys.length });
         }
         return [...extra, ...notifications];
-    }
+    },
 );
 type Prop = {
     nux?: boolean;
@@ -40,7 +40,7 @@ type Prop = {
     dispatch?: Dispatch
     sessions?: Session[];
     navigator: ReactNative.Navigator;
-}
+};
 @connect(
     (state: any) => ({
         nux: state.notifications.enabled === null,
@@ -48,11 +48,11 @@ type Prop = {
         sessions: state.sessions,
         surveys: state.surveys,
     }),
-    dispatch => ({
+    (dispatch) => ({
         onTurnOnNotifications: () => dispatch(turnOnPushNotifications()),
         onSkipNotifications: () => dispatch(skipPushNotifications()),
         dispatch: dispatch,
-    })
+    }),
 )
 export class NotificationsView extends React.Component<Prop, any> {
 
@@ -73,7 +73,7 @@ export class NotificationsView extends React.Component<Prop, any> {
                     title="Notifications"
                     backgroundImage={require('../../../asserts/tabs/notifications/notifications-background.png')}
                     backgroundColor={'#E78196'}
-                    {...this.renderTestItems() }>
+                    {...this.renderTestItems()}>
                     <Common.PureListView
                         data={this.props.notifications}
                         renderEmptyList={this.renderEmptyList.bind(this)}
@@ -114,7 +114,7 @@ export class NotificationsView extends React.Component<Prop, any> {
 
     private openNotification(notification) {
         if (notification.url) {
-            let session = findSessionByURI(this.props.sessions, notification.url);
+            const session = findSessionByURI(this.props.sessions, notification.url);
             if (session) {
                 this.props.navigator.push({ session });
             } else {
@@ -165,7 +165,7 @@ export class NotificationsView extends React.Component<Prop, any> {
 
             const action: any = TEST_MENU[itemTitles[idx - 1]];
             this.props.dispatch(action());
-        }
+        },
         );
     }
 }

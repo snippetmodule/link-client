@@ -1,11 +1,11 @@
 import * as React from 'react';
-import *as ReactNative from 'react-native';
+import * as ReactNative from 'react-native';
 import * as Common from '../../base/common';
 import { Section } from './Section';
 
 export class CommonQuestions extends React.Component<any, any> {
     public render() {
-        let content = this.props.faqs.map(({question, answer}) =>
+        let content = this.props.faqs.map(({ question, answer }) =>
             (<Row question={question} answer={answer} key={question} />)
         );
         return (

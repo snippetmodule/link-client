@@ -1,9 +1,9 @@
-import *as ReactNative from 'react-native';
+import * as ReactNative from 'react-native';
 
 // import { applyMiddleware, createStore } from 'redux';
 import { persistStore, autoRehydrate } from 'redux-persist';
 import thunk from 'redux-thunk';
-import *as Redux from 'redux';
+import * as Redux from 'redux';
 import * as createLogger from 'redux-logger';
 
 import { promise } from './promise';

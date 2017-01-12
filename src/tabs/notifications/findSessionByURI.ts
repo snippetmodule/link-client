@@ -1,6 +1,6 @@
 import { Session } from '../../reducers/sessions';
 
-export function findSessionByURI(sessions: Array<Session>, uri?: string): Session {
+export function findSessionByURI(sessions: Session[], uri?: string): Session {
     if (!uri) {
         return null;
     }

@@ -1,7 +1,7 @@
 import * as React from 'react';
-import *as ReactNative from 'react-native';
+import * as ReactNative from 'react-native';
 
-import *as Common from '../base/common/';
+import * as Common from '../base/common/';
 type Prop = {
     navigator: ReactNative.Navigator;
     onLogin: () => void;
@@ -24,7 +24,7 @@ class LoginModal extends React.Component<Prop, any> {
                         type="secondary"
                         caption="Not Now"
                         onPress={() => this.props.navigator.pop()}
-                        />
+                    />
                 </ReactNative.Image>
             </ReactNative.View>
         );

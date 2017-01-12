@@ -1,5 +1,4 @@
 import * as React from 'react';
-import *as ReactNative from 'react-native';
 const { connect } = require('react-redux');
 import * as Common from '../../base/common';
 
@@ -10,10 +9,10 @@ type Prop = {
     style?: any;
 };
 @connect(
-    store => ({
+    (store) => ({
         appLinkURL: store.config.appLinkURL,
         appInvitePreviewImageURL: store.config.appInvitePreviewImageURL,
-    })
+    }),
 )
 export class InviteFriendsButton extends React.Component<Prop, any> {
     public render() {

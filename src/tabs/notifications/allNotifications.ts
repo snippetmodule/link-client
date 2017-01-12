@@ -1,10 +1,10 @@
 
-import {Notification} from '../../reducers/notifications';
+import { Notification } from '../../reducers/notifications';
 let { createSelector } = require('reselect');
 
 // Merges lists of notifications from server and notifications
 // received via push and makes sure there is no duplicates.
-function mergeAndSortByTime(server: Array<Notification>, push: Array<Notification>): Array<Notification> {
+function mergeAndSortByTime(server: Notification[], push: Notification[]): Notification[] {
   let uniquePush = push.filter((pushNotification) => {
     let existsOnServer = server.find(
       (serverNotification) => serverNotification.text === pushNotification.text

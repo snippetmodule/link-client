@@ -16,12 +16,12 @@ export class ItemsWithSeparator extends React.Component<IProps, any>{
             (child, ii) => {
                 children.push(child);
                 if (ii !== length - 1) {
-                    children.push(
+                    children.push((
                         <ReactNative.View
                             key={'separator-' + ii}
                             style={[styles.separator, this.props.separatorStyle]}
-                            />
-                    );
+                        />
+                    ));
                 }
             }
         );

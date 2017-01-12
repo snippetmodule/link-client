@@ -42,7 +42,7 @@ class MapView extends React.Component<Prop, State> {
         <ReactNative.Image
           style={styles.map as any}
           source={{ uri: urlForMap(this.props.map) }}
-          />
+        />
       );
     }
     return (

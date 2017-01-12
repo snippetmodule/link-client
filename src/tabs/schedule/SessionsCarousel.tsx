@@ -1,5 +1,5 @@
 import * as React from 'react';
-import *as ReactNative from 'react-native';
+import * as ReactNative from 'react-native';
 import * as Common from '../../base/common';
 
 import { Parse } from 'parse/react-native';
@@ -25,15 +25,15 @@ type State = {
     day: number;
     count: number;
     selectedIndex: number;
-    flatSessionsList: Array<Session>;
-    contexts: Array<Context>;
-}
+    flatSessionsList: Session[];
+    contexts: Context[];
+};
 export class SessionsCarousel extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props);
 
         let flatSessionsList = [];
-        let contexts: Array<Context> = [];
+        let contexts: Context[] = [];
         let allSessions = this.props.allSessions;
         if (!allSessions) {
             const {session} = this.props;

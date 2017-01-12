@@ -1,5 +1,5 @@
 import * as React from 'react';
-import *as ReactNative from 'react-native';
+import * as ReactNative from 'react-native';
 
 type Prop = {
     url: string;
@@ -37,7 +37,7 @@ export class ZoomableImage extends React.Component<Prop, State> {
                     <ReactNative.Image
                         style={styles.image as React.ImageStyle}
                         source={{ uri: this.props.url }}
-                        />
+                    />
                 </ReactNative.TouchableWithoutFeedback>
             </ReactNative.ScrollView>
         );
@@ -46,7 +46,7 @@ export class ZoomableImage extends React.Component<Prop, State> {
     private toggleZoom(e: any) {
         let timestamp = new Date().getTime();
         if (timestamp - this.state.lastTapTimestamp <= 500) {
-            let {locationX, locationY} = e.nativeEvent;
+            let { locationX, locationY } = e.nativeEvent;
             let size = this.state.isZoomed ? { width: 10000, height: 10000 } : { width: 0, height: 0 };
             this.srolloView.scrollResponderZoomTo({ x: locationX, y: locationY, ...size });
         }

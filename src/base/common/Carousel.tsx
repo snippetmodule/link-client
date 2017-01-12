@@ -15,7 +15,7 @@ class Carousel extends React.Component<IProps, any> {
 
     public render() {
         let cards = [];
-        const {count, selectedIndex, renderCard} = this.props;
+        const { count, selectedIndex, renderCard } = this.props;
 
         for (let i = 0; i < count; i++) {
             let content = null;

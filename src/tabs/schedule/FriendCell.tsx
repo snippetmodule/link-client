@@ -1,5 +1,5 @@
 import * as React from 'react';
-import *as ReactNative from 'react-native';
+import * as ReactNative from 'react-native';
 import * as Common from '../../base/common';
 
 import { FriendsSchedule } from '../../reducers/friendsSchedules';
@@ -9,7 +9,7 @@ type Prop = {
 }
 export class FriendCell extends React.Component<Prop, any> {
     public render() {
-        const {friend} = this.props;
+        const { friend } = this.props;
         const hasSchedule = friend.schedule && Object.keys(friend.schedule).length > 0;
         const auxView = hasSchedule
             ? <ReactNative.Image source={require('../../../asserts/base/common/disclosure.png')} />

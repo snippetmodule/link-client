@@ -1,5 +1,5 @@
 import * as React from 'react';
-import *as ReactNative from 'react-native';
+import * as ReactNative from 'react-native';
 import * as Common from '../../base/common';
 
 type Prop = {
@@ -15,7 +15,7 @@ export class PushNUXModal extends React.Component<Prop, any> {
                     <ReactNative.Image
                         style={styles.image as React.ImageStyle}
                         source={require('../../../asserts/tabs/notifications/push-nux.png')}
-                        />
+                    />
                     <ReactNative.View style={styles.content as React.ViewStyle}>
                         <Common.Texts.Heading1 style={null}>
                             Don't miss out!
@@ -29,13 +29,13 @@ export class PushNUXModal extends React.Component<Prop, any> {
                             type="primary"
                             caption="Turn on push notifications"
                             onPress={this.props.onTurnOnNotifications}
-                            />
+                        />
                         <Common.Button
                             style={styles.button}
                             type="secondary"
                             caption="No thanks"
                             onPress={this.props.onSkipNotifications}
-                            />
+                        />
                     </ReactNative.View>
                 </ReactNative.View>
             </ReactNative.View>

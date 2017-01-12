@@ -1,5 +1,5 @@
 import * as React from 'react';
-import *as ReactNative from 'react-native';
+import * as ReactNative from 'react-native';
 const { connect } = require('react-redux');
 
 import { Dispatch } from './actions/types';
@@ -22,12 +22,12 @@ type Prop = {
 };
 
 @connect(
-    store => ({
+    (store) => ({
         enabled: store.notifications.enabled === true,
         badge: unseenNotificationsCount(store) + store.surveys.length,
         tab: store.navigation.tab,
     }),
-    dispatch => ({ dispatch: dispatch })
+    (dispatch) => ({ dispatch: dispatch }),
 )
 export class PushNotificationsController extends React.Component<Prop, any> {
 

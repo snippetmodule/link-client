@@ -4,7 +4,7 @@ function warn(error) {
     throw error; // To let the caller handle the rejection
 }
 
-export let promise = store => next => action =>
+export let promise = (store) => (next) => (action) =>
     typeof action.then === 'function'
         ? Promise.resolve(action).then(next, warn)
         : next(action);

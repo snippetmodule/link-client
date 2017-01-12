@@ -1,5 +1,5 @@
 import * as React from 'react';
-import *as ReactNative from 'react-native';
+import * as ReactNative from 'react-native';
 import * as Common from '../../base/common';
 import { Section } from './Section';
 
@@ -31,7 +31,7 @@ export class WiFiDetails extends React.Component<Props, State> {
                     style={styles.button}
                     onPress={this.handleCopy.bind(this)}
                     caption={caption}
-                    />
+                />
             </Section>
         );
     }
@@ -50,7 +50,7 @@ type RowProp = {
     label: string;
     value: string;
 };
-class Row extends React.Component<RowProp,any> {
+class Row extends React.Component<RowProp, any> {
     public render() {
         return (
             <ReactNative.View style={styles.row as React.ViewStyle}>

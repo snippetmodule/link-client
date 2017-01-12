@@ -1,5 +1,5 @@
 import * as React from 'react';
-import *as ReactNative from 'react-native';
+import * as ReactNative from 'react-native';
 const { connect } = require('react-redux');
 import { switchTab, Dispatch, BackListener, NavigationChildContextType } from './actions';
 import { LoginModal } from './login/LoginModal';
@@ -21,11 +21,11 @@ type Prop = {
   dispatch?: Dispatch;
 };
 @connect(
-  store => ({
+  (store) => ({
     tab: store.navigation.tab,
     isLoggedIn: store.user.isLoggedIn || store.user.hasSkippedLogin,
   }),
-  dispatch => ({ dispatch: dispatch })
+  (dispatch) => ({ dispatch: dispatch }),
 )
 export class AppNavigator extends React.Component<Prop, any> {
   public static childContextTypes = {
@@ -56,7 +56,7 @@ export class AppNavigator extends React.Component<Prop, any> {
   }
 
   private removeBackButtonListener(listener: BackListener) {
-    this._handlers = this._handlers.filter((handler) => handler !== listener);
+    this._handlers = this._handlers.filter((handler) => handler === listener);
   }
 
   private handleBackButton() {
@@ -79,7 +79,7 @@ export class AppNavigator extends React.Component<Prop, any> {
   public render() {
     return (
       <ReactNative.Navigator
-        ref={ref => this.mNavigator = ref}
+        ref={(ref) => this.mNavigator = ref}
         sceneStyle={styles.container}
         configureScene={(route: any) => {
           if (ReactNative.Platform.OS === 'android') {
@@ -91,10 +91,10 @@ export class AppNavigator extends React.Component<Prop, any> {
           } else {
             return ReactNative.Navigator.SceneConfigs.FloatFromBottom;
           }
-        } }
+        }}
         initialRoute={{}}
         renderScene={this.renderScene.bind(this)}
-        />
+      />
     );
   }
   private renderScene(route, navigator) {
@@ -133,7 +133,7 @@ export class AppNavigator extends React.Component<Prop, any> {
     }
   }
 }
-let styles = ReactNative.StyleSheet.create({
+const styles = ReactNative.StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'black',

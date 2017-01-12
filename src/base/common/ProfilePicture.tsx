@@ -1,6 +1,6 @@
 
 import * as React from 'react';
-import *as ReactNative from 'react-native';
+import * as ReactNative from 'react-native';
 
 type Prop = {
     userID: string;
@@ -8,7 +8,7 @@ type Prop = {
 };
 export class ProfilePicture extends React.Component<Prop, any> {
     public render() {
-        const {userID, size} = this.props;
+        const { userID, size } = this.props;
         const scaledSize = size * ReactNative.PixelRatio.get();
         const uri = `http://graph.facebook.com/${userID}/picture?width=${scaledSize}&height=${scaledSize}`;
         return (
@@ -19,7 +19,7 @@ export class ProfilePicture extends React.Component<Prop, any> {
                     height: size,
                     borderRadius: size / 2,
                 }}
-                />
+            />
         );
     }
 }

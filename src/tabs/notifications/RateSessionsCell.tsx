@@ -1,5 +1,5 @@
 import * as React from 'react';
-import *as ReactNative from 'react-native';
+import * as ReactNative from 'react-native';
 import * as Common from '../../base/common';
 
 
@@ -8,14 +8,14 @@ type Props = {
     onPress: () => void;
 };
 
-export function RateSessionsCell({numberOfSessions, onPress}: Props) {
+export function RateSessionsCell({ numberOfSessions, onPress }: Props) {
     const pluralSuffix = numberOfSessions === 1 ? '' : 's';
     return (
         <ReactNative.View style={styles.cell as React.ViewStyle}>
             <ReactNative.Image
                 style={styles.star}
                 source={require('../../../asserts/rating/full-star.png')}
-                />
+            />
             <Common.Texts.Text style={styles.text}>
                 You have {numberOfSessions} session{pluralSuffix} to review
             </Common.Texts.Text>

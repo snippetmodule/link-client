@@ -1,5 +1,5 @@
 import * as React from 'react';
-import *as ReactNative from 'react-native';
+import * as ReactNative from 'react-native';
 const { connect } = require('react-redux');
 
 import { clearFilter } from '../../actions';
@@ -9,10 +9,10 @@ type Prop = {
     onClearFilter?: () => {};
 };
 @connect(
-    store => ({
+    (store) => ({
         filter: store.filter,
     }),
-    dispatch => ({ onClearFilter: () => dispatch(clearFilter()) })
+    (dispatch) => ({ onClearFilter: () => dispatch(clearFilter()) })
 )
 export class FilterHeader extends React.Component<Prop, any> {
     public render() {
@@ -61,7 +61,7 @@ let styles = ReactNative.StyleSheet.create({
     },
     filters: {
         color: 'rgba(255, 255, 255, 0.65)',
-    }
+    },
 });
 
 // function select(store) {

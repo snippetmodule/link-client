@@ -8,28 +8,7 @@ import { ParallaxBackground } from './ParallaxBackground';
 import { SegmentedControl } from './SegmentedControl';
 import { Header, Item } from './Header';
 
-// var Animated = require('Animated');
-// var NativeModules = require('NativeModules');
-// var Dimensions = require('Dimensions');
-// var F8Header = require('F8Header');
-// var F8SegmentedControl = require('F8SegmentedControl');
-// var ParallaxBackground = require('ParallaxBackground');
-// var React = require('React');
-// var ReactNative = require('react-native');
-// var StyleSheet = require('F8StyleSheet');
-// var View = require('View');
-// var { Text } = require('F8Text');
-// var ViewPager = require('./ViewPager');
-// var Platform = require('Platform');
-
-// import type {Item as HeaderItem } from 'F8Header';
-
-// import {ActivityIndicatorIOS,ProgressBarAndroid} from 'react-native';
-
 const EMPTY_CELL_HEIGHT = ReactNative.Dimensions.get('window').height > 600 ? 200 : 150;
-
-// var ActivityIndicatorIOS = require('ActivityIndicatorIOS');
-// var ProgressBarAndroid = require('ProgressBarAndroid');
 const ActivityIndicator = ReactNative.Platform.OS === 'ios'
   ? ReactNative.ActivityIndicatorIOS
   : ReactNative.ProgressBarAndroid;
@@ -77,7 +56,7 @@ type Props = {
   title: string;
   leftItem?: Item;
   rightItem?: Item;
-  extraItems?: Array<Item>;
+  extraItems?: Item[];
   selectedSegment?: number;
   selectedSectionColor?: string;
   backgroundImage: number;
@@ -105,8 +84,8 @@ class ListContainer extends React.Component<Props, State> {
     anim: new ReactNative.Animated.Value(0),
     stickyHeaderHeight: 0,
   };
-  _refs: Array<any> = [];
-  _pinned: any;
+  private _refs: any[] = [];
+  private _pinned: any;
 
   // constructor(props: Props, context: ContextType) {
   //   super(props, context);
@@ -120,7 +99,7 @@ class ListContainer extends React.Component<Props, State> {
   // }
 
   public render() {
-    var leftItem = this.props.leftItem;
+    let leftItem = this.props.leftItem;
     if (!leftItem && ReactNative.Platform.OS === 'android') {
       leftItem = {
         title: 'Menu',
@@ -133,24 +112,26 @@ class ListContainer extends React.Component<Props, State> {
 
     const segments = [];
     const content = React.Children.map(this.props.children, (child, idx) => {
-      let anyChild: any = child;
+      const anyChild: any = child;
       segments.push(anyChild.props.title);
-      return <RelayLoading>
-        {React.cloneElement(anyChild, {
-          ref: (ref) => { this._refs[idx] = ref; },
-          onScroll: (e) => this.handleScroll(idx, e),
-          style: styles.listView,
-          showsVerticalScrollIndicator: false,
-          scrollEventThrottle: 16,
-          contentInset: { bottom: 49, top: 0 },
-          automaticallyAdjustContentInsets: false,
-          renderHeader: this.renderFakeHeader,
-          scrollsToTop: idx === this.state.idx,
-        })}
-      </RelayLoading>;
+      return (
+        <RelayLoading>
+          {React.cloneElement(anyChild, {
+            ref: (ref) => { this._refs[idx] = ref; },
+            onScroll: (e) => this.handleScroll(idx, e),
+            style: styles.listView,
+            showsVerticalScrollIndicator: false,
+            scrollEventThrottle: 16,
+            contentInset: { bottom: 49, top: 0 },
+            automaticallyAdjustContentInsets: false,
+            renderHeader: this.renderFakeHeader,
+            scrollsToTop: idx === this.state.idx,
+          })}
+        </RelayLoading>
+      );
     });
 
-    let {stickyHeader} = this.props;
+    let { stickyHeader } = this.props;
     if (segments.length > 1) {
       stickyHeader = (
         <ReactNative.View>
@@ -159,7 +140,7 @@ class ListContainer extends React.Component<Props, State> {
             selectedIndex={this.state.idx}
             selectionColor={this.props.selectedSectionColor}
             onChange={this.handleSelectSegment.bind(this)}
-            />
+          />
           {stickyHeader}
         </ReactNative.View>
       );
@@ -221,13 +202,13 @@ class ListContainer extends React.Component<Props, State> {
     }
     let transform;
     if (!this.props.parallaxContent) {
-      let distance = EMPTY_CELL_HEIGHT - this.state.stickyHeaderHeight;
+      const distance = EMPTY_CELL_HEIGHT - this.state.stickyHeaderHeight;
       transform = {
         opacity: this.state.anim.interpolate({
           inputRange: [distance - 20, distance],
           outputRange: [0, 1],
           extrapolate: 'clamp',
-        })
+        }),
       };
     }
     return (
@@ -274,13 +255,13 @@ class ListContainer extends React.Component<Props, State> {
     if (!stickyHeader || ReactNative.Platform.OS !== 'ios') {
       return;
     }
-    var opacity = this.state.stickyHeaderHeight === 0 ? 0 : 1;
-    var transform;
+    const opacity = this.state.stickyHeaderHeight === 0 ? 0 : 1;
+    let transform;
 
     // If native pinning is not available, fallback to Animated
     // if (!ReactNative.NativeModules.F8Scrolling) {
-    var distance = EMPTY_CELL_HEIGHT - this.state.stickyHeaderHeight;
-    var translateY = this.state.anim.interpolate({
+    const distance = EMPTY_CELL_HEIGHT - this.state.stickyHeaderHeight;
+    const translateY = this.state.anim.interpolate({
       inputRange: [0, distance],
       outputRange: [distance, 0],
       extrapolateRight: 'clamp',
@@ -290,7 +271,7 @@ class ListContainer extends React.Component<Props, State> {
 
     return (
       <ReactNative.Animated.View
-        ref={(ref) => { this._pinned = ref; } }
+        ref={(ref) => { this._pinned = ref; }}
         onLayout={this.handleStickyHeaderLayout}
         style={[styles.stickyHeader, { opacity }, { transform }]}>
         {stickyHeader}
@@ -302,7 +283,7 @@ class ListContainer extends React.Component<Props, State> {
     this.setState({ ...this.state, stickyHeaderHeight: layout.height });
   }
 
-  componentWillReceiveProps(nextProps: Props) {
+  public componentWillReceiveProps(nextProps: Props) {
     if (typeof nextProps.selectedSegment === 'number' &&
       nextProps.selectedSegment !== this.state.idx) {
       this.setState({ ...this.state, idx: nextProps.selectedSegment });
@@ -335,19 +316,19 @@ class ListContainer extends React.Component<Props, State> {
   // }
   // }
 
-  handleSelectSegment(idx: number) {
+  public handleSelectSegment(idx: number) {
     if (this.state.idx !== idx) {
-      const {onSegmentChange} = this.props;
+      const { onSegmentChange } = this.props;
       this.setState({ ...this.state, idx }, () => onSegmentChange && onSegmentChange(idx));
     }
   }
 
-  handleShowMenu() {
+  public handleShowMenu() {
     this.context.openDrawer();
   }
 }
 
-let styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
@@ -360,7 +341,7 @@ let styles = StyleSheet.create({
       borderRightWidth: 1,
       marginRight: -1,
       borderRightColor: 'transparent',
-    }
+    },
   },
   listView: {
     ios: {
@@ -368,7 +349,7 @@ let styles = StyleSheet.create({
     },
     android: {
       backgroundColor: 'white',
-    }
+    },
   },
   headerTitle: {
     color: 'white',

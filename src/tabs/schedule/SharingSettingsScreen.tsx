@@ -1,5 +1,5 @@
 import * as React from 'react';
-import *as ReactNative from 'react-native';
+import * as ReactNative from 'react-native';
 import * as Common from '../../base/common';
 const { connect } = require('react-redux');
 
@@ -20,7 +20,7 @@ type Prop = {
         user: store.user,
         sharedSchedule: store.user.sharedSchedule,
     }),
-    dispatch => ({ dispatch: dispatch })
+    (dispatch) => ({ dispatch: dispatch }),
 )
 export class SharingSettingsScreen extends React.Component<Prop, void> {
     public render() {
@@ -30,7 +30,7 @@ export class SharingSettingsScreen extends React.Component<Prop, void> {
                     translucent={true}
                     backgroundColor="rgba(0, 0, 0, 0.2)"
                     barStyle="default"
-                    />
+                />
                 <SharingSettingsCommon />
                 <ReactNative.View style={styles.switchWrapper as React.ViewStyle}>
                     <Common.Texts.Text style={styles.option}>
@@ -42,7 +42,7 @@ export class SharingSettingsScreen extends React.Component<Prop, void> {
                         value={!!this.props.sharedSchedule}
                         onValueChange={(enabled) => this.props.dispatch(setSharingEnabled(enabled))}
                         onTintColor="#00E3AD"
-                        />
+                    />
                     <Common.Texts.Text style={styles.option}>
                         YES
                     </Common.Texts.Text>
@@ -63,7 +63,7 @@ export class SharingSettingsScreen extends React.Component<Prop, void> {
                         title: 'Logout',
                         onPress: () => this.props.dispatch(logOutWithPrompt()),
                     }}
-                    />
+                />
             </ReactNative.View>
         );
     }

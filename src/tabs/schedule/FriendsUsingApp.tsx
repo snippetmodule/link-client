@@ -1,5 +1,5 @@
 import * as React from 'react';
-import *as ReactNative from 'react-native';
+import * as ReactNative from 'react-native';
 import * as Common from '../../base/common';
 const { connect } = require('react-redux');
 
@@ -7,9 +7,9 @@ type Prop = {
     friends?: Array<{ id: string; name: string }>;
 };
 @connect(
-    store => ({
+    (store) => ({
         friends: store.friendsSchedules,
-    })
+    }),
 )
 export class FriendsUsingApp extends React.Component<Prop, void> {
 

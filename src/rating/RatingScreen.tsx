@@ -1,5 +1,5 @@
 import * as React from 'react';
-import *as ReactNative from 'react-native';
+import * as ReactNative from 'react-native';
 const { connect } = require('react-redux');
 import * as Common from '../base/common';
 
@@ -10,8 +10,8 @@ import { Session } from '../reducers/sessions';
 import { Dispatch } from '../actions/types';
 
 type Props = {
-    sessions?: Array<Session>;
-    surveys: Array<Survey>;
+    sessions?: Session[];
+    surveys: Survey[];
     navigator: ReactNative.Navigator;
     dispatch?: Dispatch;
 };
@@ -82,7 +82,7 @@ export class RatingScreen extends React.Component<Props, State> {
         );
     }
 
-    private submitAnswers(index: number, answers: Array<number>) {
+    private submitAnswers(index: number, answers: number[]) {
         const survey = this.props.surveys[index];
         this.props.dispatch(submitSurveyAnswers(survey.id, answers)).then(
             () => this.proceedToPage(index + 1)

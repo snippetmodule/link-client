@@ -1,6 +1,6 @@
 
 import * as React from 'react';
-import *as ReactNative from 'react-native';
+import * as ReactNative from 'react-native';
 const { connect } = require('react-redux');
 import * as Common from '../base/common';
 
@@ -32,10 +32,10 @@ type Prop = {
         user: store.user,
         notificationsBadge: unseenNotificationsCount(store) + store.surveys.length,
     }),
-    dispatch => ({
+    (dispatch) => ({
         onTabSelect: (tab) => dispatch(switchTab(tab)),
         logOut: () => dispatch(logOutWithPrompt()),
-    })
+    }),
 )
 export class TabsViewAndroid extends React.Component<Prop, any> {
     private drawer: Common.DrawerLayout;
@@ -72,16 +72,16 @@ export class TabsViewAndroid extends React.Component<Prop, any> {
     }
 
     private renderNavigationView() {
-        let scheduleIcon = this.props.day === 1
+        const scheduleIcon = this.props.day === 1
             ? require('../../asserts/tabs/schedule/schedule-icon-1.png')
             : require('../../asserts/tabs/schedule/schedule-icon-2.png');
-        let scheduleIconSelected = this.props.day === 1
+        const scheduleIconSelected = this.props.day === 1
             ? require('../../asserts/tabs/schedule/schedule-icon-1-active.png')
             : require('../../asserts/tabs/schedule/schedule-icon-2-active.png');
         let accountItem, myF8Item, loginItem;
 
         if (this.props.user.isLoggedIn) {
-            let name = this.props.user.name || '';
+            const name = this.props.user.name || '';
             accountItem = (
                 <ReactNative.View>
                     <ReactNative.TouchableOpacity onPress={this.openProfileSettings}>
@@ -99,7 +99,7 @@ export class TabsViewAndroid extends React.Component<Prop, any> {
                     onPress={this.onTabSelect.bind(this, 'my-schedule')}
                     icon={require('../../asserts/tabs/schedule/my-schedule-icon.png')}
                     selectedIcon={require('../../asserts/tabs/schedule/my-schedule-icon-active.png')}
-                    />
+                />
             );
         } else {
             accountItem = (
@@ -132,7 +132,7 @@ export class TabsViewAndroid extends React.Component<Prop, any> {
                     onPress={this.onTabSelect.bind(this, 'schedule')}
                     icon={scheduleIcon}
                     selectedIcon={scheduleIconSelected}
-                    />
+                />
                 {myF8Item}
                 <MenuItem
                     title="Maps"
@@ -140,7 +140,7 @@ export class TabsViewAndroid extends React.Component<Prop, any> {
                     onPress={this.onTabSelect.bind(this, 'map')}
                     icon={require('../../asserts/tabs/maps/maps-icon.png')}
                     selectedIcon={require('../../asserts/tabs/maps/maps-icon-active.png')}
-                    />
+                />
                 <MenuItem
                     title="Notifications"
                     selected={this.props.tab === 'notifications'}
@@ -148,14 +148,14 @@ export class TabsViewAndroid extends React.Component<Prop, any> {
                     badge={this.props.notificationsBadge}
                     icon={require('../../asserts/tabs/notifications/notifications-icon.png')}
                     selectedIcon={require('../../asserts/tabs/notifications/notifications-icon-active.png')}
-                    />
+                />
                 <MenuItem
                     title="Info"
                     selected={this.props.tab === 'info'}
                     onPress={this.onTabSelect.bind(this, 'info')}
                     icon={require('../../asserts/tabs/info/info-icon.png')}
                     selectedIcon={require('../../asserts/tabs/info/info-icon-active.png')}
-                    />
+                />
                 {loginItem}
             </ReactNative.View>
         );
@@ -167,7 +167,7 @@ export class TabsViewAndroid extends React.Component<Prop, any> {
                 return (
                     <GeneralScheduleView
                         navigator={this.props.navigator} {...this.props}
-                        />
+                    />
                 );
             case 'my-schedule':
                 return (
@@ -175,7 +175,7 @@ export class TabsViewAndroid extends React.Component<Prop, any> {
                         navigator={this.props.navigator}
                         // onJumpToSchedule={() => this.props.onTabSelect('schedule')}
                         {...this.props}
-                        />
+                    />
                 );
             case 'map':
                 return <MapView />;
@@ -192,7 +192,7 @@ export class TabsViewAndroid extends React.Component<Prop, any> {
     public render() {
         return (
             <Common.DrawerLayout
-                ref={ref => this.drawer = ref}
+                ref={(ref) => this.drawer = ref}
                 drawerWidth={290}
                 drawerPosition="left"
                 renderNavigationView={this.renderNavigationView.bind(this)}>
@@ -203,7 +203,7 @@ export class TabsViewAndroid extends React.Component<Prop, any> {
         );
     }
 }
-let styles = ReactNative.StyleSheet.create({
+const styles = ReactNative.StyleSheet.create({
     drawer: {
         flex: 1,
         backgroundColor: 'white',

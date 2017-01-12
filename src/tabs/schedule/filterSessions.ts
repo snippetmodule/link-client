@@ -3,11 +3,11 @@ import { Session } from '../../reducers/sessions';
 
 type StringMap = { [key: string]: boolean };
 
-export function byDay(sessions: Array<Session>, day: number): Array<Session> {
+export function byDay(sessions: Session[], day: number): Session[] {
     return sessions.filter((session) => session.day === day);
 }
 
-export function byTopics(sessions: Array<Session>, topics: StringMap): Array<Session> {
+export function byTopics(sessions: Session[], topics: StringMap): Session[] {
     if (Object.keys(topics).length === 0) {
         return sessions;
     }
@@ -20,7 +20,7 @@ export function byTopics(sessions: Array<Session>, topics: StringMap): Array<Ses
     });
 }
 
-export function bySchedule(sessions: Array<Session>, schedule: StringMap): Array<Session> {
+export function bySchedule(sessions: Session[], schedule: StringMap): Session[] {
     return sessions.filter(
         (session) => schedule[session.id]
     );

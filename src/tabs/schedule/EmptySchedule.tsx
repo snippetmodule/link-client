@@ -1,5 +1,5 @@
 import * as React from 'react';
-import *as ReactNative from 'react-native';
+import * as ReactNative from 'react-native';
 
 import * as Common from '../../base/common';
 type Prop = {
@@ -28,7 +28,7 @@ class EmptySchedule extends React.Component<Prop, any>{
     }
 }
 
-let styles = ReactNative.StyleSheet.create({
+const styles = ReactNative.StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: 'white',

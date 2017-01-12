@@ -1,5 +1,5 @@
 import * as React from 'react';
-import *as ReactNative from 'react-native';
+import * as ReactNative from 'react-native';
 const { connect } = require('react-redux');
 import * as Common from '../base/common';
 
@@ -11,7 +11,7 @@ import { applyTopicsFilter, Dispatch } from '../actions';
 // const shallowEqual = require('fbjs/lib/shallowEqual');
 type Prop = {
     isLoggedIn?: boolean,
-    topics?: Array<string>;
+    topics?: string[];
     selectedTopics?: { [id: string]: boolean };
     // friendsSchedules?: any;
     dispatch?: Dispatch;
@@ -29,7 +29,7 @@ type State = {
         topics: ['11', '22'],
         selectedTopics: store.filter,
     }),
-    dispatch => ({ dispatch: dispatch })
+    (dispatch) => ({ dispatch: dispatch })
 )
 export class FilterScreen extends React.Component<Prop, State> {
     constructor(props) {
@@ -52,7 +52,7 @@ export class FilterScreen extends React.Component<Prop, State> {
             //     nextProps.selectedTopics,
             //     nextState.selectedTopics,
             // );
-            const toValue = 1;//changedTopics ? 1 : 0;
+            const toValue = 1; // changedTopics ? 1 : 0;
             ReactNative.Animated.spring(this.state.anim, { toValue }).start();
         }
     }
@@ -69,10 +69,10 @@ export class FilterScreen extends React.Component<Prop, State> {
                 color={Common.Colors.colorForTopic(this.props.topics.length, ii)}
                 isChecked={this.state.selectedTopics[topic]}
                 onToggle={this.toggleTopic.bind(this, topic)}
-                />
+            />
         ));
         let selectedAnyTopics = this.props.topics.some(
-            (topic) => this.state.selectedTopics[topic]
+            (topic) => this.state.selectedTopics[topic],
         );
 
         let leftItem, rightItem;
@@ -92,7 +92,7 @@ export class FilterScreen extends React.Component<Prop, State> {
                     title="Filter"
                     leftItem={leftItem}
                     rightItem={rightItem}
-                    />
+                />
                 <ReactNative.ScrollView
                     showsVerticalScrollIndicator={false}
                     contentContainerStyle={styles.scrollview}>
@@ -100,12 +100,12 @@ export class FilterScreen extends React.Component<Prop, State> {
                         {topics}
                     </Common.ItemsWithSeparator>
                 </ReactNative.ScrollView>
-                <ReactNative.Animated.View style={[styles.applyButton,  {bottom:bottom}]}>
+                <ReactNative.Animated.View style={[styles.applyButton, { bottom: bottom }]}>
                     <Common.Button
                         style={styles.applyButton}
                         caption="Apply filters"
                         onPress={this.applyFilter.bind(this)}
-                        />
+                    />
                 </ReactNative.Animated.View>
             </ReactNative.View>
         );
@@ -128,7 +128,7 @@ export class FilterScreen extends React.Component<Prop, State> {
     }
 
     private close() {
-        const {navigator, onClose} = this.props;
+        const { navigator, onClose } = this.props;
         if (navigator) {
             requestAnimationFrame(() => navigator.pop());
         }

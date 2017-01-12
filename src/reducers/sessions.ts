@@ -17,9 +17,9 @@ export type Session = {
     description: string;
     hasDetails: boolean;
     slug: string;
-    speakers: Array<Speaker>;
+    speakers: Speaker[];
     onMySchedule: boolean;
-    tags: Array<string>;
+    tags: string[];
     startTime: number;
     endTime: number;
     map?: string;

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import *as ReactNative from 'react-native';
+import * as ReactNative from 'react-native';
 import * as Common from '../../base/common';
 const { connect } = require('react-redux');
 import { UserState as User } from '../../reducers/user';
@@ -10,11 +10,11 @@ type Prop = {
 @connect(
     (store: any) => ({
         user: store.user,
-    })
+    }),
 )
 export class SharingSettingsCommon extends React.Component<Prop, void> {
     public render() {
-        const {user} = this.props;
+        const { user } = this.props;
         const title = user.name && user.id && (
             <ReactNative.View style={styles.title as React.ViewStyle}>
                 <Common.ProfilePicture userID={user.id} size={24} />

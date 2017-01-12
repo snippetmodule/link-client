@@ -1,5 +1,5 @@
 import * as React from 'react';
-import *as ReactNative from 'react-native';
+import * as ReactNative from 'react-native';
 import * as Common from '../../base/common';
 
 
@@ -9,7 +9,7 @@ export class ProfileButton extends React.Component<any, void> {
             <ReactNative.Image
                 source={{ uri: `http://graph.facebook.com/${this.props.user.id}/picture` }}
                 style={styles.profilePic}
-                />
+            />
         );
     }
 }

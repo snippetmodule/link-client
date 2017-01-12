@@ -1,5 +1,5 @@
 import * as React from 'react';
-import *as ReactNative from 'react-native';
+import * as ReactNative from 'react-native';
 import * as Common from '../../base/common';
 
 export class ThirdPartyNotices extends React.Component<any, any> {
@@ -15,12 +15,12 @@ export class ThirdPartyNotices extends React.Component<any, any> {
                         layout: 'icon',
                         onPress: () => this.props.navigator.pop(),
                     }}
-                    />
+                />
                 <Loading>
                     <ReactNative.WebView
                         style={styles.webview}
                         source={{ uri: 'file:///android_res/raw/third_party_notices.html' }}
-                        />
+                    />
                 </Loading>
             </ReactNative.View>
         );

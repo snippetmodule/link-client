@@ -1,5 +1,5 @@
 import * as React from 'react';
-import *as ReactNative from 'react-native';
+import * as ReactNative from 'react-native';
 const { connect } = require('react-redux');
 import { LoginScreen } from './login/LoginScreen';
 import { AppNavigator } from './AppNavigator';
@@ -21,7 +21,7 @@ import { env } from './base/env';
 @connect(
     (store: any) => ({
         isLoggedIn: store.user.isLoggedIn || store.user.hasSkippedLogin,
-    })
+    }),
 )
 export class App extends React.Component<any, any>{
     public componentDidMount() {
@@ -67,7 +67,7 @@ export class App extends React.Component<any, any>{
     }
 }
 
-let styles = ReactNative.StyleSheet.create({
+const styles = ReactNative.StyleSheet.create({
     container: {
         flex: 1,
     },

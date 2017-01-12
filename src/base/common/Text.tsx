@@ -2,15 +2,15 @@ import * as React from 'react';
 import * as ReactNative from 'react-native';
 import { Colors } from './Colors';
 import { env } from '../env';
-function Text({style, ...props}: any): JSX.Element {
+function Text({ style, ...props }: any): JSX.Element {
   return <ReactNative.Text style={[styles.font, style]} {...props} />;
 }
 
-export function Heading1({style, ...props}): JSX.Element {
+export function Heading1({ style, ...props }): JSX.Element {
   return <ReactNative.Text style={[styles.font, styles.h1, style]} {...props} />;
 }
 
-export function Paragraph({style, ...props}): JSX.Element {
+export function Paragraph({ style, ...props }): JSX.Element {
   return <ReactNative.Text style={[styles.font, styles.p, style]} {...props} />;
 }
 

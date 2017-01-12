@@ -1,10 +1,10 @@
 import * as React from 'react';
-import *as ReactNative from 'react-native';
+import * as ReactNative from 'react-native';
 const { connect } = require('react-redux');
 import * as Common from '../../base/common';
 
 import { EmptySchedule } from './EmptySchedule';
-import *as  FilterSessions from './filterSessions';
+import * as  FilterSessions from './filterSessions';
 import { ScheduleListView } from './ScheduleListView';
 import { FriendsListView } from './FriendsListView';
 import {
@@ -24,8 +24,8 @@ import { createSelector } from 'reselect';
 
 type Props = {
     user?: User;
-    sessions?: Array<Session>;
-    friends?: Array<FriendsSchedule>;
+    sessions?: Session[];
+    friends?: FriendsSchedule[];
     schedule?: Schedule;
     navigator: ReactNative.Navigator;
     logOut?: () => void;
@@ -40,17 +40,17 @@ type Props = {
         schedule: store.schedule,
         // Only show friends who have something in their schedule
         friends: store.friendsSchedules.filter(
-            (friend) => Object.keys(friend.schedule).length > 0
+            (friend) => Object.keys(friend.schedule).length > 0,
         ),
     }),
-    dispatch=> ({
+    (dispatch) => ({
         logOut: () => dispatch(logOutWithPrompt()),
         jumpToSchedule: (day) => dispatch([
             switchTab('schedule'),
             switchDay(day),
         ]),
         loadFriendsSchedules: () => dispatch(loadFriendsSchedules()),
-    })
+    }),
 )
 export class MyScheduleView extends React.Component<Props, void> {
     public render() {
@@ -63,7 +63,7 @@ export class MyScheduleView extends React.Component<Props, void> {
             };
         }
 
-        const {id, isLoggedIn} = this.props.user;
+        const { id, isLoggedIn } = this.props.user;
         const profilePicture = isLoggedIn && id
             ? <Common.ProfilePicture userID={id} size={100} />
             : null;
@@ -93,19 +93,19 @@ export class MyScheduleView extends React.Component<Props, void> {
                 sessions={this.props.sessions}
                 renderEmptyList={this.renderEmptySessionsList}
                 navigator={this.props.navigator}
-                />,
+            />,
             <ScheduleListView
                 title="Day 2"
                 day={2}
                 sessions={this.props.sessions}
                 renderEmptyList={this.renderEmptySessionsList}
                 navigator={this.props.navigator}
-                />,
+            />,
             <FriendsListView
                 title="Friends"
                 friends={this.props.friends}
                 navigator={this.props.navigator}
-                />,
+            />,
         ];
     }
 
@@ -129,7 +129,7 @@ export class MyScheduleView extends React.Component<Props, void> {
                 <Common.Button
                     caption={`See the day ${day} schedule`}
                     onPress={() => this.props.jumpToSchedule(day)}
-                    />
+                />
             </EmptySchedule>
         );
     }

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactNative from 'react-native';
 
-let resolveAssetSource = require('resolveAssetSource');
+const resolveAssetSource = require('resolveAssetSource');
 // var Animated = require('Animated');
 
 // var React = require('React');
@@ -16,7 +16,7 @@ const HEIGHT = ReactNative.Dimensions.get('window').height > 600
   : 150;
 const SCREEN_WIDTH = ReactNative.Dimensions.get('window').width;
 
-interface IProps{
+interface IProps {
   maxHeight: number;
   minHeight: number;
   offset: ReactNative.Animated.Value;
@@ -26,11 +26,11 @@ interface IProps{
   children?: any;
 }
 
-interface IState  {
+interface IState {
   shift: ReactNative.Animated.Value;
 };
 
-export class ParallaxBackground extends React.Component<IProps,IState>{
+export class ParallaxBackground extends React.Component<IProps, IState>{
   public static HEIGHT = HEIGHT;
 
   constructor(props: IProps) {
@@ -50,7 +50,7 @@ export class ParallaxBackground extends React.Component<IProps,IState>{
   }
 
   public render() {
-    const {minHeight, maxHeight, offset, backgroundColor} = this.props;
+    const { minHeight, maxHeight, offset, backgroundColor } = this.props;
     const buffer = 10; // To reduce visual lag when scrolling
     const height = offset.interpolate({
       inputRange: [0, maxHeight - minHeight],
@@ -59,15 +59,15 @@ export class ParallaxBackground extends React.Component<IProps,IState>{
     });
 
     return (
-      <ReactNative.Animated.View style={[styles.container, {height, backgroundColor}]}>
+      <ReactNative.Animated.View style={[styles.container, { height, backgroundColor }]}>
         {this.renderBackgroundImage()}
         {this.renderContent()}
       </ReactNative.Animated.View>
     );
   }
 
-  private renderBackgroundImage():JSX.Element {
-    const {backgroundImage, minHeight, maxHeight, offset} = this.props;
+  private renderBackgroundImage(): JSX.Element {
+    const { backgroundImage, minHeight, maxHeight, offset } = this.props;
     if (!backgroundImage) {
       return null;
     }
@@ -76,7 +76,7 @@ export class ParallaxBackground extends React.Component<IProps,IState>{
     if (!source) {
       return null;
     }
-    const {width} = source;
+    const { width } = source;
     const translateX = this.state.shift.interpolate({
       inputRange: [0, 1],
       outputRange: [0, SCREEN_WIDTH - width],
@@ -96,7 +96,7 @@ export class ParallaxBackground extends React.Component<IProps,IState>{
       outputRange: [2, initialScale],
       extrapolateRight: 'clamp',
     });
-    const transforms = { transform: [{translateX}, {translateY}, {scale}] };
+    const transforms = { transform: [{ translateX }, { translateY }, { scale }] };
     return (
       <ReactNative.Animated.Image
         source={backgroundImage}
@@ -111,7 +111,7 @@ export class ParallaxBackground extends React.Component<IProps,IState>{
     }
     const content = React.Children.only(this.props.children);
 
-    const {minHeight, maxHeight, offset} = this.props;
+    const { minHeight, maxHeight, offset } = this.props;
     const length = maxHeight - minHeight;
     const opacity = offset.interpolate({
       inputRange: [0, length - 40],
@@ -123,7 +123,7 @@ export class ParallaxBackground extends React.Component<IProps,IState>{
       outputRange: [-32, -(length / 2) - 32],
       extrapolate: 'clamp',
     });
-    const transforms = { opacity, transform: [{translateY}] };
+    const transforms = { opacity, transform: [{ translateY }] };
     return (
       <ReactNative.Animated.View style={[styles.contentContainer, transforms]}>
         {content}
@@ -132,9 +132,9 @@ export class ParallaxBackground extends React.Component<IProps,IState>{
   }
 }
 
-let HEADER_HEIGHT = HEIGHT + 156;
+const HEADER_HEIGHT = HEIGHT + 156;
 
-let styles = ReactNative.StyleSheet.create({
+const styles = ReactNative.StyleSheet.create({
   container: {
     position: 'absolute',
     left: 0,

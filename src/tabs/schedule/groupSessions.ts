@@ -8,7 +8,7 @@ export type SessionsListData = {
     };
 };
 
-export function groupSessions(sessions: Array<Session>): SessionsListData {
+export function groupSessions(sessions: Session[]): SessionsListData {
     let data = {};
     sessions.forEach((session) => {
         let timeSectionKey = session.allDay ? 'All Day' : formatTime(session.startTime);

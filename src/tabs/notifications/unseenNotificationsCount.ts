@@ -3,7 +3,7 @@ import { allNotifications } from './allNotifications';
 let { createSelector } = require('reselect');
 
 
-function unseenNotificationsCountImpl(notifications: Array<Notification>, seen: SeenNotifications): number {
+function unseenNotificationsCountImpl(notifications: Notification[], seen: SeenNotifications): number {
     return notifications.filter((notification) => !seen[notification.id]).length;
 }
 

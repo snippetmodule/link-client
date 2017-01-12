@@ -1,5 +1,5 @@
 import * as React from 'react';
-import *as ReactNative from 'react-native';
+import * as ReactNative from 'react-native';
 import * as Common from '../../base/common';
 // var F8Colors = require('F8Colors');
 // var { Text } = require('F8Text');
@@ -33,7 +33,7 @@ class SessionCell extends React.Component<Prop, any>{
         }
         let location = session.location && session.location.toUpperCase();
         let locationColor = Common.Colors.colorForLocation(location);
-        let cell =
+        let cell = (
             <ReactNative.View style={[styles.cell, this.props.style]}>
                 <ReactNative.View style={styles.titleSection as React.ViewStyle}>
                     <Common.Texts.Text numberOfLines={2} style={styles.titleText}>
@@ -48,13 +48,15 @@ class SessionCell extends React.Component<Prop, any>{
                     {time}
                 </Common.Texts.Text>
                 {tick}
-            </ReactNative.View>;
+            </ReactNative.View>
+        );
 
         if (this.props.onPress) {
-            cell =
+            cell = (
                 <Common.Touchable onPress={this.props.onPress}>
                     {cell}
-                </Common.Touchable>;
+                </Common.Touchable>
+            );
         }
 
         return cell;

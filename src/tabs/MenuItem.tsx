@@ -1,5 +1,5 @@
 import * as React from 'react';
-import *as ReactNative from 'react-native';
+import * as ReactNative from 'react-native';
 import * as Common from '../base/common';
 type Prop = {
     icon: number;
@@ -67,4 +67,4 @@ let styles = ReactNative.StyleSheet.create({
     },
 });
 
-export {MenuItem}
+export { MenuItem }

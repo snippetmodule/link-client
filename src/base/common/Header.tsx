@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactNative from 'react-native';
 
-import  {Colors} from './Colors';
+import { Colors } from './Colors';
 import { Texts } from './Text';
 
 export type Layout =
@@ -22,7 +22,7 @@ export type IProps = {
     title?: string;
     leftItem?: Item;
     rightItem?: Item;
-    extraItems?: Array<Item>;
+    extraItems?: Item[];
     foreground?: Foreground;
     style?: any;
     children?: any;
@@ -32,10 +32,10 @@ class HeaderAndroid extends React.Component<IProps, any> {
     public static height: number;
     public static __cards__: (define) => any;
     public render() {
-        const {leftItem, rightItem, extraItems} = this.props;
+        const { leftItem, rightItem, extraItems } = this.props;
         let actions: ReactNative.ToolbarAndroidAction[] = [];
         if (rightItem) {
-            const {title, icon, layout} = rightItem;
+            const { title, icon, layout } = rightItem;
             actions.push({
                 icon: layout !== 'title' ? icon : undefined,
                 title: title,
@@ -43,7 +43,7 @@ class HeaderAndroid extends React.Component<IProps, any> {
             });
         }
         if (extraItems) {
-            extraItems.forEach(item => {
+            extraItems.forEach((item) => {
                 actions.push({
                     icon: undefined,
                     title: item.title,
@@ -102,14 +102,16 @@ class HeaderIOS extends React.Component<IProps, any> {
     public static height: number;
     public static __cards__: (define) => any;
     public render() {
-        const {leftItem, title, rightItem, foreground} = this.props;
+        const { leftItem, title, rightItem, foreground } = this.props;
         const titleColor = foreground === 'dark' ? Colors.darkText : 'white';
         const itemsColor = foreground === 'dark' ? Colors.lightText : 'white';
 
         const content = React.Children.count(this.props.children) === 0
-            ? <ReactNative.Text style={[styles.titleText, { color: titleColor }]}>
-                {title}
-            </ReactNative.Text>
+            ? (
+                <ReactNative.Text style={[styles.titleText, { color: titleColor }]}>
+                    {title}
+                </ReactNative.Text>
+            )
             : this.props.children;
         return (
             <ReactNative.View style={[styles.header, this.props.style]}>
@@ -138,13 +140,13 @@ interface IItemWrapperProps {
 }
 class ItemWrapperIOS extends React.Component<IItemWrapperProps, any> {
     public render() {
-        let {item, color} = this.props;
+        let { item, color } = this.props;
         if (!item) {
             return null;
         }
 
         let content;
-        let {title, icon, layout, onPress} = item;
+        let { title, icon, layout, onPress } = item;
 
         if (layout !== 'icon' && title) {
             content = (
@@ -236,21 +238,21 @@ Header.__cards__ = (define) => {
             title="Default"
             leftItem={menuItem}
             rightItem={filterItem}
-            />
+        />
     ));
     define('Forcing icons', () => (
         <Header
             title="Forcing icons"
             leftItem={{ ...menuItem, layout: 'icon' }}
             rightItem={{ ...filterItem, layout: 'icon' }}
-            />
+        />
     ));
     define('Forcing title', () => (
         <Header
             title="Forcing title"
             leftItem={{ ...menuItem, layout: 'title' }}
             rightItem={{ ...filterItem, layout: 'title' }}
-            />
+        />
     ));
     define('With content', () => (
         <Header leftItem={menuItem}>
@@ -267,7 +269,7 @@ Header.__cards__ = (define) => {
             leftItem={{ ...menuItem, layout: 'title' }}
             rightItem={{ ...filterItem, layout: 'title' }}
             style={{ backgroundColor: '#224488' }}
-            />
+        />
     ));
     define('With light background', () => (
         <Header
@@ -276,6 +278,6 @@ Header.__cards__ = (define) => {
             rightItem={{ ...filterItem, layout: 'title' }}
             style={{ backgroundColor: 'white' }}
             foreground="dark"
-            />
+        />
     ));
 };

@@ -1,6 +1,6 @@
 
 import * as React from 'react';
-import *as ReactNative from 'react-native';
+import * as ReactNative from 'react-native';
 
 // interface contextTypes {
 //     addBackButtonListener: React.PropTypes.func,
@@ -22,11 +22,11 @@ export class DrawerLayout extends React.Component<Props, any> {
     };
     private _drawer: ReactNative.DrawerLayoutAndroid;
     public render() {
-        const {drawerPosition} = this.props;
+        const { drawerPosition } = this.props;
         // const {Right, Left} = ReactNative.DrawerLayoutAndroid.positions;
         return (
             <ReactNative.DrawerLayoutAndroid
-                ref={(drawer) => { this._drawer = drawer; } }
+                ref={(drawer) => { this._drawer = drawer; }}
                 {...this.props}
                 renderNavigationView={this.props.renderNavigationView}
                 drawerPosition={drawerPosition === 'right' ? (ReactNative.DrawerLayoutAndroid as any).positions.Right : (ReactNative.DrawerLayoutAndroid as any).positions.Left}

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import *as ReactNative from 'react-native';
+import * as ReactNative from 'react-native';
 const { connect } = require('react-redux');
 import * as Common from '../../base/common';
 
@@ -18,7 +18,7 @@ type Prop = {
     (store, props) => ({
         session: findSessionByURI(store.sessions, props.notification.url),
         isSeen: store.notifications.seen[props.notification.id],
-    })
+    }),
 )
 export class NotificationCell extends React.Component<Prop, any> {
     public render() {
@@ -29,7 +29,7 @@ export class NotificationCell extends React.Component<Prop, any> {
                     style={styles.session}
                     session={this.props.session}
                     showStartEndTime={true}
-                    />
+                />
             );
         } else if (this.props.notification.url) {
             attachment = <Common.Texts.Text style={styles.url}>{this.props.notification.url}</Common.Texts.Text>;

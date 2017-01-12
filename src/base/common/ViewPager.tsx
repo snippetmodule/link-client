@@ -1,5 +1,5 @@
 import * as React from 'react';
-import *as ReactNative from 'react-native';
+import * as ReactNative from 'react-native';
 
 interface IProps {
   count: number;
@@ -102,7 +102,7 @@ class ViewPager extends React.Component<IProps, IState> {
   }
 
   private renderContent(): JSX.Element[] {
-    let {width, height } = this.state;
+    let { width, height } = this.state;
     let style = ReactNative.Platform.OS === 'ios' && styles.card;
     return React.Children.map(this.props.children, (child, i) => (
       <ReactNative.View style={[style, { width, height }]} key={'r_' + i} >
@@ -126,7 +126,7 @@ class ViewPager extends React.Component<IProps, IState> {
     }
     if (this.props.selectedIndex !== selectedIndex || this.state.scrollingTo !== null) {
       this.setState({ width: this.state.width, height: this.state.height, selectedIndex, initialSelectedIndex: this.state.initialSelectedIndex, scrollingTo: null });
-      let {onSelectedIndexChange} = this.props;
+      let { onSelectedIndexChange } = this.props;
       onSelectedIndexChange && onSelectedIndexChange(selectedIndex);
     }
   }

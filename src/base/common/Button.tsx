@@ -24,7 +24,7 @@ class Button extends React.Component<IProp, any> {
     if (!this.props.type || this.props.type === 'primary') {
       content = (
         <LinearGradient
-          start={{x:0.5, y:1}} end={{x:1, y:1}}
+          start={{ x: 0.5, y: 1 }} end={{ x: 1, y: 1 }}
           colors={['#6A6AD5', '#6F86D9']}
           style={[styles.button, styles.primaryButton]}>
           {icon}

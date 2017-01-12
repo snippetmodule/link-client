@@ -1,5 +1,5 @@
 import * as React from 'react';
-import *as ReactNative from 'react-native';
+import * as ReactNative from 'react-native';
 import * as Common from '../base/common';
 
 export type Question = {
@@ -15,7 +15,7 @@ type Props = {
     style?: any;
 };
 
-export function RatingQuestion({question, rating, onChange, style}: Props) {
+export function RatingQuestion({ question, rating, onChange, style }: Props) {
     const stars = [1, 2, 3, 4, 5].map(
         (value) => (
             <Star
@@ -23,9 +23,8 @@ export function RatingQuestion({question, rating, onChange, style}: Props) {
                 value={value}
                 isFull={rating && value <= rating}
                 onPress={() => onChange(value)}
-                />
-        )
-    );
+            />
+        ));
     return (
         <ReactNative.View style={style}>
             <Common.Texts.Text style={styles.text}>
@@ -46,7 +45,7 @@ export function RatingQuestion({question, rating, onChange, style}: Props) {
     );
 }
 
-function Star({isFull, value, onPress}) {
+function Star({ isFull, value, onPress }) {
     const source = isFull
         ? require('../../asserts/rating/full-star.png')
         : require('../../asserts/rating/empty-star.png');
@@ -107,13 +106,13 @@ export let __cards__ = (define) => {
             question={MOCK_QUESTION}
             rating={state}
             onChange={update}
-            />
+        />
     ));
     define('3 stars', (state = 3, update) => (
         <RatingQuestion
             question={MOCK_QUESTION}
             rating={state}
             onChange={update}
-            />
+        />
     ));
 };

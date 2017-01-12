@@ -1,6 +1,6 @@
 
 import * as React from 'react';
-import *as ReactNative from 'react-native';
+import * as ReactNative from 'react-native';
 const { connect } = require('react-redux');
 import * as Common from '../base/common';
 
@@ -31,10 +31,10 @@ type Prop = {
         user: store.user,
         notificationsBadge: unseenNotificationsCount(store) + store.surveys.length,
     }),
-    dispatch => ({
+    (dispatch) => ({
         onTabSelect: (tab) => dispatch(switchTab(tab)),
         logOut: () => dispatch(logOutWithPrompt()),
-    })
+    }),
 )
 export class TabsViewIOS extends React.Component<Prop, any> {
     private onTabSelect(tab: Tab) {
@@ -60,7 +60,7 @@ export class TabsViewIOS extends React.Component<Prop, any> {
                     selectedIcon={scheduleIconSelected}>
                     <GeneralScheduleView
                         navigator={this.props.navigator}
-                        />
+                    />
                 </ReactNative.TabBarIOS.Item>
                 <ReactNative.TabBarIOS.Item
                     title="My F8"
@@ -70,7 +70,7 @@ export class TabsViewIOS extends React.Component<Prop, any> {
                     selectedIcon={require('../../asserts/tabs/schedule/my-schedule-icon-active.png')}>
                     <MyScheduleView
                         navigator={this.props.navigator}
-                        />
+                    />
                 </ReactNative.TabBarIOS.Item>
                 <ReactNative.TabBarIOS.Item
                     title="Maps"

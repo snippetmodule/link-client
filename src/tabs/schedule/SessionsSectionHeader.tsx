@@ -1,13 +1,12 @@
 
 import * as React from 'react';
-import *as ReactNative from 'react-native';
+import * as ReactNative from 'react-native';
 
 import * as Common from '../../base/common';
 
 // let LinearGradient = require('react-native-linear-gradient');
 
 class SessionsSectionHeader extends React.Component<{ title: string }, any> {
-
     public render() {
         return (
             <Common.LinearGradient colors={['#F4F6F7', '#EBEEF1']} style={styles.header}>

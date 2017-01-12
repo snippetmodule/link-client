@@ -1,5 +1,5 @@
 import * as React from 'react';
-import *as ReactNative from 'react-native';
+import * as ReactNative from 'react-native';
 import * as Common from '../../base/common';
 
 import { EmptySchedule } from './EmptySchedule';
@@ -11,7 +11,7 @@ type Friend = any;
 
 type Props = {
     title: string;
-    friends: Array<Friend>;
+    friends: Friend[];
     navigator: ReactNative.Navigator;
 };
 
@@ -66,7 +66,7 @@ export class FriendsListView extends React.Component<Props, void> {
         this._innerRef = ref;
     }
 
-    private scrollTo(...args: Array<any>) {
+    private scrollTo(...args: any[]) {
         this._innerRef && this._innerRef.scrollTo(...args);
     }
 

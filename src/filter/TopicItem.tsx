@@ -1,5 +1,5 @@
 import * as React from 'react';
-import *as ReactNative from 'react-native';
+import * as ReactNative from 'react-native';
 
 import * as Common from '../base/common';
 
@@ -12,7 +12,7 @@ type Prop = {
 class TopicItem extends React.Component<Prop, any> {
 
     public render() {
-        const {topic, color, isChecked, onToggle} = this.props;
+        const { topic, color, isChecked, onToggle } = this.props;
         const style = isChecked
             ? { backgroundColor: color }
             : { borderColor: color, borderWidth: 1 };

@@ -1,12 +1,12 @@
 import * as React from 'react';
-import *as ReactNative from 'react-native';
+import * as ReactNative from 'react-native';
 
 import * as Common from '../../base/common';
 
 import { SessionsListData, groupSessions } from './groupSessions';
 import { SessionsSectionHeader } from './SessionsSectionHeader';
 import { SessionCell } from './SessionCell';
-import *as  FilterSessions  from './filterSessions';
+import * as  FilterSessions from './filterSessions';
 // var F8SessionCell = require('F8SessionCell');
 // var FilterSessions = require('./filterSessions');
 // var SessionsSectionHeader = require('./SessionsSectionHeader');
@@ -17,7 +17,7 @@ import { Session } from '../../reducers/sessions';
 type Props = {
     title: string;
     day: number;
-    sessions: Array<Session>;
+    sessions: Session[];
     navigator: ReactNative.Navigator;
     renderEmptyList?: (day: number) => JSX.Element;
 };
@@ -55,7 +55,7 @@ class ScheduleListView extends React.Component<Props, State> {
                 renderSectionHeader={this.renderSectionHeader.bind(this)}
                 {...this.props}
                 renderEmptyList={this.renderEmptyList.bind(this)}
-                />
+            />
         );
     }
 
@@ -68,12 +68,12 @@ class ScheduleListView extends React.Component<Props, State> {
             <SessionCell
                 onPress={() => this.openSession(session, day)}
                 session={session}
-                />
+            />
         );
     }
 
     private renderEmptyList(): JSX.Element {
-        const {renderEmptyList } = this.props;
+        const { renderEmptyList } = this.props;
         return renderEmptyList && renderEmptyList(this.props.day);
     }
 
@@ -85,7 +85,7 @@ class ScheduleListView extends React.Component<Props, State> {
         });
     }
 
-    private scrollTo(...args: Array<any>) {
+    private scrollTo(...args: any[]) {
         this._innerRef && this._innerRef.scrollTo(...args);
     }
 }

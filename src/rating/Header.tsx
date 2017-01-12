@@ -1,18 +1,18 @@
 import * as React from 'react';
-import *as ReactNative from 'react-native';
+import * as ReactNative from 'react-native';
 import * as Common from '../base/common';
 import { Session } from '../reducers/sessions';
 
 type Props = {
     session: Session;
 };
-export function Header({session}: Props) {
+export function Header({ session }: Props) {
     const pics: JSX.Element[] = session.speakers.map((speaker) => (
         <ReactNative.Image
             key={speaker.id}
             source={{ uri: speaker.pic }}
             style={styles.pic}
-            />
+        />
     ));
     return (
         <ReactNative.View style={styles.container as React.ViewStyle}>

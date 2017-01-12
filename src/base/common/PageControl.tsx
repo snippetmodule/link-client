@@ -5,7 +5,7 @@ type Prop = {
   style?: any,
   count: number,
   selectedIndex: number,
-}
+};
 class PageControl extends React.Component<Prop, void> {
   public render() {
     let images = [];

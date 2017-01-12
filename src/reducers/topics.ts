@@ -1,7 +1,7 @@
 
 
-type State = Array<string>;
-type Action = { type: string; list: Array<any>; };
+type State = string[];
+type Action = { type: string; list: any[]; };
 
 export function topics(state: State = [], action: Action): State {
   if (action.type === 'LOADED_SESSIONS') {

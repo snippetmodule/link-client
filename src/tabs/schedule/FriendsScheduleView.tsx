@@ -1,5 +1,5 @@
 import * as React from 'react';
-import *as ReactNative from 'react-native';
+import * as ReactNative from 'react-native';
 import * as Common from '../../base/common';
 const { connect } = require('react-redux');
 
@@ -12,7 +12,7 @@ import { FriendsSchedule } from '../../reducers/friendsSchedules';
 import { createSelector } from 'reselect';
 
 type Props = {
-    sessions?: Array<Session>;
+    sessions?: Session[];
     friend: FriendsSchedule;
     navigator: ReactNative.Navigator;
 };
@@ -43,14 +43,14 @@ export class FriendsScheduleView extends React.Component<Props, void> {
                     sessions={this.props.sessions}
                     renderEmptyList={this.renderEmptyList}
                     navigator={this.props.navigator}
-                    />
+                />
                 <ScheduleListView
                     title="Day 2"
                     day={2}
                     sessions={this.props.sessions}
                     renderEmptyList={this.renderEmptyList}
                     navigator={this.props.navigator}
-                    />
+                />
             </Common.ListContainer>
         );
     }
@@ -60,7 +60,7 @@ export class FriendsScheduleView extends React.Component<Props, void> {
             <EmptySchedule
                 title="Nothing to show."
                 text={`${this.props.friend.name} has not added any sessions for day ${day}`}
-                />
+            />
         );
     }
 }

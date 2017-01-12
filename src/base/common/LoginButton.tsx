@@ -36,8 +36,8 @@ class LoginButton extends React.Component<Prop, State> {
         <Button
           style={[styles.button, this.props.style]}
           caption="Please wait..."
-          onPress={() => { } }
-          />
+          onPress={() => { }}
+        />
       );
     }
 
@@ -47,12 +47,12 @@ class LoginButton extends React.Component<Prop, State> {
         icon={require('../../../asserts/login/f-logo.png')}
         caption="Log in with Facebook"
         onPress={() => this.logIn()}
-        />
+      />
     );
   }
 
   private async logIn() {
-    const {onLoggedIn} = this.props;
+    const { onLoggedIn } = this.props;
 
     this.setState({ isLoading: true });
     try {
@@ -88,4 +88,4 @@ let styles = ReactNative.StyleSheet.create({
   },
 });
 
-export {LoginButton}
+export { LoginButton }
