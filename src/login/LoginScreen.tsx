@@ -14,7 +14,7 @@ type State = {
 };
 @connect(
     (state) => ({}),
-    (dispatch) => ({ dispatch: dispatch })
+    (dispatch) => ({ dispatch: dispatch }),
 )
 export class LoginScreen extends React.Component<Prop, State> {
     public state = {

@@ -36,7 +36,7 @@ export class SessionsCarousel extends React.Component<Props, State> {
         let contexts: Context[] = [];
         let allSessions = this.props.allSessions;
         if (!allSessions) {
-            const {session} = this.props;
+            const { session } = this.props;
             allSessions = {
                 [formatTime(session.startTime)]: { [session.id]: session }
             };
@@ -74,7 +74,7 @@ export class SessionsCarousel extends React.Component<Props, State> {
     }
 
     public render() {
-        let {rowIndex, sectionLength, sectionTitle} = this.state.contexts[this.state.selectedIndex];
+        let { rowIndex, sectionLength, sectionTitle } = this.state.contexts[this.state.selectedIndex];
         let rightItem;
         if (ReactNative.Platform.OS === 'android') {
             rightItem = {
@@ -103,7 +103,7 @@ export class SessionsCarousel extends React.Component<Props, State> {
                         <Common.PageControl
                             count={sectionLength}
                             selectedIndex={rowIndex}
-                            />
+                        />
                     </ReactNative.View>
                 </Common.Header>
                 <Common.Carousel
@@ -111,7 +111,7 @@ export class SessionsCarousel extends React.Component<Props, State> {
                     selectedIndex={this.state.selectedIndex}
                     onSelectedIndexChange={this.handleIndexChange}
                     renderCard={this.renderCard}
-                    />
+                />
             </ReactNative.View>
         );
     }
@@ -123,7 +123,7 @@ export class SessionsCarousel extends React.Component<Props, State> {
                 navigator={this.props.navigator}
                 session={this.state.flatSessionsList[index]}
                 onShare={this.shareCurrentSession}
-                />
+            />
         );
     }
 
@@ -147,7 +147,7 @@ export class SessionsCarousel extends React.Component<Props, State> {
     }
 
     private track(index: number) {
-        const {id} = this.state.flatSessionsList[index];
+        const { id } = this.state.flatSessionsList[index];
         Parse.Analytics.track('view', { id });
         // AppEventsLogger.logEvent('View Session', 1, { id });
     }

@@ -1,5 +1,5 @@
 
-import *as ReactNative from 'react-native';
+import * as ReactNative from 'react-native';
 import { Parse } from 'parse/react-native';
 
 import { restoreSchedule, loadFriendsSchedules } from './schedule';

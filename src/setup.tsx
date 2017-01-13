@@ -34,7 +34,7 @@ Parse.serverURL = `${env.serverURL}/parse`;
 type State = {
     isLoading: boolean;
     store?: any;
-}
+};
 class Root extends React.Component<any, State> {
 
     constructor() {

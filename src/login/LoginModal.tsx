@@ -5,7 +5,7 @@ import * as Common from '../base/common/';
 type Prop = {
     navigator: ReactNative.Navigator;
     onLogin: () => void;
-}
+};
 class LoginModal extends React.Component<Prop, any> {
     public render() {
         return (
