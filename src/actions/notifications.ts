@@ -1,5 +1,4 @@
-import * as React from 'react';
-import *as ReactNative from 'react-native';
+import * as ReactNative from 'react-native';
 
 import { loadNotifications } from './parse';
 import { updateInstallation } from './installation';

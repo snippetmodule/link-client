@@ -1,6 +1,5 @@
 
-import * as React from 'react';
-import *as ReactNative from 'react-native';
+import * as ReactNative from 'react-native';
 import { Parse } from 'parse/react-native';
 
 export async function currentInstallation(): Promise<Parse.Installation> {

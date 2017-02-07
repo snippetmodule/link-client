@@ -1,4 +1,3 @@
-
 import * as ReactNative from 'react-native';
 import { Parse } from 'parse/react-native';
 // const logError = require('logError');

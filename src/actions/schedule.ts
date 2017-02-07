@@ -1,5 +1,4 @@
-
-import *as ReactNative from 'react-native';
+import * as ReactNative from 'react-native';
 let InteractionManager = require('InteractionManager');
 import { Parse } from 'parse/react-native';
 const Share = require('react-native-share');

@@ -1,5 +1,3 @@
-
-
 import { Action } from './types';
 
 type Tab = 'schedule' | 'my-schedule' | 'map' | 'notifications' | 'info';
