@@ -10,6 +10,7 @@ import { Tab, Day } from '../reducers/navigation';
 import { MenuItem } from './MenuItem';
 import { InfoView } from './info/InfoView';
 import { MapView } from './maps/MapView';
+import { NoteHistoryView } from '../note/NoteHistoryView';
 import { NotificationsView } from './notifications/NotificationsView';
 import { GeneralScheduleView } from './schedule/GeneralScheduleView';
 import { MyScheduleView } from './schedule/MyScheduleView';
@@ -156,6 +157,13 @@ export class TabsViewAndroid extends React.Component<Prop, any> {
                     icon={require('../../asserts/tabs/info/info-icon.png')}
                     selectedIcon={require('../../asserts/tabs/info/info-icon-active.png')}
                 />
+                <MenuItem
+                    title="Note"
+                    selected={this.props.tab === 'note'}
+                    onPress={this.onTabSelect.bind(this, 'note')}
+                    icon={require('../../asserts/tabs/info/info-icon.png')}
+                    selectedIcon={require('../../asserts/tabs/info/info-icon-active.png')}
+                />
                 {loginItem}
             </ReactNative.View>
         );
@@ -183,6 +191,8 @@ export class TabsViewAndroid extends React.Component<Prop, any> {
                 return <NotificationsView navigator={this.props.navigator} />;
             case 'info':
                 return <InfoView {...this.props} />;
+            case 'note':
+                return <NoteHistoryView {...this.props} />;
             default:
                 throw new Error(`Unknown tab ${this.props.tab}`);
         }

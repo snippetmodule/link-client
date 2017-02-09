@@ -6,7 +6,8 @@ export type Tab =
     | 'my-schedule'
     | 'map'
     | 'notifications'
-    | 'info';
+    | 'info'
+    | 'note';
 
 export type Day = 1 | 2;
 
