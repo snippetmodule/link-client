@@ -20,7 +20,7 @@ const ActivityIndicator = ReactNative.Platform.OS === 'ios'
 // MainRoute.queries = { viewer: () => Relay.QL`query { viewer }` };
 // MainRoute.routeName = 'MainRoute';
 
-class RelayLoading extends React.Component<any, void> {
+class RelayLoading extends React.Component<any, any> {
   public render() {
     const child = React.Children.only(this.props.children);
     return this.renderChild(child, this.props);
@@ -152,7 +152,7 @@ class ListContainer extends React.Component<Props, State> {
 
     return (
       <ReactNative.View style={styles.container}>
-        <ReactNative.View style={styles.headerWrapper}>
+        <ReactNative.View style={styles.headerWrapper as any}>
           <ParallaxBackground
             minHeight={this.state.stickyHeaderHeight + Header.height}
             maxHeight={EMPTY_CELL_HEIGHT + this.state.stickyHeaderHeight + Header.height}

@@ -46,8 +46,8 @@ export class RatingScreen extends React.Component<Props, State> {
                         icon: Common.backIcon,
                         onPress: this.dismiss,
                     }}>
-                    <ReactNative.View style={styles.headerContent}>
-                        <ReactNative.Text style={styles.title as React.TextStyle}>
+                    <ReactNative.View style={styles.headerContent as any}>
+                        <ReactNative.Text style={styles.title as any}>
                             {surveys.length > 1
                                 ? 'Review these sessions'
                                 : 'Review this session'

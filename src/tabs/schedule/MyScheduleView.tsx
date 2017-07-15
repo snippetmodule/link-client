@@ -52,7 +52,7 @@ type Props = {
         loadFriendsSchedules: () => dispatch(loadFriendsSchedules()),
     }),
 )
-export class MyScheduleView extends React.Component<Props, void> {
+export class MyScheduleView extends React.Component<Props, any> {
     public render() {
         let rightItem;
         if (this.props.user.isLoggedIn) {

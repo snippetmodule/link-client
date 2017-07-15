@@ -11,7 +11,7 @@ type Props = {
 export function RateSessionsCell({ numberOfSessions, onPress }: Props) {
     const pluralSuffix = numberOfSessions === 1 ? '' : 's';
     return (
-        <ReactNative.View style={styles.cell as React.ViewStyle}>
+        <ReactNative.View style={styles.cell as any}>
             <ReactNative.Image
                 style={styles.star}
                 source={require('../../../asserts/rating/full-star.png')}
@@ -21,7 +21,7 @@ export function RateSessionsCell({ numberOfSessions, onPress }: Props) {
             </Common.Texts.Text>
 
             <ReactNative.TouchableOpacity accessibilityTraits="button" onPress={onPress}>
-                <ReactNative.View style={styles.button as React.ViewStyle}>
+                <ReactNative.View style={styles.button as any}>
                     <Common.Texts.Text style={styles.caption}>
                         REVIEW
                     </Common.Texts.Text>

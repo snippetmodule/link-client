@@ -16,7 +16,7 @@ export class FriendCell extends React.Component<Prop, any> {
             : <Common.Texts.Text style={styles.private}>PRIVATE</Common.Texts.Text>;
 
         const cell = (
-            <ReactNative.View style={styles.cell as React.ViewStyle}>
+            <ReactNative.View style={styles.cell as any}>
                 <Common.ProfilePicture userID={friend.id} size={42} />
                 <Common.Texts.Text style={styles.name}>
                     {friend.name}

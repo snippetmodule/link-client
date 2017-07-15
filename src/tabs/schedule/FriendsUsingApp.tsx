@@ -11,7 +11,7 @@ type Prop = {
         friends: store.friendsSchedules,
     }),
 )
-export class FriendsUsingApp extends React.Component<Prop, void> {
+export class FriendsUsingApp extends React.Component<Prop, any> {
 
     public render() {
         const {friends} = this.props;
@@ -30,7 +30,7 @@ export class FriendsUsingApp extends React.Component<Prop, void> {
             text = `${friends[0].name.split(' ')[0]} is sharing their schedule.`;
         }
         return (
-            <ReactNative.View style={styles.container as React.ViewStyle}>
+            <ReactNative.View style={styles.container as any}>
                 {pictures}
                 <Common.Texts.Text style={styles.text}>
                     {text}

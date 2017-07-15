@@ -21,7 +21,7 @@ export class ZoomableImage extends React.Component<Prop, State> {
     public render() {
         return (
             <ReactNative.ScrollView
-                ref={ref => this.srolloView = ref}
+                ref={ref => this.srolloView = ref as any}
                 onScroll={this.onZoomChanged}
                 scrollEventThrottle={100}
                 scrollsToTop={false}
@@ -35,7 +35,7 @@ export class ZoomableImage extends React.Component<Prop, State> {
                 contentContainerStyle={{ flex: 1 }}>
                 <ReactNative.TouchableWithoutFeedback onPress={this.toggleZoom.bind(this)}>
                     <ReactNative.Image
-                        style={styles.image as React.ImageStyle}
+                        style={styles.image as any}
                         source={{ uri: this.props.url }}
                     />
                 </ReactNative.TouchableWithoutFeedback>

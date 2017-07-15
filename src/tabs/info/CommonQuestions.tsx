@@ -41,7 +41,7 @@ class Row extends React.Component<{
         return (
             <ReactNative.View >
                 <Common.Touchable onPress={() => this.toggle()}>
-                    <ReactNative.View style={styles.question as React.ViewStyle} >
+                    <ReactNative.View style={styles.question as any} >
                         <Common.Texts.Text style={styles.symbol}>
                             {this.state.expanded ? '\u2212' : '+'}
                         </Common.Texts.Text>

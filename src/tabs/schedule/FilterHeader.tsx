@@ -22,7 +22,7 @@ export class FilterHeader extends React.Component<Prop, any> {
         }
 
         return (
-            <ReactNative.View style={styles.container as React.ViewStyle}>
+            <ReactNative.View style={styles.container as any}>
                 <ReactNative.Text style={styles.text} numberOfLines={1}>
                     {'Filters: '}
                     <ReactNative.Text style={styles.filters}>
@@ -32,7 +32,7 @@ export class FilterHeader extends React.Component<Prop, any> {
                 <ReactNative.TouchableOpacity
                     // accessibilityLabel="Clear filter"
                     accessibilityTraits="button"
-                    style={styles.clear as React.ViewStyle}
+                    style={styles.clear as any}
                     onPress={this.props.onClearFilter}>
                     <ReactNative.Image source={require('../../../asserts/base/common/x-white.png')} />
                 </ReactNative.TouchableOpacity>

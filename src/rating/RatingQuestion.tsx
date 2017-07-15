@@ -30,10 +30,10 @@ export function RatingQuestion({ question, rating, onChange, style }: Props) {
             <Common.Texts.Text style={styles.text}>
                 {question.text}
             </Common.Texts.Text>
-            <ReactNative.View style={styles.stars as React.ViewStyle}>
+            <ReactNative.View style={styles.stars as any}>
                 {stars}
             </ReactNative.View>
-            <ReactNative.View style={styles.labels as React.ViewStyle}>
+            <ReactNative.View style={styles.labels as any}>
                 <Common.Texts.Text style={styles.label}>
                     {question.lowLabel}
                 </Common.Texts.Text>
@@ -59,7 +59,7 @@ function Star({ isFull, value, onPress }) {
         <ReactNative.TouchableOpacity
             // accessibilityLabel={`${value} stars`}
             accessibilityTraits={accessibilityTraits as any}
-            style={styles.star as React.ViewStyle}
+            style={styles.star as any}
             activeOpacity={0.8}
             onPress={onPress}>
             <ReactNative.Image source={source} />

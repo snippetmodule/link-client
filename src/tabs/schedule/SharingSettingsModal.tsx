@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as ReactNative from 'react-native';
 import * as Common from '../../base/common';
+const { connect } = require('react-redux');
 
 import { FriendsUsingApp } from './FriendsUsingApp';
 import { SharingSettingsCommon } from './SharingSettingsCommon';
@@ -9,15 +10,19 @@ import { setSharingEnabled, Dispatch } from '../../actions';
 
 type Prop = {
     navigator: ReactNative.Navigator;
-    dispatch: Dispatch;
+    dispatch?: Dispatch;
 };
-export class SharingSettingsModal extends React.Component<Prop, void> {
+@connect(
+    (store:any)=>({}),
+    (dispatch) => ({ dispatch: dispatch })
+)
+export class SharingSettingsModal extends React.Component<Prop, any> {
 
     public render() {
         return (
-            <ReactNative.View style={styles.container as React.ViewStyle}>
-                <ReactNative.View style={styles.content as React.ViewStyle}>
-                    <SharingSettingsCommon style={styles.common as React.ViewStyle} />
+            <ReactNative.View style={styles.container as any}>
+                <ReactNative.View style={styles.content as any}>
+                    <SharingSettingsCommon style={styles.common as any} />
                     <FriendsUsingApp />
                     <Common.Button
                         style={styles.button}

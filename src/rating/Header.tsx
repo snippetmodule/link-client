@@ -15,14 +15,14 @@ export function Header({ session }: Props) {
         />
     ));
     return (
-        <ReactNative.View style={styles.container as React.ViewStyle}>
-            <ReactNative.View style={styles.background as React.ViewStyle}>
+        <ReactNative.View style={styles.container as any}>
+            <ReactNative.View style={styles.background as any}>
                 <ReactNative.Image source={require('../../asserts/rating/header.png')} />
             </ReactNative.View>
             <Common.Texts.Text style={styles.title}>
                 {session.title}
             </Common.Texts.Text>
-            <ReactNative.View style={styles.speakers as React.ViewStyle}>
+            <ReactNative.View style={styles.speakers as any}>
                 {pics}
             </ReactNative.View>
         </ReactNative.View>

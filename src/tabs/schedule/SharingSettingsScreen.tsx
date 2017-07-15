@@ -22,17 +22,17 @@ type Prop = {
     }),
     (dispatch) => ({ dispatch: dispatch }),
 )
-export class SharingSettingsScreen extends React.Component<Prop, void> {
+export class SharingSettingsScreen extends React.Component<Prop, any> {
     public render() {
         return (
-            <ReactNative.View style={styles.container as React.ViewStyle}>
+            <ReactNative.View style={styles.container as any}>
                 <ReactNative.StatusBar
                     translucent={true}
                     backgroundColor="rgba(0, 0, 0, 0.2)"
                     barStyle="default"
                 />
                 <SharingSettingsCommon />
-                <ReactNative.View style={styles.switchWrapper as React.ViewStyle}>
+                <ReactNative.View style={styles.switchWrapper as any}>
                     <Common.Texts.Text style={styles.option}>
                         NO
                     </Common.Texts.Text>

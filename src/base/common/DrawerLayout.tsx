@@ -26,7 +26,7 @@ export class DrawerLayout extends React.Component<Props, any> {
         // const {Right, Left} = ReactNative.DrawerLayoutAndroid.positions;
         return (
             <ReactNative.DrawerLayoutAndroid
-                ref={(drawer) => { this._drawer = drawer; }}
+                ref={(drawer) => { this._drawer = drawer as any; }}
                 {...this.props}
                 renderNavigationView={this.props.renderNavigationView}
                 drawerPosition={drawerPosition === 'right' ? (ReactNative.DrawerLayoutAndroid as any).positions.Right : (ReactNative.DrawerLayoutAndroid as any).positions.Left}

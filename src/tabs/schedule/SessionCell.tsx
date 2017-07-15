@@ -23,7 +23,7 @@ class SessionCell extends React.Component<Prop, any>{
         let tick;
         if (this.props.showTick) {
             tick =
-                <ReactNative.Image style={styles.added as React.ImageStyle} source={require('../../../asserts/tabs/schedule/added-cell.png')} />;
+                <ReactNative.Image style={styles.added as any} source={require('../../../asserts/tabs/schedule/added-cell.png')} />;
         }
         let time;
         if (this.props.showStartEndTime) {
@@ -35,7 +35,7 @@ class SessionCell extends React.Component<Prop, any>{
         let locationColor = Common.Colors.colorForLocation(location);
         let cell = (
             <ReactNative.View style={[styles.cell, this.props.style]}>
-                <ReactNative.View style={styles.titleSection as React.ViewStyle}>
+                <ReactNative.View style={styles.titleSection as any}>
                     <Common.Texts.Text numberOfLines={2} style={styles.titleText}>
                         {session.title}
                     </Common.Texts.Text>

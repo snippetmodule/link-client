@@ -112,7 +112,7 @@ export class TabsViewAndroid extends React.Component<Prop, any> {
                 </ReactNative.View>
             );
             loginItem = (
-                <ReactNative.View style={styles.loginPrompt as React.ViewStyle}>
+                <ReactNative.View style={styles.loginPrompt as any}>
                     <Common.Texts.Text style={styles.loginText}>
                         Log in to find your friends at F8.
                     </Common.Texts.Text>
@@ -123,7 +123,7 @@ export class TabsViewAndroid extends React.Component<Prop, any> {
         return (
             <ReactNative.View style={styles.drawer}>
                 <ReactNative.Image
-                    style={styles.header as React.ImageStyle}
+                    style={styles.header as any}
                     source={require('../../asserts/tabs/drawer-header.png')}>
                     {accountItem}
                 </ReactNative.Image>

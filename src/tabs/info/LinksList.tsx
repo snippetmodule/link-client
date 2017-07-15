@@ -39,7 +39,7 @@ class Row extends React.Component<RowProp, any> {
         let image = logo && <ReactNative.Image style={styles.picture} source={{ uri: logo }} />;
         return (
             <Common.Touchable onPress={this.handlePress.bind(this)}>
-                <ReactNative.View style={styles.row as React.ViewStyle}>
+                <ReactNative.View style={styles.row as any}>
                     {image}
                     <Common.Texts.Text style={styles.title} numberOfLines={2}>
                         {title}

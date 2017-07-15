@@ -6,7 +6,7 @@ type Prop = {
   count: number,
   selectedIndex: number,
 };
-class PageControl extends React.Component<Prop, void> {
+class PageControl extends React.Component<Prop, any> {
   public render() {
     let images = [];
     for (let i = 0; i < this.props.count; i++) {
@@ -23,7 +23,7 @@ class PageControl extends React.Component<Prop, void> {
   }
 }
 
-class Circle extends React.Component<any, void> {
+class Circle extends React.Component<any, any> {
   public render() {
     let extraStyle = this.props.isSelected ? styles.full : styles.empty;
     return <ReactNative.View style={[styles.circle, extraStyle]} />;

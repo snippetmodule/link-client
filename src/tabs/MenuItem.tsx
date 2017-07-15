@@ -25,8 +25,8 @@ class MenuItem extends React.Component<Prop, any> {
         }
         return (
             <Common.Touchable onPress={this.props.onPress}>
-                <ReactNative.View style={styles.container as React.ViewStyle}>
-                    <ReactNative.Image style={styles.icon} source={icon} />
+                <ReactNative.View style={styles.container as any}>
+                    <ReactNative.Image style={styles.icon as any} source={icon as any} />
                     <Common.Texts.Text style={[styles.title, selectedTitleStyle]}>
                         {this.props.title}
                     </Common.Texts.Text>

@@ -92,7 +92,7 @@ class AddToScheduleButton extends React.Component<Props, State> {
                     collapsable={false}
                     style={styles.button}>
                     <ReactNative.View style={{ flex: 1 }}>
-                        <ReactNative.View style={styles.content as React.ViewStyle} collapsable={false}>
+                        <ReactNative.View style={styles.content as any} collapsable={false}>
                             <ReactNative.Animated.Image
                                 source={this.props.addedImageSource || require('../../../asserts/tabs/schedule/added.png')}
                                 style={[styles.icon, addedOpacityImage]}
@@ -101,7 +101,7 @@ class AddToScheduleButton extends React.Component<Props, State> {
                                 <Common.Texts.Text>{SAVED_LABEL.toUpperCase()}</Common.Texts.Text>
                             </ReactNative.Animated.Text>
                         </ReactNative.View>
-                        <ReactNative.View style={styles.content as React.ViewStyle}>
+                        <ReactNative.View style={styles.content as any}>
                             <ReactNative.Animated.Image
                                 source={require('../../../asserts/tabs/schedule/add.png')}
                                 style={[styles.icon, addOpacityImage]}

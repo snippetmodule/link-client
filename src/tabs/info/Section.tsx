@@ -11,7 +11,7 @@ export class Section extends React.Component<Prop, any> {
     public render() {
         return (
             <ReactNative.View style={[styles.container, this.props.style]}>
-                <ReactNative.View style={styles.header as React.ViewStyle}>
+                <ReactNative.View style={styles.header as any}>
                     <Common.Texts.Text style={styles.title}>
                         {this.props.title}
                     </Common.Texts.Text>

@@ -18,7 +18,7 @@ class Button extends React.Component<IProp, any> {
     const caption = this.props.caption.toUpperCase();
     let icon;
     if (this.props.icon) {
-      icon = <ReactNative.Image source={this.props.icon} style={styles.icon} />;
+      icon = <ReactNative.Image source={this.props.icon as any} style={styles.icon} />;
     }
     let content;
     if (!this.props.type || this.props.type === 'primary') {

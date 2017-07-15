@@ -21,7 +21,7 @@ type Props = {
         sessions: data(store, props),
     })
 )
-export class FriendsScheduleView extends React.Component<Props, void> {
+export class FriendsScheduleView extends React.Component<Props, any> {
 
     public render() {
         const backItem = {

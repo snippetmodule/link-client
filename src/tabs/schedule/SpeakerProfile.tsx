@@ -6,11 +6,11 @@ import { Speaker } from '../../reducers/sessions';
 type Prop = {
     speaker: Speaker;
 };
-export class SpeakerProfile extends React.Component<Prop, void>{
+export class SpeakerProfile extends React.Component<Prop, any>{
     public render() {
         let speaker = this.props.speaker;
         return (
-            <ReactNative.View style={styles.row as React.ViewStyle}>
+            <ReactNative.View style={styles.row as any}>
                 <ReactNative.Image style={styles.picture} source={{ uri: speaker.pic }} />
                 <ReactNative.View style={styles.info}>
                     <Common.Texts.Text style={styles.name}>{speaker.name}</Common.Texts.Text>

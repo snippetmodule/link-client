@@ -116,11 +116,11 @@ let SessionDetailsImpl = React.createClass<Prop, State>({
                         // accessibilityLabel="Share this session"
                         accessibilityTraits="button"
                         onPress={this.props.onShare}
-                        style={styles.shareButton as React.ViewStyle}>
+                        style={styles.shareButton as any}>
                         <ReactNative.Image source={require('../../../asserts/tabs/schedule/share.png')} />
                     </ReactNative.TouchableOpacity>
                 </ReactNative.ScrollView>
-                <ReactNative.View style={styles.actions as React.ViewStyle}>
+                <ReactNative.View style={styles.actions as any}>
                     <AddToScheduleButton
                         addedImageSource={isReactTalk ? require('../../../asserts/tabs/schedule/added-react.png') : null}
                         isAdded={this.props.isAddedToSchedule}
@@ -181,7 +181,7 @@ class Section extends React.Component<SectionProp, any> {
         let header;
         if (this.props.title) {
             header = (
-                <ReactNative.View style={styles.sectionHeader as React.ViewStyle}>
+                <ReactNative.View style={styles.sectionHeader as any}>
                     <Common.Texts.Text style={styles.sectionTitle}>
                         {this.props.title.toUpperCase()}
                     </Common.Texts.Text>

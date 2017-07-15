@@ -53,7 +53,7 @@ type RowProp = {
 class Row extends React.Component<RowProp, any> {
     public render() {
         return (
-            <ReactNative.View style={styles.row as React.ViewStyle}>
+            <ReactNative.View style={styles.row as any}>
                 <Common.Texts.Text style={styles.label}>
                     {this.props.label.toUpperCase()}
                 </Common.Texts.Text>

@@ -12,7 +12,7 @@ export class FriendGoing extends React.Component<Prop, any> {
     public render() {
         return (
             <Common.Touchable onPress={this.props.onPress}>
-                <ReactNative.View style={styles.container as React.ViewStyle}>
+                <ReactNative.View style={styles.container as any}>
                     <Common.ProfilePicture userID={this.props.friend.id} size={18} />
                     <Common.Texts.Text style={styles.name}>
                         {this.props.friend.name}

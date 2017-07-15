@@ -41,7 +41,7 @@ export class NotificationCell extends React.Component<Prop, any> {
                         {this.props.notification.text}
                     </Common.Texts.Text>
                     {attachment}
-                    <ReactNative.View style={styles.footer as React.ViewStyle}>
+                    <ReactNative.View style={styles.footer as any}>
                         <Common.Texts.Text style={styles.time}>
                             {moment(this.props.notification.time).fromNow()}
                         </Common.Texts.Text>

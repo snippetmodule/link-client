@@ -32,20 +32,20 @@ export class LoginScreen extends React.Component<Prop, State> {
                 <ReactNative.StatusBar barStyle="default" />
                 <ReactNative.TouchableOpacity
                     accessibilityTraits="button"
-                    style={styles.skip as React.ViewStyle}
+                    style={styles.skip as any}
                     onPress={() => this.props.dispatch(skipLogin())}>
                     <ReactNative.Animated.Image
                         style={this.fadeIn(2800)}
                         source={require('../../asserts/login/x.png')}
                         />
                 </ReactNative.TouchableOpacity>
-                <ReactNative.View style={styles.section as React.ViewStyle}>
+                <ReactNative.View style={styles.section as any}>
                     <ReactNative.Animated.Image
                         style={this.fadeIn(0)}
                         source={require('../../asserts/login/devconf-logo.png')}
                         />
                 </ReactNative.View>
-                <ReactNative.View style={styles.section as React.ViewStyle}>
+                <ReactNative.View style={styles.section as any}>
                     <ReactNative.Animated.Text style={[styles.h1, this.fadeIn(700, -20)]}>
                         code to
                     </ReactNative.Animated.Text>

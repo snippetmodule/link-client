@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as ReactNative from 'react-native';
 import * as Common from '../../base/common';
+const { connect } = require('react-redux');
 
 import { Parse } from 'parse/react-native';
 // const {AppEventsLogger} = require('react-native-fbsdk');
@@ -19,7 +20,7 @@ type Props = {
     allSessions?: { [sectionID: string]: { [sessionID: string]: Session } };
     session: Session;
     navigator: ReactNative.Navigator;
-    dispatch: Dispatch;
+    dispatch?: Dispatch;
 };
 type State = {
     day: number;
@@ -28,6 +29,10 @@ type State = {
     flatSessionsList: Session[];
     contexts: Context[];
 };
+@connect(
+    (store) => {},
+    (dispatch) => ({ dispatch: dispatch })
+)
 export class SessionsCarousel extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props);
@@ -94,7 +99,7 @@ export class SessionsCarousel extends React.Component<Props, State> {
                         onPress: this.dismiss,
                     }}
                     rightItem={rightItem}>
-                    <ReactNative.View style={styles.headerContent}>
+                    <ReactNative.View style={styles.headerContent as any}>
                         <Common.Texts.Text style={styles.title}>
                             <Common.Texts.Text style={styles.day}>DAY {this.state.day}</Common.Texts.Text>
                             {'\n'}

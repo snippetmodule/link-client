@@ -12,7 +12,7 @@ type Prop = {
 class EmptySchedule extends React.Component<Prop, any>{
     public render() {
         const image = this.props.image &&
-            <ReactNative.Image style={styles.image} source={this.props.image} />;
+            <ReactNative.Image style={styles.image as any} source={this.props.image as any} />;
         const title = this.props.title &&
             <Common.Texts.Heading1 style={styles.title}>{this.props.title}</Common.Texts.Heading1>;
         return (

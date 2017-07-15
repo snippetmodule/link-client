@@ -13,7 +13,7 @@ import { RatingScreen } from './rating/RatingScreen';
 import { FriendsScheduleView } from './tabs/schedule/FriendsScheduleView';
 import { TabsViewAndroid } from './tabs/TabsViewAndroid';
 import { TabsViewIOS } from './tabs/TabsViewIOS';
-
+import { Session } from './reducers/sessions';
 
 type Prop = {
   tab?: string,
@@ -79,7 +79,7 @@ export class AppNavigator extends React.Component<Prop, any> {
   public render() {
     return (
       <ReactNative.Navigator
-        ref={(ref) => this.mNavigator = ref}
+        ref={(ref) => this.mNavigator = ref as any}
         sceneStyle={styles.container}
         configureScene={(route: any) => {
           if (ReactNative.Platform.OS === 'android') {
@@ -97,13 +97,13 @@ export class AppNavigator extends React.Component<Prop, any> {
       />
     );
   }
-  private renderScene(route, navigator) {
+  private renderScene(route, navigator: ReactNative.Navigator) {
     if (route.allSessions) {
       return (<SessionsCarousel {...route} navigator={navigator} />
       );
     }
     if (route.session) {
-      return (<SessionsCarousel session={route.session} navigator={navigator}     {...this.props} />);
+      return (<SessionsCarousel session={route.session as Session} navigator={navigator}     {...this.props} />);
     }
     if (route.filter) {
       return (<FilterScreen navigator={navigator} />);

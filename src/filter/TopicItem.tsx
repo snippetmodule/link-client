@@ -1,3 +1,4 @@
+
 import * as React from 'react';
 import * as ReactNative from 'react-native';
 
@@ -24,7 +25,7 @@ class TopicItem extends React.Component<Prop, any> {
             <ReactNative.TouchableOpacity
                 accessibilityTraits={accessibilityTraits as any}
                 activeOpacity={0.8}
-                style={styles.container as React.ViewStyle}
+                style={styles.container as any}
                 onPress={onToggle}>
                 <ReactNative.View style={[styles.checkbox, style]} />
                 <Common.Texts.Text style={styles.title}>

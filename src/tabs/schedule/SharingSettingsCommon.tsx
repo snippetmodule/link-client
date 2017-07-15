@@ -12,11 +12,11 @@ type Prop = {
         user: store.user,
     }),
 )
-export class SharingSettingsCommon extends React.Component<Prop, void> {
+export class SharingSettingsCommon extends React.Component<Prop, any> {
     public render() {
         const { user } = this.props;
         const title = user.name && user.id && (
-            <ReactNative.View style={styles.title as React.ViewStyle}>
+            <ReactNative.View style={styles.title as any}>
                 <Common.ProfilePicture userID={user.id} size={24} />
                 <Common.Texts.Text style={styles.name}>
                     {user.name.split(' ')[0] + "'"}s Schedule
@@ -25,10 +25,10 @@ export class SharingSettingsCommon extends React.Component<Prop, void> {
         );
         return (
             <ReactNative.View style={[styles.container, this.props.style]}>
-                <ReactNative.Image style={styles.image as React.ImageStyle} source={require('../../../asserts/tabs/schedule/sharing-nux.png')}>
+                <ReactNative.Image style={styles.image as any} source={require('../../../asserts/tabs/schedule/sharing-nux.png')}>
                     {title}
                 </ReactNative.Image>
-                <ReactNative.View style={styles.content as React.ViewStyle} >
+                <ReactNative.View style={styles.content as any} >
                     <Common.Texts.Heading1 style={styles.h1}>
                         Let friends view your schedule in the F8 app?
                     </Common.Texts.Heading1>

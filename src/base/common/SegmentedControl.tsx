@@ -10,7 +10,7 @@ type Prop = {
   onChange: (newIndex: number) => void;
   style?: any;
 };
-class SegmentedControl extends React.Component<Prop, void> {
+class SegmentedControl extends React.Component<Prop, any> {
 
   public render() {
     let segments = this.props.values.map(
@@ -36,7 +36,7 @@ type SegmentProp = {
   selectionColor: string;
   onPress: () => void;
 };
-class Segment extends React.Component<SegmentProp, void> {
+class Segment extends React.Component<SegmentProp, any> {
 
   public render() {
     let selectedButtonStyle;
@@ -49,7 +49,7 @@ class Segment extends React.Component<SegmentProp, void> {
     }
     let title = this.props.value && this.props.value.toUpperCase();
 
-    let accessibilityTraits: React.ViewAccessibilityTraits[] = ['button'];
+    let accessibilityTraits: ReactNative.ViewAccessibilityTraits[] = ['button'];
     if (this.props.isSelected) {
       accessibilityTraits.push('selected');
     }

@@ -15,7 +15,7 @@ type Props = {
     navigator: ReactNative.Navigator;
 };
 
-export class FriendsListView extends React.Component<Props, void> {
+export class FriendsListView extends React.Component<Props, any> {
     private _innerRef?: Common.PureListView;
     public render() {
         return (

@@ -10,13 +10,13 @@ export class PushNUXModal extends React.Component<Prop, any> {
 
     public render() {
         return (
-            <ReactNative.View style={styles.container as React.ViewStyle}>
-                <ReactNative.View style={styles.inner as React.ViewStyle}>
+            <ReactNative.View style={styles.container as any}>
+                <ReactNative.View style={styles.inner as any}>
                     <ReactNative.Image
-                        style={styles.image as React.ImageStyle}
+                        style={styles.image as any}
                         source={require('../../../asserts/tabs/notifications/push-nux.png')}
                     />
-                    <ReactNative.View style={styles.content as React.ViewStyle}>
+                    <ReactNative.View style={styles.content as any}>
                         <Common.Texts.Heading1 style={null}>
                             Don't miss out!
                         </Common.Texts.Heading1>
