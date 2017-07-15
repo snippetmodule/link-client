@@ -1,54 +1,44 @@
-# ReactNativeTS
-
-[![Build Status][ci-image]][ci-url] [![dependencies][dependencies-image]][dependencies-url] [![dev-dependencies][dev-dependencies-image]][dev-dependencies-url]
-
-Minimal template of a [React Native](https://facebook.github.io/react-native/) project with [Typescript](https://www.typescriptlang.org/).
-
-![preview](https://github.com/mrpatiwi/ReactNativeTS/raw/images/preview.png)
-
-> Recommended usage with [VSCode](https://code.visualstudio.com/)
-
 ## Getting Started
 
 Clone this repository:
 
 ```sh
-git clone https://github.com/mrpatiwi/ReactNativeTS.git
-cd ReactNativeTS
+git clone https://github.com/snippetmodule/link-client link-client.git
+cd link-client.git
 ```
 
 Install dependencies:
 
 ```sh
-npm install
+yarn install
 ```
 
 Start React Native server:
 
 ```sh
-npm start
+yarn start
 ```
 
 Build the source-code with Typescript:
 
 ```sh
 # Build once
-npm run build
+yarn run build
 
 # Build and watch for changes
-npm run build -- --watch
+yarn run build -- --watch
 ```
 
 ### iOS
 
 ```sh
-npm run ios
+yarn run ios
 ```
 
 ### Android
 
 ```sh
-npm run android
+yarn run android
 ```
 
 [ci-image]: https://travis-ci.org/mrpatiwi/ReactNativeTS.svg
